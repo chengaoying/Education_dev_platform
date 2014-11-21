@@ -1,0 +1,4 @@
+#Tue Nov 18 11:57:54 CST 2014
+eclipse.preferences.version=1
+include_path=5;com.zend.php.phpunit.CONTAINER\u00055;org.zend.php.framework.CONTAINER\u00050;/Education_dev_platform
+use_asp_tags_as_php=false
