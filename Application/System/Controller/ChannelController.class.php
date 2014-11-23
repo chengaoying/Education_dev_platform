@@ -64,12 +64,14 @@ class ChannelController extends BaseAuthController {
 				$channel['imgUrl'] = str_replace(',', "\r\n",$channel['imgUrl']);	
 				$channel['description'] = str_replace('<br/>', "\r\n",$channel['description']);										
 			}else{
-				$channel['status']=1;				
-			}			
+				$channel['status'] = 1; //状态默认为启用
+				$channel['isShow'] = 1; //显示状态默认为显示
+			}
+					
 			$this->assign(array(
 				'channel'	=> $channel,
-				'thumb'		=> CP('thumb'),
-				'pIdHtml'	=> $this->getComboBox( get_array_val(D('Channel')->queryChannel(),'rows'),'pId',array('selVal'=>$channel['pId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'level','nullText'=>'顶级栏目','width'=>300)),
+				'thumb'		=> '',
+				'pIdHtml'	=> $this->getComboBox(get_array_val(D('Channel')->queryChannel(),'rows'),'pId',array('selVal'=>$channel['pId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'level','nullText'=>'顶级栏目','width'=>300)),
 				'statusHtml'=> $this->getComboBox($this->statusNames, 'status',array('selVal'=>$channel['status'],'nullText'=>'')),
 				'showHtml'=> $this->getComboBox($this->isShow, 'isShow',array('selVal'=>$channel['isShow'],'nullText'=>'')),
 			));	

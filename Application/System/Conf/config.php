@@ -16,6 +16,7 @@ return array (
 		'SysRole'		=> '系统角色',
 		'ProConfig'		=> '配置',
 		'Channel'		=> '栏目',
+		'Stage'			=> '龄段',
 	),		
 	
 	//上传附件支持的类型

@@ -49,8 +49,6 @@
 			<span class="toolbar-btn-separator"></span>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()" <?php echo ($buttonStyle['del']); ?>>删除</a>			
 			
-    <a href="#" class="easyui-linkbutton" iconCls="icon-sum" plain="true" <?php echo ($buttonStyle['export']); ?> onclick="return exportData();">导出数据</a>
-
 			<a href="#" ></a>
 		</div>
 	</div>
@@ -67,7 +65,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/Channel/index',
+		url: '/System/Stage/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -84,23 +82,9 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'栏目名称',sortable:false,width:200,
-            	formatter:function(value,row,index){
-            			return (new Array(parseInt(row.level)+1).join("　　")) + value;
-            		}
-            	},
-            {field:'chKey',title:'栏目KEY',sortable:false,width:100},
-			{field:'imgUrl',title:'图片路径',sortable:false,width:250},
-			{field:'linkUrl',title:'跳转地址',sortable:false,width:150},                        
-			{field:'isShow',title:'在首页导航中',sortable:true,width:100,
-				formatter:function(value,row,index){
-						return value==1 ? "显示" : "<font color=red>不显示</font>";
-					}
-				},                      
-            {field:'description',title:'栏目描述',sortable:false,width:150},  
-            {field:'level',title:'层级',sortable:false,width:60},
-            {field:'path',title:'路径',sortable:false,width:100},
-            {field:'childIds',title:'子节点串',sortable:false,width:180},           
+            {field:'name',title:'龄段名称',sortable:false,width:200},
+            {field:'sKey',title:'龄段KEY',sortable:false,width:100},
+            {field:'chId',title:'所属于顶级分类',sortable:false,width:180},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
@@ -109,34 +93,6 @@ $(function(){
             	},            
             {field:'addTime',title:'添加时间',sortable:true,width:180},
         ]],
-        onMouseOverRow:function(e, rowIndex, rowData,field,value){
-            
-            if((field == 'imgUrl') && value != ''){
-               
-               var fieldValue = eval("rowData.realNavImgUrl");
-               var imgArr = fieldValue.split(",");
-               var imgStr = '';
-               //alert(imgArr.length);
-               if(imgArr.length>1){
-                    for(var i=0;i<(imgArr.length);i++){
-                         imgStr += '<p><img src="'+imgArr[i]+'" /></p>';
-                    }
-               }else{
-                    imgStr = '<p><img src="'+fieldValue+'" /></p>';
-               }
-               //alert(imgStr);
-               $("#datagrid_img").html(imgStr);
-               $("#datagrid_img").show();
-               if($("#datagrid_img").height()+e.pageY > $(document).height()){
-                    e.pageY = e.pageY-$("#datagrid_img").height();
-               }
-               //alert($(document).height());
-               $("#datagrid_img").css("left",e.pageX).css("top",e.pageY);
-            }
-       },  
-       onMouseOutRow:function(e,rowIndex, rowData){  
-           $("#datagrid_img").hide();
-       }, 
 	    
         onLoadSuccess:function(){
 	    	$(this).datagrid('clearSelections');//取消所有的已选择项
@@ -160,21 +116,17 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/Channel/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/Stage/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Channel/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Stage/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/Channel/del");
+	delData(datagrid,"/System/Stage/del");
 }
 
 
 
-
-function exportData(){
-    window.location="/System/Channel/exportData";
-}
 
 
 </script>

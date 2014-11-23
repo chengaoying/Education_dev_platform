@@ -43,10 +43,6 @@ return array(
     				'name' => '课程',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
-    			/* 'CourseType' => array(
-    				'name' => '课程类型',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			), */
     			'Topic' => array(
     				'name' => '知识点',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
@@ -68,14 +64,6 @@ return array(
     				'name' => '题库资源',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
-    			/* 'ResourceProvider' => array(
-    				'name' => '资源提供商',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			),
-    			'Press' => array(
-    				'name' => '出版社',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			), */
     			'Upfile' => array(
     				'name'	=> '附件',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
@@ -85,6 +73,10 @@ return array(
     	'user_role' => array(
     		'name'	=> '用户中心',
     		'item'	=> array(
+    			'Stage' => array(
+    				'name' => '龄段管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
     			'User' => array(
     				'name' => '用户管理',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
