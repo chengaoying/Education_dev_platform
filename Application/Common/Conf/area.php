@@ -7,8 +7,6 @@ return array (
 	//专区适配设置	
 	'DEFAULT_MODULE'	=> 'System',	//默认分组模块
 	'AREA_CODE' 		=> '90017', 	//地区编码
-	'PARENT_MODULE'     => 'Sd',   		//父类分组模块
-	'AREA_VER' 			=> '1', 		//地区版本（1-Sd,2-Hd）,请与上面的PARENT_MODULE相对应
 	'SERVER_IP'			=> '',			//服务器IP
 	
 	//主数据库

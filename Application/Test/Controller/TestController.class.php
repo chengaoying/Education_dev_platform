@@ -32,7 +32,7 @@ class TestController extends \Think\Controller {
 		
 		//dump(S('Stage_20'));
 		
-		exit;
+		//exit;
 		$this->display();
 	}
 }

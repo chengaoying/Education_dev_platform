@@ -4,8 +4,6 @@
  * 业务相关通用函数库
  */
 
-
-
 /**
  * 获取缓存
  * @param string $key
@@ -57,60 +55,6 @@ function get_upfile_url($url, $suffix = '', $path = '') {
 		$path .= '/';
 	return $path . $url;
 }
-
-/**
- * 获取返回地址
- * @param string $defUrl 默认地址
- * @param int $type 类型：0-固定,1-动态
- * @param int $urlType 默认地址类型(0-U函数解析前,1-解析后)
- * @param int $level 向上返回的层级数
- * @param array|string $ignore 忽略来源页关键字，如果来源页地址包含这些关键字，则不加入到访问历史队列中
- */
-function get_back_url($defUrl, $type = 0,$urlType=0,$level=0,$ignore='') {
-    if($urlType==0) $defUrl = U($defUrl);
-    if ($type == 1) {
-		//去掉忽略的来源页
-		$referer = !HTTP_REFERER ?  '' : HTTP_REFERER;
-		
-		if($referer && $ignore){			
-			$ignores = is_array($ignore) ? $ignore : array($ignore);
-			foreach($ignores as $v){
-				if(stripos($referer,$v)>0){
-					$referer = '';
-				}
-			}
-		}
-		//取出历史访问队列
-        $backUrl = unserialize(Session('back_url')); 
-        if (!empty($backUrl) && is_array($backUrl)) { //存在
-            //判断当前访问页是否已经在历史记录中
-            $key = get_array_keyval($backUrl, HTTP_SELF);
-            if ($key === null) { //不存在，则将本页的来源页加入列表，并以此为返回地址
-				if(!$referer) $referer = $backUrl[count($backUrl)-1];
-                $url = !$referer ? $defUrl : $referer;                
-                //如果来源页与当前页不同且不在最后一条列表中则添加
-                if ($url != $backUrl[count($backUrl) - 1] && $url != HTTP_SELF){
-                    $backUrl[] = $url;
-                }
-                if($level>0) $backUrl = array_slice($backUrl,0,count($backUrl)-$level);
-            }elseif ($key === 0) { //存在且在最头部，则返回默认页，并清空列表
-                Session('back_url', null);
-                return $defUrl;
-            } else {// 存在且不在最头部，则取该页的前一记录为返回地址，并清除之后的所有记录
-            	$n = ($key-$level>0) ? $key-$level : 0;
-                $backUrl = array_slice($backUrl, 0, $n);
-            }
-        } else { //无队列时，当返回层级大于0直接返回默认页，否则返回前一页地址        	
-        	$backUrl[]  = ($level>0 || !$referer) ? $defUrl : $referer;        	
-        }  
-        Session('back_url', serialize($backUrl));
-        return $backUrl[count($backUrl) - 1];
-    } else {
-        Session('back_url', null);
-        return $defUrl;
-    }
-}
-
 
 /**
  * 保存日志

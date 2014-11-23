@@ -4,7 +4,6 @@
  * 通用函数库
  */
 
-
 /**
  * 返回统一格式的结果
  * @param bool $status	操作结果（true or false）
@@ -80,7 +79,6 @@ function get_array_key($val,$data=array(),$pos=0) {
 	return $keyItem;
 }
 
-
 /**
  * 从数组中返回某个值（主要用于无法连续书写的语句上）
  * @param array $arr
@@ -118,7 +116,6 @@ function get_array_for_fieldval($arr,$field,$fieldVal){
 	return $arr;
 }
 
-
 /**
  * 从数组中取某列值替换数组的键名
  * @param unknown_type $arr
@@ -134,8 +131,6 @@ function array_replace_keyval($arr, $keyName='',$valName='') {
     }
     return $newArr;
 }
-
-
 
 /**
  * 根据条件，将一个数据的字段附加到另一个数组中(只要用于关联的两个二维表数组)
@@ -154,83 +149,6 @@ function array_add_field($arr1,$arr2,$joinKey,$fields){
 	return $arr1;
 }
 
-
-/**
- * 按大写字母拆分字符串
- * @param string $str
- * @return unknown|multitype:
- */
-function upper_split($str) {
-	$arr = preg_split("/(?=[A-Z])/", $str);
-	if (empty($arr[0])) {
-		unset($arr[0]);
-		foreach ($arr as $v) {
-			$arr1[] = $v;
-		}
-		return $arr1;
-	}
-	return $arr;
-}
-
-/**
- * 检查日期格式是否正确
- * @param string $dateTime
- */
-function is_datetime($dateTime) {
-    if (empty($dateTime))
-        return false;
-    return strtotime($dateTime);
-}
-
-
-/**
- * 对整数类型处理
- */
-function unit($dataid) {
-    if (!is_numeric($dataid)) {
-        return;
-    }
-    if (intval($dataid) == 0) {
-        return;
-    }
-    return $dataid;
-}
-
-
-/**
- * 字符串截取，支持中文和其他编码
- * @static
- * @access public
- * @param string $str 需要转换的字符串
- * @param string $start 开始位置
- * @param string $length 截取长度
- * @param string $charset 编码格式
- * @param string $suffix 截断显示字符
- * @return string
- */
-function msubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = true,$substr = true) {
-    if(function_exists("mb_substr") && $substr)
-        $slice = mb_substr($str, $start, $length, $charset);
-    if (function_exists("mb_strcut") && !$substr)
-        $slice = mb_strcut($str, $start, $length, $charset);
-    elseif (function_exists('iconv_substr')) {
-        $slice = iconv_substr($str, $start, $length, $charset);
-    } else {
-        $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
-        $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
-        $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
-        $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
-        preg_match_all($re[$charset], $str, $match);
-        $slice = join("", array_slice($match[0], $start, $length));
-    }
-    	if(strlen($str)>$length*3){
-    		return $suffix ? $slice.'...' : $slice;
-    	}else{
-    		return $slice;
-    	}
-//     return $suffix ? $slice . '...' : $slice;
-}
-
 /**
  * 获取一定范围内的随机数字 位数不足补零
  * @param integer $min 最小值
@@ -242,20 +160,6 @@ function rand_number($min, $max) {
 }
 
 /**
- * 按最大区域计算图片最大显示大小
- * @param int $oldWidth	图片原宽
- * @param int $oldHeight 图片原高
- * @param int $maxWidth 最大允许宽度
- * @param int $maxHeight 最大允许高度
- */
-function img_resize($width,$height,$maxWidth=640,$maxHeight=530){
-	if($width<=0 || $height<=0) return;
-	$rate = ($maxWidth/$width < $maxHeight/$height) ? $maxWidth/$width : $maxHeight/$height;
-	return array(intval($width*$rate),intval($height*$rate));
-}
-
-
-/**
  * 判断除0外的空
  * @param unknown_type $val
  * @return boolean
@@ -264,48 +168,12 @@ function is_empty_null($val){
 	return ($val==='' || $val===null);
 }
 
+/**
+ * 判断是否为json数据
+ * @param unknown_type $string
+ * @return boolean
+ */
 function is_json($string){
 	json_decode($string); 
 	return (json_last_error() == JSON_ERROR_NONE);
 }
-
-/**
- * 分析并获取叠加代码
- * @param unknown_type $arr
- * @param unknown_type $val
- * @param unknown_type $type
- * @example array(1,2,4,8); 
- */
-function get_pile_code($arr,$val){
-	if(in_array($val,$arr)){//返回叠加后的值(包括本身) 2 = array(2,3,6,10);
-		$newArr[] = $val;
-		foreach($arr as $v){
-			if($v!=$val) $newArr[] = $v + $val;
-		}	
-	}else{//返回叠加前的值(包括本身) 6 = array(2,4,6);
-		$tmp = $arr[0];
-		foreach($arr as $v){
-			if($v>$val) break;
-			$tmp = $v; //找到小于且最接近的数
-		}
-		$newArr= array($val-$tmp,$tmp,$val);
-	}
-	return $newArr;
-}
-
-/**
- * 判断是否为非空非数字的字符串
- * @param unknown_type $val
- * @return boolean
- */
-function is_not_numeric($val){
-	if(empty($val)) return false;
-	if(is_numeric($val)) return false;
-	if(is_string($val)) {
-		return true;
-	}else{
-		return false;
-	}
-	
-}
-
