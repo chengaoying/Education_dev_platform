@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : .5
-Source Server Version : 50166
-Source Host           : 192.168.0.5:3306
+Source Server         : localhost
+Source Server Version : 50508
+Source Host           : localhost:3306
 Source Database       : edu_hipi
 
 Target Server Type    : MYSQL
-Target Server Version : 50166
+Target Server Version : 50508
 File Encoding         : 65001
 
-Date: 2014-11-20 18:39:48
+Date: 2014-11-23 13:11:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `t_channel` (
   PRIMARY KEY (`id`),
   KEY `pId` (`pId`),
   KEY `chKey` (`chKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='栏目';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='栏目';
 
 -- ----------------------------
 -- Records of t_channel
@@ -43,6 +43,10 @@ INSERT INTO `t_channel` VALUES ('1', '0', '精彩推荐', 'recommend', '', '', '
 INSERT INTO `t_channel` VALUES ('12', '0', '全部课程', 'allcourse', '', '', '1', '', '0', '1', '2014-11-19 14:00:11');
 INSERT INTO `t_channel` VALUES ('13', '0', '我的课程', 'mycourse', '', '', '1', '', '0', '1', '2014-11-19 14:00:43');
 INSERT INTO `t_channel` VALUES ('17', '0', '用户中心', 'usercenter', '', '', '0', '', '0', '1', '2014-11-19 18:16:23');
+INSERT INTO `t_channel` VALUES ('18', '12', '早教', 'early', '', '', '0', '', '0', '1', '2014-11-22 09:36:57');
+INSERT INTO `t_channel` VALUES ('19', '12', '幼教', 'preschool', '', '', '0', '', '0', '1', '2014-11-22 09:37:40');
+INSERT INTO `t_channel` VALUES ('20', '12', '小学', 'primaryschool', '', '', '0', '', '0', '1', '2014-11-22 09:38:54');
+INSERT INTO `t_channel` VALUES ('21', '12', '中学', 'middleschool', '', '', '0', '', '0', '1', '2014-11-22 09:39:08');
 
 -- ----------------------------
 -- Table structure for t_course
@@ -51,10 +55,12 @@ DROP TABLE IF EXISTS `t_course`;
 CREATE TABLE `t_course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `chId` int(11) NOT NULL COMMENT '栏目ID',
+  `stageId` int(11) DEFAULT NULL COMMENT '龄段ID',
   `pressId` int(11) DEFAULT NULL COMMENT '出版社ID',
   `name` varchar(20) NOT NULL COMMENT '课程名称',
   `volume` tinyint(1) DEFAULT NULL COMMENT '0-上册，1-下册',
   `typeId` int(11) DEFAULT NULL COMMENT '类型(基础/拓展)ID',
+  `price` float(3,2) NOT NULL DEFAULT '0.00',
   `midLibId` int(11) DEFAULT NULL COMMENT '期中考试题库ID',
   `finalLibId` int(11) DEFAULT NULL COMMENT '期末考试题库ID',
   `topicIds` varchar(50) NOT NULL COMMENT '知识点id(多个用逗号分隔)',
@@ -73,44 +79,6 @@ CREATE TABLE `t_course` (
 
 -- ----------------------------
 -- Records of t_course
--- ----------------------------
-
--- ----------------------------
--- Table structure for t_course_type
--- ----------------------------
-DROP TABLE IF EXISTS `t_course_type`;
-CREATE TABLE `t_course_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL COMMENT '名称',
-  `number` int(11) NOT NULL COMMENT '编号',
-  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
-  `status` tinyint(1) DEFAULT '1' COMMENT '状态',
-  `addTime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `number` (`number`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程类型表';
-
--- ----------------------------
--- Records of t_course_type
--- ----------------------------
-
--- ----------------------------
--- Table structure for t_key
--- ----------------------------
-DROP TABLE IF EXISTS `t_key`;
-CREATE TABLE `t_key` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL COMMENT '关键字名称',
-  `description` varchar(50) DEFAULT NULL COMMENT '关键字描述',
-  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '开启状态',
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='关键字';
-
--- ----------------------------
--- Records of t_key
 -- ----------------------------
 
 -- ----------------------------
@@ -141,25 +109,6 @@ CREATE TABLE `t_library` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for t_press
--- ----------------------------
-DROP TABLE IF EXISTS `t_press`;
-CREATE TABLE `t_press` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL COMMENT '名称',
-  `number` int(11) NOT NULL COMMENT '编号',
-  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
-  `status` tinyint(1) DEFAULT '1' COMMENT '状态',
-  `addTime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `number` (`number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='出版社表';
-
--- ----------------------------
--- Records of t_press
--- ----------------------------
-
--- ----------------------------
 -- Table structure for t_pro_config
 -- ----------------------------
 DROP TABLE IF EXISTS `t_pro_config`;
@@ -177,7 +126,7 @@ CREATE TABLE `t_pro_config` (
 -- ----------------------------
 -- Records of t_pro_config
 -- ----------------------------
-INSERT INTO `t_pro_config` VALUES ('16', '产品配置', 'p_config', 'p_config.php', '', '2014-11-20 15:40:58');
+INSERT INTO `t_pro_config` VALUES ('16', '产品配置', 'p*config', 'p_config.php', 'a:5:{s:12:\"channelThumb\";s:23:\"s=100*200<br/>m=200*300\";s:10:\"courseType\";a:2:{i:1;s:6:\"基础\";i:2;s:6:\"拓展\";}s:4:\"keys\";a:3:{i:1;s:6:\"热门\";i:2;s:6:\"推荐\";i:3;s:6:\"置顶\";}s:2:\"rp\";a:1:{i:1001;s:9:\"掌世界\";}s:5:\"press\";a:1:{i:2001;s:15:\"某某出版社\";}}', '2014-11-20 15:40:58');
 
 -- ----------------------------
 -- Table structure for t_resource
@@ -366,16 +315,18 @@ CREATE TABLE `t_stage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL COMMENT '名称',
   `sKey` varchar(20) NOT NULL COMMENT '龄段key',
+  `chId` int(11) NOT NULL COMMENT '所属一级分类ID（全部课程下的子栏目）',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(1) DEFAULT '1' COMMENT '状态',
   `addTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sKey` (`sKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色龄段表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色龄段表';
 
 -- ----------------------------
 -- Records of t_stage
 -- ----------------------------
+INSERT INTO `t_stage` VALUES ('2', '一年级', 'gradeOne', '20', '0', '1', '2014-11-23 11:35:10');
 
 -- ----------------------------
 -- Table structure for t_sys_log
@@ -390,7 +341,7 @@ CREATE TABLE `t_sys_log` (
   `addTime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `NewIndex1` (`addTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_log
@@ -628,6 +579,30 @@ INSERT INTO `t_sys_log` VALUES ('230', 'admin', 'ProConfig', 'edit', 'a:2:{s:3:\
 INSERT INTO `t_sys_log` VALUES ('231', 'admin', 'ProConfig', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"16\";}s:4:\"post\";a:5:{s:4:\"name\";s:12:\"产品配置\";s:2:\"id\";s:2:\"16\";s:7:\"content\";s:0:\"\";s:4:\"cKey\";s:9:\"p_configd\";s:8:\"templete\";s:12:\"p_config.php\";}}', '1416477516');
 INSERT INTO `t_sys_log` VALUES ('232', 'admin', 'ProConfig', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"16\";}s:4:\"post\";a:5:{s:4:\"name\";s:12:\"产品配置\";s:2:\"id\";s:2:\"16\";s:7:\"content\";s:0:\"\";s:4:\"cKey\";s:9:\"p_configd\";s:8:\"templete\";s:12:\"p_config.php\";}}', '1416477519');
 INSERT INTO `t_sys_log` VALUES ('233', 'admin', 'ProConfig', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"16\";}s:4:\"post\";a:5:{s:4:\"name\";s:12:\"产品配置\";s:2:\"id\";s:2:\"16\";s:7:\"content\";s:0:\"\";s:4:\"cKey\";s:8:\"p_config\";s:8:\"templete\";s:12:\"p_config.php\";}}', '1416477527');
+INSERT INTO `t_sys_log` VALUES ('234', '', 'Public', 'login', 'a:2:{s:3:\"get\";a:1:{s:4:\"ajax\";s:4:\"true\";}s:4:\"post\";a:1:{s:8:\"userName\";s:5:\"admin\";}}', '1416618034');
+INSERT INTO `t_sys_log` VALUES ('235', 'admin', 'ProConfig', 'config', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"16\";}s:4:\"post\";a:6:{s:2:\"id\";s:2:\"16\";s:12:\"channelThumb\";s:40:\"s=100*200\r\nm=200*300                    \";s:10:\"courseType\";s:38:\"1=基础\r\n2=拓展                    \";s:4:\"keys\";s:48:\"1=热门\r\n2=推荐\r\n3=置顶                    \";s:2:\"rp\";s:34:\"1001=掌世界                    \";s:5:\"press\";s:40:\"2001=某某出版社                    \";}}', '1416618053');
+INSERT INTO `t_sys_log` VALUES ('236', 'admin', 'ProConfig', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"16\";}s:4:\"post\";a:4:{s:2:\"id\";s:2:\"16\";s:4:\"name\";s:12:\"产品配置\";s:4:\"cKey\";s:8:\"p_config\";s:8:\"templete\";s:12:\"p_config.php\";}}', '1416619832');
+INSERT INTO `t_sys_log` VALUES ('237', 'admin', 'Channel', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:0:\"\";s:4:\"name\";s:6:\"早教\";s:5:\"chKey\";s:5:\"early\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416620217');
+INSERT INTO `t_sys_log` VALUES ('238', 'admin', 'Channel', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:0:\"\";s:4:\"name\";s:6:\"幼教\";s:5:\"chKey\";s:9:\"preschool\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416620260');
+INSERT INTO `t_sys_log` VALUES ('239', 'admin', 'Channel', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:0:\"\";s:4:\"name\";s:13:\"primaryschool\";s:5:\"chKey\";s:0:\"\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416620322');
+INSERT INTO `t_sys_log` VALUES ('240', 'admin', 'Channel', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:0:\"\";s:4:\"name\";s:6:\"小学\";s:5:\"chKey\";s:13:\"primaryschool\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416620334');
+INSERT INTO `t_sys_log` VALUES ('241', 'admin', 'Channel', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:10:{s:3:\"pId\";s:0:\"\";s:2:\"id\";s:0:\"\";s:4:\"name\";s:6:\"中学\";s:5:\"chKey\";s:12:\"middleschool\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416620348');
+INSERT INTO `t_sys_log` VALUES ('242', 'admin', 'Channel', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"21\";}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:2:\"21\";s:4:\"name\";s:6:\"中学\";s:5:\"chKey\";s:12:\"middleschool\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416620358');
+INSERT INTO `t_sys_log` VALUES ('243', '', 'Public', 'login', 'a:2:{s:3:\"get\";a:1:{s:4:\"ajax\";s:4:\"true\";}s:4:\"post\";a:1:{s:8:\"userName\";s:5:\"admin\";}}', '1416706284');
+INSERT INTO `t_sys_log` VALUES ('244', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:4:{s:2:\"id\";s:2:\"19\";s:4:\"name\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416712792');
+INSERT INTO `t_sys_log` VALUES ('245', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:2:\"19\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416712887');
+INSERT INTO `t_sys_log` VALUES ('246', 'admin', 'Channel', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"18\";}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:2:\"18\";s:4:\"name\";s:6:\"早教\";s:5:\"chKey\";s:5:\"early\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713028');
+INSERT INTO `t_sys_log` VALUES ('247', 'admin', 'Channel', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:2:\"19\";}s:4:\"post\";a:10:{s:3:\"pId\";s:2:\"12\";s:2:\"id\";s:2:\"19\";s:4:\"name\";s:6:\"幼教\";s:5:\"chKey\";s:9:\"preschool\";s:6:\"imgUrl\";s:0:\"\";s:7:\"linkUrl\";s:0:\"\";s:6:\"isShow\";s:1:\"0\";s:11:\"description\";s:0:\"\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713032');
+INSERT INTO `t_sys_log` VALUES ('248', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:2:\"18\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713061');
+INSERT INTO `t_sys_log` VALUES ('249', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:0:\"\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713077');
+INSERT INTO `t_sys_log` VALUES ('250', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:2:\"18\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713487');
+INSERT INTO `t_sys_log` VALUES ('251', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:2:\"18\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713495');
+INSERT INTO `t_sys_log` VALUES ('252', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:5:{s:2:\"id\";s:2:\"18\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713610');
+INSERT INTO `t_sys_log` VALUES ('253', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:6:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"chId\";s:2:\"18\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713615');
+INSERT INTO `t_sys_log` VALUES ('254', 'admin', 'Stage', 'edit', 'a:2:{s:3:\"get\";a:1:{s:2:\"id\";s:1:\"1\";}s:4:\"post\";a:6:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:4:\"test\";s:4:\"sKey\";s:4:\"test\";s:4:\"chId\";s:2:\"19\";s:4:\"sort\";s:1:\"0\";s:6:\"status\";s:1:\"1\";}}', '1416713622');
+INSERT INTO `t_sys_log` VALUES ('255', 'admin', 'Stage', 'add', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:6:{s:2:\"id\";s:0:\"\";s:4:\"name\";s:9:\"一年级\";s:4:\"sKey\";s:8:\"gradeOne\";s:4:\"chId\";s:2:\"20\";s:4:\"sort\";s:0:\"\";s:6:\"status\";s:1:\"1\";}}', '1416713710');
+INSERT INTO `t_sys_log` VALUES ('256', 'admin', 'Stage', 'del', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:1:{s:2:\"id\";s:1:\"1\";}}', '1416713834');
+INSERT INTO `t_sys_log` VALUES ('257', 'admin', 'Cache', 'update', 'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:1:{s:2:\"id\";s:5:\"Stage\";}}', '1416714420');
 
 -- ----------------------------
 -- Table structure for t_sys_role
@@ -640,7 +615,7 @@ CREATE TABLE `t_sys_role` (
   `isSuper` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否超级管理组',
   `addTime` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_role
@@ -663,12 +638,12 @@ CREATE TABLE `t_sys_user` (
   `addTime` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('1', 'admin', '系统管理员', '21232f297a57a5a743894a0e4a801fc3', '1', '1', '2014-11-20 10:06:38', '192.168.0.152', '1970-01-01 00:00:00');
+INSERT INTO `t_sys_user` VALUES ('1', 'admin', '系统管理员', '21232f297a57a5a743894a0e4a801fc3', '1', '1', '2014-11-23 09:31:24', '127.0.0.1', '1970-01-01 00:00:00');
 
 -- ----------------------------
 -- Table structure for t_topic
