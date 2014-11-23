@@ -9,13 +9,14 @@ return array (
 	'AREA_CODE' 		=> '90017', 	//地区编码
 	'PARENT_MODULE'     => 'Sd',   		//父类分组模块
 	'AREA_VER' 			=> '1', 		//地区版本（1-Sd,2-Hd）,请与上面的PARENT_MODULE相对应
+	'SERVER_IP'			=> '',			//服务器IP
 	
 	//主数据库
 	'DB_TYPE' 	=> 'mysql', 		// 数据库类型
-	'DB_HOST' 	=> '192.168.0.5',	// 服务器地址
+	'DB_HOST' 	=> 'localhost',	// 服务器地址
 	'DB_NAME' 	=> 'edu_hipi',	 	// 数据库名
-	'DB_USER' 	=> 'edu', 			// 用户名
-	'DB_PWD' 	=> 'edu',		 	// 密码
+	'DB_USER' 	=> 'root', 			// 用户名
+	'DB_PWD' 	=> '',		 	// 密码
 	'DB_PORT' 	=> '3306', 			// 端口
 	'DB_PREFIX' => 't_', 			// 数据库表前缀
 	'DB_CHARSET' => 'utf8',
