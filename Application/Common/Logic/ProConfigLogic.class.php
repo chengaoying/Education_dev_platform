@@ -10,7 +10,7 @@ class ProConfigLogic extends BaseLogic {
 	/**
 	 * 获取配置
 	 * @param arr $param 查询参数(cKey)
-	 * @return array
+	 * @return array 返回配置内容
 	 */
 	public function getConfig($cKey)
 	{

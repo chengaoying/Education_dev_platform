@@ -67,7 +67,7 @@ class BaseModel extends \Think\Model {
 	 */
 	public function delData($id){
 		if(!$id) return result_data(0,'没有数据被删除！');
-		if(is_array($id)) $id=$id[0];// $id = implode ($id,',');
+		if(is_array($id)) $id=$id[0]; //$id = implode ($id,',');
 		
 		$num = $this->delete($id);
 		if($num===false){
