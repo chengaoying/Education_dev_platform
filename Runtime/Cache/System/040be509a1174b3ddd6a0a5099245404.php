@@ -28,18 +28,16 @@
 		<div onclick="edit();" data-options="iconCls:'icon-edit'" <?php echo ($buttonStyle['edit']); ?>>编辑</div>
 		<div onclick="del()" data-options="iconCls:'icon-remove'" <?php echo ($buttonStyle['del']); ?>>删除</div>
 		
-	<div onclick="config();" data-options="iconCls:'icon-edit'" <?php echo ($buttonStyle['config']); ?>>配置</div>
-	<div onclick="reloadConf();" data-options="iconCls:'icon-edit'" <?php echo ($buttonStyle['configTpl']); ?>>重载配置模板</div>
-    <!--<div onclick="configArea();" data-options="iconCls:'icon-edit'" <?php echo ($buttonStyle['configArea']); ?>>重载产品配置</div>-->
-	<div onclick="sync();" data-options="iconCls:'icon-edit'" <?php echo ($buttonStyle['Sync']); ?>>手动数据同步</div>
-
 	</div>
     
 	<div id="datagrid_toolbar" style="padding:5px;">
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	        				 
+	<b>所属产品：<?php echo ($currProduct['name']); ?>　</b>
+	ID：<input type="text" name="where[id]" placeholder="ID或广告位KEY" style="width: 160px"></input>
+	类型：<?php echo ($asTypeHtml); ?>
+			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
 		</div>
@@ -50,8 +48,6 @@
 			<span class="toolbar-btn-separator"></span>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()" <?php echo ($buttonStyle['del']); ?>>删除</a>			
 			
-	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="config()" <?php echo ($buttonStyle['config']); ?>>配置</a>
-
 			<a href="#" ></a>
 		</div>
 	</div>
@@ -68,7 +64,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/ProConfig/index',
+		url: '/System/AdSpace/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -80,16 +76,18 @@ $(function(){
 	    pageSize:<?php echo ($pageSize); ?>,//每页记录数
         remoteSort:true,//是否通过远程服务器对数据排序
         singleSelect:true,//只允许选择单行
-        	
-	idField : 'id',
-	columns:[[ 
-	    {field:'id',title:'ID',sortable:true,align:'right',width:60},
-	    {field:'name',title:'名称',sortable:true,width:100},
-	    {field:'cKey',title:'配置KEY',sortable:true,width:130},
-	    {field:'templete',title:'配置文件',sortable:true,width:130},
-	    {field:'content',title:'内容',sortable:true,width:300},
-	    {field:'addTime',title:'添加时间',sortable:true,width:180},
-	]],
+        
+	    sortName:'id',//默认排序字段
+		sortOrder:'asc',//默认排序方式 'desc' 'asc'
+		idField : 'id',
+	    columns:[[ 
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},
+            {field:'asKey',title:'广告位KEY',sortable:true,width:100},
+            {field:'title',title:'广告位名称',sortable:true,width:200},
+            {field:'asType',title:'广告位类型',sortable:true,width:100},
+            {field:'showNum',title:'广告显示数量',sortable:true,width:80},
+            {field:'addTime',title:'添加时间',sortable:true,width:180},
+        ]],    
 	    
         onLoadSuccess:function(){
 	    	$(this).datagrid('clearSelections');//取消所有的已选择项
@@ -113,32 +111,17 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/ProConfig/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/AdSpace/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/ProConfig/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/AdSpace/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/ProConfig/del");
+	delData(datagrid,"/System/AdSpace/del");
 }
 
 
 
-
-edit_W = 600;
-edit_H = 500;
-
-function reloadConf(){
-	postData("/System/ProConfig/reloadConf",true,"",datagrid,"one");
-}
-
-function config(rowIndex,rowData){
-	editData(rowIndex,rowData,"配置信息",'#edit_form',datagrid,"<?php echo U('ProConfig/config');?>",edit_W,edit_H);
-}
-	
-function sync(){
-	postData("/System/ProConfig/sync",true,"",datagrid,"one");
-}	
 
 
 </script>

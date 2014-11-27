@@ -33,6 +33,18 @@ class TestController extends \Think\Controller {
 		//dump(S('Stage_20'));
 		
 		//exit;
+		
+		//数据同步测试
+		/* $url = "http://192.168.0.152:8501/Api/Sync/recive";
+		vendor('Hprose.HproseHttpClient');
+		$client = new \HproseHttpClient($url);
+		$result = $client->recive('hello');
+		dump($result); */
+		
+		//
+		D('Sync','Logic')->send('Channel');
+		
+		exit;
 		$this->display();
 	}
 }

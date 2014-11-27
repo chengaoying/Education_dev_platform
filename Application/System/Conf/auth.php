@@ -70,6 +70,15 @@ return array(
     			),
     		),
     	),
+        'activity' => array(
+    		'name'	=> '活动管理',
+    		'item'	=> array(
+    			'Activity' => array(
+    				'name' => '活动管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
+    		),
+    	),
     	'user_role' => array(
     		'name'	=> '用户中心',
     		'item'	=> array(

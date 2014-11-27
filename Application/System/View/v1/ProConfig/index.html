@@ -3,7 +3,7 @@
 	<div onclick="config();" data-options="iconCls:'icon-edit'" {$buttonStyle['config']}>配置</div>
 	<div onclick="reloadConf();" data-options="iconCls:'icon-edit'" {$buttonStyle['configTpl']}>重载配置模板</div>
     <!--<div onclick="configArea();" data-options="iconCls:'icon-edit'" {$buttonStyle['configArea']}>重载产品配置</div>-->
-	<!-- <div onclick="sync();" data-options="iconCls:'icon-edit'" {$buttonStyle['Sync']}>手动数据同步</div> -->
+	<div onclick="sync();" data-options="iconCls:'icon-edit'" {$buttonStyle['Sync']}>手动数据同步</div>
 </block>
 
 <block name="button">
@@ -33,5 +33,8 @@ function config(rowIndex,rowData){
 	editData(rowIndex,rowData,"配置信息",'#edit_form',datagrid,"{:U('ProConfig/config')}",edit_W,edit_H);
 }
 	
+function sync(){
+	postData("__URL__/sync",true,"",datagrid,"one");
+}	
 </block>	
 

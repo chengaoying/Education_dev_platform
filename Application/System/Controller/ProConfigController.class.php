@@ -130,7 +130,7 @@ class ProConfigController extends BaseAuthController {
 	 * 同步数据
 	 */
 	public function syncAct(){	
-		$this->showResult(D('Sync','Logic')->send(I('id','')));
+		$this->showResult(D('Sync','Logic')->send());
 	}
 
 }

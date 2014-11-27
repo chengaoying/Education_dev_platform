@@ -37,6 +37,14 @@ return array(
 			'value' => array(1001 => '掌世界'),
 			'info'	=> '',
 		),
+    
+		/* 广告提供商 */
+        'ap'	=> array(
+            'type'	=> 'array',
+            'title'	=> '广告商列表',
+            'value' => array(1001=>'掌世界'),
+            'info'	=> '',
+        ),
 		
 		/* 出版社 */
 		'press'	=>	array(

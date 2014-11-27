@@ -17,6 +17,8 @@ return array (
 		'ProConfig'		=> '配置',
 		'Channel'		=> '栏目',
 		'Stage'			=> '龄段',
+		'AdSpace'		=> '广告位',
+		'Ad'			=> '广告',
 	),		
 	
 	//上传附件支持的类型
