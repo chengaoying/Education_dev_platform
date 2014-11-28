@@ -22,6 +22,9 @@ class ChannelModel extends BaseModel {
 		array('addTime',DATE_TIME,self::MODEL_INSERT),			
 	);
 
+	//数据同步(子项)
+	protected $sync = 'Channel';		
+	
 	//---------------扩展CRUD-----------------------
 	public function queryChannel($status='',$mode=0,$notId=0){
 		if(!is_empty_null($status)) $where['status'] = $status;
@@ -58,7 +61,6 @@ class ChannelModel extends BaseModel {
 						$arr[$v['id']] = $v;
 					}				
 					$arr[$row['id']] = $row;	
-					//if(is_array($childArr))	$arr = array_push($arr,$childArr);
 				}
 			}
 		}
@@ -71,9 +73,6 @@ class ChannelModel extends BaseModel {
 	 */
 	public function updateCache($exKey=''){	
 		$all = $this->queryChannel(1);
-		foreach ($all['rows'] as $k => $v){
-			
-		}
 		S('Channel',$all['rows']);
 		/* $pChannels = get_array_for_fieldval($all['rows'], 'pId', 0); //获取父类栏目
 		foreach ($pChannels as $k=>$v){

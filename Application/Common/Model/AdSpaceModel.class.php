@@ -25,6 +25,8 @@ class AdSpaceModel extends BaseModel {
 
 	//默认排序字段
 	protected  $sortOrder = 'id desc';
+	//数据同步(子项)
+	protected $sync = 'AdSpace';
 	
 	/**
 	 * 重写像类initWhere

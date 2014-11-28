@@ -26,11 +26,10 @@ class SyncLogic extends BaseLogic {
 			}
 		}
 		foreach ($items as $key => $val){
-			
+			$data[$val] = S($val);
 		}
 		
-		$data = S('Channel_top');
-		return $this->sendData(array('action'=>'data','Channel','data'=>$data));
+		return $this->sendData(array('action'=>'data','name'=>$name,'data'=>$data));
 	}
 	
 	/**

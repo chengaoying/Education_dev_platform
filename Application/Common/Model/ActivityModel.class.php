@@ -38,6 +38,8 @@ class ActivityModel extends BaseModel {
 
 	//默认排序字段
 	protected  $sortOrder = 'sort,endTime desc';
+	//数据同步(子项)
+	protected $sync = 'Activity';
 	
 	//---------------扩展CRUD-----------------------
 		

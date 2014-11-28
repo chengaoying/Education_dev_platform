@@ -42,7 +42,7 @@ class TestController extends \Think\Controller {
 		dump($result); */
 		
 		//
-		D('Sync','Logic')->send('Channel');
+		D('Sync','Logic')->send();
 		
 		exit;
 		$this->display();

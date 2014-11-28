@@ -45,6 +45,9 @@ class ProConfigModel extends BaseModel
 			return false;
 	}
 	
+	//数据同步(子项)
+	protected $sync = 'ProConfig';
+	
 	//---------------扩展CRUD-----------------------
 	
 	/**
@@ -63,10 +66,11 @@ class ProConfigModel extends BaseModel
 	 */
 	public function updateCache($exKey=''){
 		$data = D('ProConfig')->selectPage();
-		foreach ($data['rows'] as $k => $v){
+		S('ProConfig',$data['rows']);
+		/* foreach ($data['rows'] as $k => $v){
 			$v['content'] = unserialize($v['content']);
 			S('ProConfig_'.$v['cKey'],$v);
 		}
-		if (!empty($exKey)) return S('ProConfig_'.$exKey);
+		if (!empty($exKey)) return S('ProConfig_'.$exKey); */
 	}
 }

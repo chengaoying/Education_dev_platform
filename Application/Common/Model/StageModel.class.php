@@ -22,8 +22,10 @@ class StageModel extends BaseModel {
 		array('addTime',DATE_TIME,self::MODEL_INSERT),			
 	);
 
-	//---------------扩展CRUD-----------------------
+	//数据同步(子项)
+	protected $sync = 'Stage';
 	
+	//---------------扩展CRUD-----------------------
 	/**
 	 * 更新缓存（全部：NO,$exKey：YES）
 	 * @param string $exKey 父栏目id
@@ -31,10 +33,11 @@ class StageModel extends BaseModel {
 	public function updateCache($exKey=''){
 		$list = D('Stage')->selectPage();
 		$list = array_values($list['rows']);
-		foreach ($list as $k => $v){
+		S('Stage',$list);
+		/* foreach ($list as $k => $v){
 			S('Stage_'.$v['chId'],$v);
 		}
-		if(!empty($exKey)) return S('Stage_'.$exKey);
+		if(!empty($exKey)) return S('Stage_'.$exKey); */
 	}
 	
 }

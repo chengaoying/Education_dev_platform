@@ -31,6 +31,8 @@ class AdModel extends BaseModel {
 
 	//默认排序字段
 	protected  $sortOrder = 'sort,id desc'; 
+	//数据同步(子项)
+	protected $sync = 'Ad';
 	
 	
 	//---------------扩展CRUD-----------------------

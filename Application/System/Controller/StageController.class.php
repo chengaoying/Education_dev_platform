@@ -85,11 +85,11 @@ class StageController extends BaseAuthController {
 	 * 先获取顶级栏目-全部课程，然后再获取全部课程下的二级栏目(顶级分类)
 	 */
 	private function getClass(){
-		$topChannel = S('Channel_top');
-		$topChannel = get_array_for_fieldval($topChannel, 'chKey','allcourse');
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','allcourse');
 		$topChannel = array_slice($topChannel,0,count($topChannel));
 		$id = $topChannel[0]['id'];
-		$class = S('Channel_'.$id);//二级栏目(顶级分类)
+		$class = get_array_for_fieldval($channel, 'pId',$id);//二级栏目(顶级分类)
 		return $class;
 	}
 }

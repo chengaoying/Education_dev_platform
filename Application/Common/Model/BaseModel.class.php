@@ -9,7 +9,7 @@ namespace Common\Model;
 class BaseModel extends \Think\Model {
 	
 	protected $sortOrder = 'id asc'; //排序
-	protected $sync = array();	//数据同步（proIdField,key）子项
+	protected $sync		 = '';		 //数据同步(子项)
 	
 	
 	/**
@@ -52,8 +52,7 @@ class BaseModel extends \Think\Model {
 			}
 			if($id>0){
 				if(method_exists($this, 'updateCache')) $this->updateCache();
-				//if($this->sync) $this->syncSend($data[$this->sync['proIdField']], $this->sync['key']);
-			}
+				if(!empty($this->sync)) $this->syncSend($this->sync);			}
 			return $result;
 		}else{
 			return result_data(0,$this->getError());
@@ -75,7 +74,7 @@ class BaseModel extends \Think\Model {
 		}else{
 			if($num>0){
 				if(method_exists($this, 'updateCache')) $this->updateCache();
-				//if($this->sync) $this->syncSend($data[$this->sync['proIdField']], $this->sync['key']);
+				if(!empty($this->sync)) $this->syncSend($this->sync);
 			}
 			return result_data(1,'数据记录('.$num.'条)删除成功！',$num);
 		}
@@ -169,11 +168,10 @@ class BaseModel extends \Think\Model {
 	
 	/**
 	 * 向子产品同步数据
-	 * @param unknown_type $proId
-	 * @param unknown_type $key //数据项KEY
+	 * @param str $name //同步数据项名
 	 */
-	protected  function syncSend($proId,$key){
-		return D('Sync','Logic')->send($proId,$key); //同步数据
+	protected  function syncSend($name){
+		return D('Sync','Logic')->send($name); //同步数据
 	}
 	
 	
