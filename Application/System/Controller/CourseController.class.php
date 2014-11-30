@@ -18,16 +18,8 @@ class CourseController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
-			$list = D('Stage')->selectPage();
+			$list = D('Course')->queryCourse();
 			$list = array_values($list['rows']);
-			
-			//获取顶级分类(二级栏目)
-			$class = $this->getClass();
-			
-			//把龄段所属顶级分类(二级栏目)的id转换成名称
-			foreach ($list as $k => $v){
-				$list[$k]['chId'] = $class[$list[$k]['chId']]['name'];
-			}
 			$this->ajaxReturn($list);
 		}		
 	}
@@ -49,7 +41,7 @@ class CourseController extends BaseAuthController {
 	 * 删除操作
 	 */
 	public function delAct() {
-		$this->showResult( D('Stage')->delData(I('id')));
+		$this->showResult( D('Course')->delData(I('id')));
 	}
 	
 	/**
@@ -59,25 +51,49 @@ class CourseController extends BaseAuthController {
 		if(! IS_POST) {
 			$id = I( 'id', 0);
 			if($id > 0) {
-				$stage = D('Stage')->find($id);
+				$course = D('Course')->find($id);
 			}else{
-				$stage['status'] = 1; //状态默认为启用
+				$course['status'] = 1; //状态默认为启用
 			}	
+			//栏目和龄段
+			$classes = $this->getClass();
+			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>$course['chId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
+			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>$course['stageId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
 			
-			$class = $this->getClass();	//获取顶级分类(二级栏目
-			$classHtml = $this->getComboBox($class,'chId',array('selVal'=>$stage['chId'],'valKey'=>'id','textKey'=>'name','width'=>150));
-			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$stage['status'],'nullText'=>''));
+			//出版商，册数，课程类型,关键字
+			$proConf = get_pro_config_content('proConfig');
+			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>$course['pressId'],'nullText'=>'请选择','width'=>150));
+			$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>$course['volume'],'nullText'=>'请选择','width'=>150));
+			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>$course['typeId'],'nullText'=>'请选择','width'=>150));
+			
+			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$course['status'],'nullText'=>'','width'=>150));
 			
 			$this->assign(array(
-				'stage'		=> $stage,
-				'classHtml'	=> $classHtml,
-				'statusHtml'=> $statusHtml,
+				'course'	  => $course,
+				'channelHtml' => $channelHtml,
+				'stageHtml'   => $stageHtml,
+				'pressHtml'   => $pressHtml,
+				'volumeHtml'  => $volumeHtml,
+				'typeHtml'    => $typeHtml,
+				'statusHtml'  => $statusHtml,
 			));	
 			$this->display( 'edit');
 		} else {
 			$data = I('post.');
-			$this->showResult( D('Stage')->saveData($data));
+			$this->showResult( D('Course')->saveData($data));
 		}
 	}
 	
+	/**
+	 * 获取龄段顶级分类(顶级栏目-全部课程下的二级栏目)
+	 * 先获取顶级栏目-全部课程，然后再获取全部课程下的二级栏目(顶级分类)
+	 */
+	private function getClass(){
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','allcourse');
+		$topChannel = array_slice($topChannel,0,count($topChannel));
+		$id = $topChannel[0]['id'];
+		$class = get_array_for_fieldval($channel, 'pId',$id);//二级栏目(顶级分类)
+		return $class;
+	}
 }

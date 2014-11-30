@@ -65,12 +65,10 @@ class ProConfigModel extends BaseModel
 	 * @param string $exKey
 	 */
 	public function updateCache($exKey=''){
-		$data = D('ProConfig')->selectPage();
-		S('ProConfig',$data['rows']);
-		/* foreach ($data['rows'] as $k => $v){
-			$v['content'] = unserialize($v['content']);
-			S('ProConfig_'.$v['cKey'],$v);
+		$conf = D('ProConfig')->selectPage();
+		foreach ($conf['rows'] as $k => $v){
+			$data[$v['cKey']] = $v;
 		}
-		if (!empty($exKey)) return S('ProConfig_'.$exKey); */
+		S('ProConfig',$data);
 	}
 }

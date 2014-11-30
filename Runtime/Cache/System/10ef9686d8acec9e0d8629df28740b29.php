@@ -65,7 +65,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/Stage/index',
+		url: '/System/Section/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -82,15 +82,19 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'龄段名称',sortable:false,width:200},
-            {field:'sKey',title:'龄段KEY',sortable:false,width:100},
-            {field:'chId',title:'所属于顶级分类',sortable:false,width:180},           
+            {field:'name',title:'课时名称',sortable:false,width:100},
+            {field:'topicId',title:'所属知识点',sortable:false,width:100},
+            {field:'libId',title:'练习题库ID',sortable:false,width:80},
+            {field:'previewList',title:'预习ID列表',sortable:false,width:100},
+            {field:'lessonList',title:'正文ID列表',sortable:false,width:100},
+            {field:'imgUrl',title:'图片路径',sortable:false,width:120},           
+            {field:'description',title:'知识点描述',sortable:false,width:200},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
-            			return value==1 ? "启用" : "<font color=red>禁用</font>";
-            		}
-            	},            
+            		return value==1 ? "启用" : "<font color=red>禁用</font>";
+            	}
+            },            
             {field:'addTime',title:'添加时间',sortable:true,width:180},
         ]],
 	    
@@ -116,13 +120,13 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/Stage/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/Section/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Stage/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Section/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/Stage/del");
+	delData(datagrid,"/System/Section/del");
 }
 
 

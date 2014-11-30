@@ -65,7 +65,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/Stage/index',
+		url: '/System/Topic/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -82,15 +82,17 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'龄段名称',sortable:false,width:200},
-            {field:'sKey',title:'龄段KEY',sortable:false,width:100},
-            {field:'chId',title:'所属于顶级分类',sortable:false,width:180},           
+            {field:'name',title:'知识点名称',sortable:false,width:100},
+            {field:'courseId',title:'所属课程',sortable:false,width:100},
+            {field:'sectionIds',title:'课时ID列表',sortable:false,width:100},
+            {field:'imgUrl',title:'图片路径',sortable:false,width:120},           
+            {field:'description',title:'知识点描述',sortable:false,width:200},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
-            			return value==1 ? "启用" : "<font color=red>禁用</font>";
-            		}
-            	},            
+            		return value==1 ? "启用" : "<font color=red>禁用</font>";
+            	}
+            },            
             {field:'addTime',title:'添加时间',sortable:true,width:180},
         ]],
 	    
@@ -116,13 +118,13 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/Stage/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/Topic/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Stage/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Topic/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/Stage/del");
+	delData(datagrid,"/System/Topic/del");
 }
 
 

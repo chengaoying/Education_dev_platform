@@ -42,9 +42,15 @@ class TestController extends \Think\Controller {
 		dump($result); */
 		
 		//
-		D('Sync','Logic')->send();
+		//D('Sync','Logic')->send();
 		
+		/* dump(get_pro_config_content('proConfig'));
+		dump(get_cache('ProConfig')); */
+		$proConf  = get_pro_config_content('proConfig');
+		dump($proConf['press']);
+		dump(get_array_val($proConf['press'], 'value'));
 		exit;
 		$this->display();
 	}
+	
 }

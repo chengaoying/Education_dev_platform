@@ -31,13 +31,11 @@ class StageModel extends BaseModel {
 	 * @param string $exKey 父栏目id
 	 */
 	public function updateCache($exKey=''){
-		$list = D('Stage')->selectPage();
-		$list = array_values($list['rows']);
-		S('Stage',$list);
-		/* foreach ($list as $k => $v){
-			S('Stage_'.$v['chId'],$v);
+		$list = D('Stage')->selectPage(array('status'=>1));
+		foreach ($list['rows'] as $k => $v){
+			$data[$v['id']] = $v;
 		}
-		if(!empty($exKey)) return S('Stage_'.$exKey); */
+		S('Stage',$data);
 	}
 	
 }

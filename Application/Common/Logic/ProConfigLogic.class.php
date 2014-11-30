@@ -15,7 +15,8 @@ class ProConfigLogic extends BaseLogic {
 	public function getConfig($cKey)
 	{
 		//先读缓存(缓存没有则会默认读数据库，并更新缓存)
-		$confCache = get_cache('ProConfig_'.$cKey);
+		$confCache = get_pro_config_content($cKey);
+		
 		//读取模版文件,页面显示按模版配置来输出的，需要把最新的配置项更新到模版中。
 		$configTpl = $this->getConfigTpl($cKey);
 		if(!$configTpl['status']) return $configTpl;
@@ -23,7 +24,7 @@ class ProConfigLogic extends BaseLogic {
 		//不存在则读默认模版中的配置
 		if(!empty($confCache))
 		{
-			foreach ($confCache['content'] as $k => $v){
+			foreach ($confCache as $k => $v){
 				$configTpl['data'][$k]['value'] = $v;
 			}
 		}

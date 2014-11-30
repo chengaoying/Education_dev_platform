@@ -11,7 +11,7 @@ return array(
 			'type'	=> 'textarea',
 			'title'	=> '栏目缩略图格式',
 			'value' => 's=100*200,m=200*300', //格式：s=100*200,m=200*300
-			'info'	=> 'dadf',
+			'info'	=> '',
 		),
 		
 		/* 课程类型配置 */
@@ -19,7 +19,15 @@ return array(
 			'type'	=> 'array',
 			'title'	=> '课程类型',
 			'value' => array(1 => '基础', 2 => '拓展'),
-			'info'	=> 'dadf',
+			'info'	=> '',
+		),
+		
+		/* 课程册数配置 */
+		'volume'	=>	array(
+			'type'	=> 'array',
+			'title'	=> '课程册数',
+			'value' => array(1 => '上册', 2 => '下册'),
+			'info'	=> '',
 		),
 		
 		/* 关键字配置 */

@@ -74,15 +74,6 @@ class ChannelModel extends BaseModel {
 	public function updateCache($exKey=''){	
 		$all = $this->queryChannel(1);
 		S('Channel',$all['rows']);
-		/* $pChannels = get_array_for_fieldval($all['rows'], 'pId', 0); //获取父类栏目
-		foreach ($pChannels as $k=>$v){
-			$datas[$k] = get_array_for_fieldval($all['rows'], 'pId', $k); //获取某一个父类栏目下的子栏目
-		}
-		foreach ($datas as $k1=>$v1){
-			S('Channel_'.$k1,$v1);
-		}
-		S('Channel_top',$pChannels); 
-		if(!empty($exKey)) return $datas[$exKey]; */
 	}
 	
 }

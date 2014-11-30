@@ -11,12 +11,7 @@
 function get_cache($name) {
 	$data = S($name);
 	if (empty($data)) {
-		$key = explode('_', $name);
-		if (empty($key[1])) {
-			$data = D($key[0])->updateCache();
-		} else {
-			$data = D($key[0])->updateCache($key[1]);
-		}
+		$data = D($name)->updateCache();
 	}
 	return $data;
 }

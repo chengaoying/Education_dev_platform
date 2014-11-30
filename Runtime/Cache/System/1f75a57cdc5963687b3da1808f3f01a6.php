@@ -58,8 +58,8 @@
 
 
 <script>
-var edit_W = 500;
-var edit_H = 400;
+var edit_W = 600;
+var edit_H = 500;
 var datagrid;
 
 $(function(){
@@ -82,15 +82,26 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'龄段名称',sortable:false,width:200},
-            {field:'sKey',title:'龄段KEY',sortable:false,width:100},
-            {field:'chId',title:'所属于顶级分类',sortable:false,width:180},           
+            {field:'name',title:'课程名称',sortable:false,width:100},
+            {field:'chId',title:'所属栏目',sortable:false,width:100},
+            {field:'stageId',title:'龄段',sortable:false,width:80},
+            {field:'pressId',title:'出版商',sortable:false,width:80},
+            {field:'volume',title:'上/下册',sortable:false,width:60},           
+            {field:'typeId',title:'类型',sortable:false,width:60},           
+            {field:'price',title:'价格',sortable:false,width:60},           
+            {field:'midLibId',title:'期中考试题库ID',sortable:false,width:120},           
+            {field:'finalLibId',title:'期末考试题库ID',sortable:false,width:120},           
+            {field:'topicIds',title:'包含的知识点ID',sortable:false,width:120},           
+            {field:'keys',title:'关键字',sortable:false,width:80},           
+            {field:'imgUrl',title:'图片路径',sortable:false,width:80},           
+            {field:'linkUrl',title:'链接地址',sortable:false,width:80},           
+            {field:'description',title:'课程描述',sortable:false,width:80},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
-            			return value==1 ? "启用" : "<font color=red>禁用</font>";
-            		}
-            	},            
+            		return value==1 ? "启用" : "<font color=red>禁用</font>";
+            	}
+            },            
             {field:'addTime',title:'添加时间',sortable:true,width:180},
         ]],
 	    
