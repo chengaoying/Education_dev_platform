@@ -9,6 +9,13 @@
 	</tr>
 	<tr><th>所属栏目</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr>
 	<tr><th>龄段</th><td><?php echo ($stageHtml); ?> <em>*</em></td></tr>
+	<!-- <tr>
+		<th>龄段</th>
+		<td>
+			<input id="stageId" class="easyui-combobox" name="stageId" data-options="valueField:'id',textField:'name',data:[{id:'',name:'请选择'}]" style="width:150px"/> <em>*</em>
+		</td>
+	</tr> -->
+	
 	<tr><th>出版商</th><td><?php echo ($pressHtml); ?> <em>*</em></td></tr>
 	<tr><th>册数</th><td><?php echo ($volumeHtml); ?> <em>*</em></td></tr>
 	<tr><th>类型</th><td><?php echo ($typeHtml); ?> <em>*</em></td></tr>

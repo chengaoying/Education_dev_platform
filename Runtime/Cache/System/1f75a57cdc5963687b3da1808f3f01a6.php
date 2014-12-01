@@ -31,14 +31,14 @@
 	</div>
     
     <div id="datagrid_img" class="datagrid_img" style="display: none;">
-        
     </div>
 
 	<div id="datagrid_toolbar" style="padding:5px;">
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	        				 
+	ID：<input type="text" name="id" placeholder="课程ID" style="width: 50px"></input>
+			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
 		</div>

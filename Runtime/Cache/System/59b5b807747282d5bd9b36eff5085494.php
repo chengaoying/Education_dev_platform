@@ -66,8 +66,8 @@
 
 
 <script>
-var edit_W = 500;
-var edit_H = 400;
+var edit_W = 600;
+var edit_H = 500;
 var datagrid;
 
 $(function(){

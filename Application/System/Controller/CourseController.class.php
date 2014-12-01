@@ -5,7 +5,7 @@
  *
  */
 namespace System\Controller;
-class CourseController extends BaseAuthController {
+class CourseController extends BaseAuthController{
 	
 	
 	/**
@@ -18,7 +18,8 @@ class CourseController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
-			$list = D('Course')->queryCourse();
+			$param['where'] = I('post.');
+			$list = D('Course')->queryCourse($param);
 			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
 		}		
@@ -82,6 +83,20 @@ class CourseController extends BaseAuthController {
 			$data = I('post.');
 			$this->showResult( D('Course')->saveData($data));
 		}
+	}
+	
+	/**
+	 * 异步加载信息：龄段
+	 */
+	public function loadAct(){
+		$type = I('type','');
+		$chId = I('chId','');
+		save_log('load',array('chId'=>'chId='.$chId));
+		if($type == 'stage'){
+			$stages = get_cache('Stage');
+			$data = get_array_for_fieldval($stages, 'chId',$chId);
+		}
+		$this->ajaxReturn($data);
 	}
 	
 	/**

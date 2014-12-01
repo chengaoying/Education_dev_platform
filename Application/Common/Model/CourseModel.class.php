@@ -31,7 +31,7 @@ class CourseModel extends BaseModel {
 		$this->initSelectParam($param);
 		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();
 		if($isTotal) $list['total'] = $this->where($param['where'])->count();
-		
+		save_log('execute_sql',array('sql'=>$this->getLastSql()));
 		//把栏目id,龄段id,出版社id,册数,关键字id,转换成名称在首页显示
 		$channels = get_cache('Channel');
 		$stages   = get_cache('Stage');
@@ -50,14 +50,6 @@ class CourseModel extends BaseModel {
 			$list['rows'][$k]['keys'] = $_keys;
 		}
 		return $this->returnListData($list);
-	}
-	
-	/**
-	 * 更新缓存（全部：NO,$exKey：YES）
-	 * @param string $exKey 父栏目id
-	 */
-	public function updateCache($exKey=''){
-		
 	}
 	
 }

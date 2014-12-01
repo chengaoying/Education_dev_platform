@@ -30,13 +30,17 @@
 		
 	</div>
     
+    <div id="datagrid_img" class="datagrid_img" style="display: none;">
+        
+    </div>
+
 	<div id="datagrid_toolbar" style="padding:5px;">
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	<b>所属产品：<?php echo ($currProduct['name']); ?>　</b>
-	ID：<input type="text" name="where[id]" placeholder="ID或广告位KEY" style="width: 160px"></input>
-	类型：<?php echo ($asTypeHtml); ?>
+	ID：<input type="text" name="where[id]" placeholder="请输入ID或关键字" style="width: 80px" />
+	资源商:<?php echo ($rpHtml); ?>
+	状态：<?php echo ($statusHtml); ?>
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
@@ -64,7 +68,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/AdSpace/index',
+		url: '/System/Library/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -77,17 +81,49 @@ $(function(){
         remoteSort:true,//是否通过远程服务器对数据排序
         singleSelect:true,//只允许选择单行
         
-	    sortName:'id',//默认排序字段
-		sortOrder:'asc',//默认排序方式 'desc' 'asc'
+	    //sortName:'sort',//默认排序字段
+		//sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'id',
-	    columns:[[ 
-            {field:'id',title:'ID',sortable:true,align:'right',width:60},
-            {field:'asKey',title:'广告位KEY',sortable:true,width:100},
-            {field:'title',title:'广告位名称',sortable:true,width:200},
-            {field:'asType',title:'广告位类型',sortable:true,width:100},
-            {field:'showNum',title:'广告显示数量',sortable:true,width:80},
-            {field:'addTime',title:'添加时间',sortable:true,width:180},
-        ]],    
+	    columns:[[  
+            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'title',title:'题库标题',sortable:false,width:70},
+            {field:'courseId',title:'课程ID',sortable:false,width:70},
+            {field:'sectionId',title:'课时ID',sortable:true,align:'center',width:70},
+            {field:'rpId',title:'所属于资源商ID',sortable:true,align:'center',width:70},
+            {field:'price',title:'价格',sortable:true,width:60},
+            {field:'auth',title:'题库权限',sortable:true,align:'center',width:70},
+            {field:'libUrl',title:'题库路径',sortable:true,align:'center',width:70},
+            {field:'imgUrl',title:'题库资源导航图片',sortable:true,align:'center',width:70},
+            {field:'description',title:'资源描述',sortable:true,align:'center',width:70},
+            {field:'sort',title:'资源排序',sortable:true,align:'center',width:70},
+            {field:'status',title:'状态',sortable:true,width:60}, 
+            {field:'addTime',title:'添加时间',sortable:true,width:120},
+        ]], 
+        onMouseOverRow:function(e, rowIndex, rowData,field,value){
+            
+            if(field == 'imgUrl' && value != ''){
+               var fieldValue = '';
+               fieldValue = eval("rowData.realImgUrl");
+               var imgArr = fieldValue.split(",");
+               var imgStr = '';
+               if(imgArr.length>1){
+                    for(var i=0;i<(imgArr.length);i++){
+                         imgStr += '<p><img src="'+imgArr[i]+'" /></p>';
+                    }
+               }else{
+                    imgStr = '<p><img src="'+imgArr+'" /></p>';
+               }
+               $("#datagrid_img").html(imgStr);
+               $("#datagrid_img").show();
+               if($("#datagrid_img").height()+e.pageY > $(document).height()){
+                    e.pageY = e.pageY-$("#datagrid_img").height();
+               }
+               $("#datagrid_img").css("left",e.pageX).css("top",e.pageY);
+            }
+       },  
+       onMouseOutRow:function(e,rowIndex, rowData){  
+           $("#datagrid_img").hide();
+       },    
 	    
         onLoadSuccess:function(){
 	    	$(this).datagrid('clearSelections');//取消所有的已选择项
@@ -111,17 +147,39 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/AdSpace/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/Library/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/AdSpace/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Library/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/AdSpace/del");
+	delData(datagrid,"/System/Library/del");
 }
 
 
 
+	
+	edit_W = 800;
+	edit_H = 490;
+	$("#where_chId").combobox({
+		onSelect: function(param){
+			//动态载入分类列表   
+            var url = "<?php echo U('Class/index');?>" + "?getCombo=1&chId="+param.value;
+            $('#where_classId').combobox("setValue","").combobox('reload', url);
+            //动态载入专题列表
+            url = "<?php echo U('Special/index');?>" + "?getCombo=1&chId=" + param.value;
+            $("#where_specialId").combobox("setValue","").combobox('reload',url);               
+        }
+	});
+	
+    
+    function batchData(){
+        editDialog('批量处理','#batch_form',datagrid,"/System/Library/batchData",700,390);
+    }
+    
+    function exportData(){
+        window.location="/System/Library/exportData";
+    }
 
 
 </script>
