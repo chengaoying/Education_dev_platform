@@ -38,6 +38,12 @@
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
 	ID：<input type="text" name="id" placeholder="课程ID" style="width: 50px"></input>
+	所属栏目：<?php echo ($channelHtml); ?>
+	所属龄段：<?php echo ($stageHtml); ?>
+	出版商：<?php echo ($pressHtml); ?>
+	课程类型：<?php echo ($typeHtml); ?>
+	关键字：<?php echo ($keysHtml); ?>
+	状态：<?php echo ($statusHtml); ?>
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>

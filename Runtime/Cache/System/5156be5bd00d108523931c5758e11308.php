@@ -10,7 +10,8 @@
 	<tr>
 		<th>配置KEY</th>
 		<td>
-			<input type="text" id="cKey" name="cKey" value="<?php echo ($config['cKey']); ?>"/><em>*</em>
+			<input type="hidden" name="cKey" value="<?php echo ($config['cKey']); ?>"/><?php echo ($config['cKey']); ?><em>*</em>
+			<!-- <input type="text" id="cKey" name="cKey" value="<?php echo ($config['cKey']); ?>"/><em>*</em> -->
 			&nbsp;&nbsp;备注：请勿使用下划线（_）
 		</td>
 	</tr>

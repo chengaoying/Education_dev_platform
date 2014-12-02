@@ -13,8 +13,28 @@ class CourseController extends BaseAuthController{
 	 */
 	public function indexAct() {		
 		if(!IS_POST) {
+			//栏目和龄段
+			$classes = $this->getClass();
+			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>80));
+			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>80));
+			
+			//出版商，册数，课程类型,关键字
+			$proConf = get_pro_config_content('proConfig');
+			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			//$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>'','nullText'=>'请选择','width'=>80));
+			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>'','nullText'=>'请选择','width'=>80));
+			$keysHtml   = $this->getComboBox($proConf['keys'], 'keys',array('selVal'=>'','nullText'=>'请选择','width'=>80));
+				
+			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
+			
 			$this->assign(array(			
-				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),	
+				'buttonStyle'	=> $this->buttonAuthStyle(array('add','edit','del')),
+				'channelHtml'	=> $channelHtml,
+				'stageHtml'		=> $stageHtml,	
+				'pressHtml'		=> $pressHtml,
+				'typeHtml'		=> $typeHtml,
+				'keysHtml'		=> $keysHtml,
+				'statusHtml'	=> $statusHtml,						
 			));
 			$this->display();
 		} else {

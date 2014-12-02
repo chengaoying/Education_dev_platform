@@ -86,6 +86,10 @@ class BaseModel extends \Think\Model {
 	 * 处理筛选条件
 	 */
 	protected function initWhere($where){
+		//处理空值
+		foreach ($where as $k=>$v){
+			if($v == '') unset($where[$k]);
+		}
 		return $where;
 	}
 	
