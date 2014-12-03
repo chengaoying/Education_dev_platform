@@ -31,17 +31,17 @@ class CourseModel extends BaseModel {
 		$this->initSelectParam($param);
 		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();
 		if($isTotal) $list['total'] = $this->where($param['where'])->count();
-		save_log('execute_sql',array('sql'=>$this->getLastSql()));
+		
 		//把栏目id,龄段id,出版社id,册数,关键字id,转换成名称在首页显示
 		$channels = get_cache('Channel');
 		$stages   = get_cache('Stage');
 		$proConf  = get_pro_config_content('proConfig');
 		foreach ($list['rows'] as $k=>$v){
-			$list['rows'][$k]['chId'] = $channels[$v['chId']]['name'];
+			$list['rows'][$k]['chId']	 = $channels[$v['chId']]['name'];
 			$list['rows'][$k]['stageId'] = $stages[$v['stageId']]['name'];
 			$list['rows'][$k]['pressId'] = $proConf['press'][$v['pressId']];
-			$list['rows'][$k]['typeId'] = $proConf['courseType'][$v['typeId']];
-			$list['rows'][$k]['volume'] = $proConf['volume'][$v['volume']];
+			$list['rows'][$k]['typeId']  = $proConf['courseType'][$v['typeId']];
+			$list['rows'][$k]['volume']  = $proConf['volume'][$v['volume']];
 			$keys = explode(',', $v['keys']);
 			$keys = array_filter($keys);
 			foreach ($keys as $k1=>$v1){
@@ -52,4 +52,20 @@ class CourseModel extends BaseModel {
 		return $this->returnListData($list);
 	}
 	
+	/**
+	 * 处理筛选条件
+	 * 1.处理空值
+	 * 2.关键字匹配
+	 */
+	protected function initWhere($where){
+		//处理空值
+		foreach ($where as $k=>$v){
+			if($v == '') unset($where[$k]);
+		}
+		//关键字匹配
+		$where['_string'] .= '(`keys` like "%'.$where['keys'].'%")';
+		unset($where['keys']);
+		
+		return $where;
+	}
 }

@@ -98,9 +98,10 @@ class CourseController extends BaseAuthController{
 				'typeHtml'    => $typeHtml,
 				'statusHtml'  => $statusHtml,
 			));	
-			$this->display( 'edit');
+			$this->display('edit');
 		} else {
 			$data = I('post.');
+			save_log('test',$data);
 			$this->showResult( D('Course')->saveData($data));
 		}
 	}
@@ -109,12 +110,17 @@ class CourseController extends BaseAuthController{
 	 * 异步加载信息：龄段
 	 */
 	public function loadAct(){
-		$type = I('type','');
-		$chId = I('chId','');
-		save_log('load',array('chId'=>'chId='.$chId));
-		if($type == 'stage'){
+		$type = I('get.type','');
+		$chId = I('get.chId','');
+		
+		if($type == 'stage'){ //龄段
 			$stages = get_cache('Stage');
 			$data = get_array_for_fieldval($stages, 'chId',$chId);
+		}elseif($type == 'key'){ //关键字
+			$proConf = get_pro_config_content('proConfig');
+			foreach ($proConf['keys'] as $k => $v){
+				$data[] = array('id'=>$k,'name'=>$v);
+			}
 		}
 		$this->ajaxReturn($data);
 	}

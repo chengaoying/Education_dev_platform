@@ -43,12 +43,11 @@
 			<input type="text" id="topicIds" name="topicIds" value="<?php echo ($course['topicIds']); ?>"/><em>*</em>
 		</td>
 	</tr>
-	<tr>
-		<th>关键字</th>
-		<td>
-			<input type="text" id="keys" name="keys" value="<?php echo ($course['keys']); ?>"/><em>*</em>
-		</td>
-	</tr>
+	<tr><th>关键字</th><td>
+		<!-- <input type="text" id="keys" name="keys" value="<?php echo ($course['keys']); ?>"/> -->
+		<span id="aakeys">dfdsfsdf</span>
+		<input id="combobox_keys"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
+	</td></tr>
 	<tr>
 		<th>图片地址</th>
 		<td>
@@ -76,3 +75,50 @@
 	<tr><th>状态</th><td><?php echo ($statusHtml); ?> <em>*</em></td></tr>
 </table>
 </form>
+
+<script>
+$(function(){	
+	
+	/* $("#stageId").combobox({
+		onLoadSuccess: function(){
+			var stageId = "<?php echo ($course['stageId']); ?>";
+			if(stageId=="0") stageId = "";
+			$("#stageId").combobox("setValue",stageId);
+		}
+	}); */
+	
+	$("#combobox_keys").combobox({
+		multiple:true,
+		separator:',',
+		
+		onSelect: function(){			
+			//var vals = $("#combobox_keys").combobox('getValues');
+			//alert(vals);
+			//$("#keys").html(vals);
+			alert($("#aakeys").html());
+			//$("#keys").val(vals);
+		},
+		onUnselect:function(){
+			alert($("#aakeys").html());
+			//var vals = $("#combobox_keys").combobox('getValues');
+			//alert(vals);
+			//$("#keys").html(vals);
+		},	
+		
+		onLoadSuccess: function(){
+			//$("#combobox_keys").combobox("setValues","<?php echo ($course['keys']); ?>".split(','));
+		},		
+	}).combobox('reload',"<?php echo U('Course/load');?>" + "?type=key");
+		
+	/* $("#chId").combobox({
+		onSelect: function(param){
+			//动态加载龄段
+			var url = "<?php echo U('Class/index');?>" + "?type=stage&chId="+param.value;
+            $('#stageId').combobox('reload', url);
+        }
+	}).combobox("select","<?php echo ($course['chId']); ?>"); */
+	
+	
+});
+
+</script>

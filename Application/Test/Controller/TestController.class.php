@@ -47,8 +47,7 @@ class TestController extends \Think\Controller {
 		/* dump(get_pro_config_content('proConfig'));
 		dump(get_cache('ProConfig')); */
 		$proConf  = get_pro_config_content('proConfig');
-		dump($proConf['press']);
-		dump(get_cache('ProConfig'));
+		dump($proConf['keys']);
 		exit;
 		$this->display();
 	}

@@ -1,2 +1,0 @@
-SELECT COUNT(*) AS tp_count FROM `t_course` LIMIT 1  
-SELECT COUNT(*) AS tp_count FROM `t_course` WHERE ( `id` = 0 ) LIMIT 1  
