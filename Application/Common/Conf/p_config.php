@@ -22,6 +22,22 @@ return array(
 			'info'	=> '',
 		),
 		
+		/* 科目配置 */
+		'subject'	=>	array(
+			'type'	=> 'array',
+			'title'	=> '科目',
+			'value' => array(1 => '语文', 2 => '数学', 3=>'英语'),
+			'info'	=> '',
+		),
+		
+		/* 课程标签配置 */
+		'courseTags'=>	array(
+			'type'	=> 'array',
+			'title'	=> '课程标签',
+			'value' => array(1 => '音乐', 2 => '美术', 3=>'书法', 4=>'科学',5=>'舞蹈',6=>'动漫',7=>'电影',8=>'写作',9=>'手工'),
+			'info'	=> '',
+		),
+		
 		/* 课程册数配置 */
 		'volume'	=>	array(
 			'type'	=> 'array',

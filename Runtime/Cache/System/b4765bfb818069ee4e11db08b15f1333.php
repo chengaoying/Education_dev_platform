@@ -30,18 +30,16 @@
 		
 	</div>
     
-    <div id="datagrid_img" class="datagrid_img" style="display: none;">
-        
-    </div>
-
 	<div id="datagrid_toolbar" style="padding:5px;">
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	<b>所属产品：<?php echo ($currProduct['name']); ?>　</b>
-	ID：<input type="text" name="where[id]" placeholder="请输入ID" style="width: 160px"></input>
-	活动类型：<?php echo ($actTypeHtml); ?>
-	状态：<?php echo ($statusHtml); ?>
+	userId：<input type="text" name="where[userId]" placeholder="请输入用户ID" style="width: 80px" />	
+	运营商用户Id：<input type="text" name="where[opUserId]" placeholder="" style="width: 80px" />	
+	运营商用户名：<input type="text" name="where[opUserName]" placeholder="" style="width: 80px" />
+	电话号码：<input type="text" name="where[phone]" placeholder="" style="width: 80px" />
+    <br />开始时间：<input class="easyui-datebox" id="beginTime" name="beginTime" style="width:150px" />
+    &nbsp;结束时间：<input class="easyui-datebox" id="endTime" name="endTime" style="width:150px" />
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
@@ -53,6 +51,10 @@
 			<span class="toolbar-btn-separator"></span>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()" <?php echo ($buttonStyle['del']); ?>>删除</a>			
 			
+    <span style="display: inline-block;width:60px;height:50px;">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-sum" plain="true" onclick="count()" <?php echo ($buttonStyle['count']); ?>>汇总</a>
+    </span>
+
 			<a href="#" ></a>
 		</div>
 	</div>
@@ -69,7 +71,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/Activity/index',
+		url: '/System/User/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -82,47 +84,25 @@ $(function(){
         remoteSort:true,//是否通过远程服务器对数据排序
         singleSelect:true,//只允许选择单行
         
-	    sortName:'sort',//默认排序字段
-		sortOrder:'asc',//默认排序方式 'desc' 'asc'
-		idField : 'id',
-	    columns:[[  
-            {field:'id',title:'ID',sortable:true,align:'right',width:60},                        
-            {field:'actType',title:'活动类型',sortable:true,width:80},
-            {field:'title',title:'标题',sortable:false,width:120},
-            {field:'classKey',title:'分类KEY',sortable:false,width:120},                                  
-            {field:'imgUrl',title:'图片',sortable:false,width:150},           
-            {field:'beginTime',title:'开始时间',sortable:true,width:180},
-            {field:'endTime',title:'结束时间',sortable:true,width:180},
-            {field:'status',title:'状态',sortable:true,width:60,formatter:function(value,row,index){return value==1 ? "启用" : "<font color=red>禁用</font>";}},
-            {field:'linkUrl',title:'跳转地址',sortable:false,width:200},
-            {field:'sort',title:'排序',sortable:true,width:60},
-            {field:'addTime',title:'添加时间',sortable:true,width:180},
+	    //sortName:'id',//默认排序字段
+		//sortOrder:'asc',//默认排序方式 'desc' 'asc'
+		idField : 'userId',
+	    columns:[[ 
+            {field:'userId',title:'教育平台用户Id',sortable:true,align:'right',width:100},
+            {field:'opUserId',title:'运营商用户Id',sortable:true,width:100},
+            {field:'opUserName',title:'运营商用户名',sortable:true,width:100},
+            {field:'opUserToken',title:'运营商提供的UserToken',sortable:true,width:150},
+            {field:'nickName',title:'用户昵称',sortable:true,width:100},
+            {field:'point',title:'用户积分',sortable:true,width:100},
+            {field:'amount',title:'用户元宝',sortable:true,width:100},
+            {field:'face',title:'用户头像',sortable:true,width:100},
+            {field:'phone',title:'手机号码',sortable:true,width:100},
+            {field:'qq',title:'QQ',sortable:true,width:100},
+            {field:'address',title:'用户地址',sortable:true,width:150},
+            {field:'email',title:'邮箱',sortable:true,width:120},
+            <?php if(is_array($credits)): foreach($credits as $key=>$credit): ?>{ field:'<?php echo ($credit["cKey"]); ?>',title:'<?php echo ($credit["title"]); ?>',sortable:true,align:'right',width:80},<?php endforeach; endif; ?>
+            {field:'addTime',title:'注册时间',sortable:true,width:150},
         ]],
-        onMouseOverRow:function(e, rowIndex, rowData,field,value){
-            if(field == 'imgUrl' && value != ''){
-               var fieldValue = '';
-               fieldValue = eval("rowData.realImgUrl");
-               var imgArr = fieldValue.split(",");
-               var imgStr = '';
-               //alert(imgArr.length);
-               if(imgArr.length>1){
-                    for(var i=0;i<(imgArr.length);i++){
-                         imgStr += '<p><img src="'+imgArr[i]+'" /></p>';
-                    }
-               }else{
-                    imgStr = '<p><img src="'+fieldValue+'" /></p>';
-               }
-               $("#datagrid_img").html(imgStr);
-               $("#datagrid_img").show();
-               if($("#datagrid_img").height()+e.pageY > $(document).height()){
-                    e.pageY = e.pageY-$("#datagrid_img").height();
-               }
-               $("#datagrid_img").css("left",e.pageX).css("top",e.pageY);
-            }
-       },  
-       onMouseOutRow:function(e,rowIndex, rowData){  
-           $("#datagrid_img").hide();
-       },
 	    
         onLoadSuccess:function(){
 	    	$(this).datagrid('clearSelections');//取消所有的已选择项
@@ -146,26 +126,24 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/Activity/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/User/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Activity/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/User/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/Activity/del");
+	delData(datagrid,"/System/User/del");
 }
 
 
 
 
-edit_W = 800;
-edit_H = 500;
-/*
-function del(rowIndex,rowData){
-    edit_W = 350;
-    edit_H = 200;
-	editData(rowIndex,rowData,"删除数据",'#edit_form',datagrid,"/System/Activity/del",edit_W,edit_H);
-}*/
+function edit(rowIndex,rowData){
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/User/edit",600,520,'userId');
+}
+function count(){
+    post("/System/User/count",true,null,$.serializeObject($('#search_form')));
+}
 
 
 </script>

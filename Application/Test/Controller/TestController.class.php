@@ -45,9 +45,13 @@ class TestController extends \Think\Controller {
 		//D('Sync','Logic')->send();
 		
 		/* dump(get_pro_config_content('proConfig'));
-		dump(get_cache('ProConfig')); */
+		dump(get_cache('ProConfig'));
 		$proConf  = get_pro_config_content('proConfig');
-		dump($proConf['keys']);
+		dump($proConf['keys']); */
+		
+		$stages = get_cache('Stage');
+		//$data = get_array_for_fieldval($stages, 'chId',20);
+		dump($stages);
 		exit;
 		$this->display();
 	}

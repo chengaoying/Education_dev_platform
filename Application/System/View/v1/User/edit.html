@@ -1,0 +1,28 @@
+<form id="edit_form" method="post" id="user_mt" class="easyui-tabs" data-options="fit:true,border:false">	
+<table class="editTable">
+	<tr><th colspan="2" align="center">基本信息</th></tr>
+	<tr>
+		<th>教育平台用户ID</th>
+		<td>{$user['userId']}<input type="hidden" name="user[userId]" value="{$user['userId']}"/></td>
+	</tr>
+	<tr><th>运营商用户ID</th><td>{$user['opUserId']}</td></tr>
+	<tr><th>运营商用户名</th><td>{$user['opUserName']}</td></tr>
+	<tr><th>运营商提供的UserToken</th><td>{$user['opUserToken']}</td></tr>	
+	<tr><th>用户元宝</th><td>{$user['amount']}</td></tr>
+	<tr><th>用户积分</th><td>{$user['point']}</td></tr>	
+	<foreach name="credits" item="credit" key="key">
+	<tr><th>{$credit['title']}</th><td>{$user[$credit['cKey']]}</td></tr>
+	</foreach>
+	<tr><th>注册时间</th><td>{$user['addTime']}</td></tr>
+	<tr><th>用户昵称</th><td><input type="text" name="user[nickName]" value="{$user['nickName']}"/></td></tr>
+	<tr><th colspan="2" align="center">扩展信息</th></tr>
+	<tr><th>用户头像</th><td><input type="text" name="user[face]" value="{$user['face']}" style="width:300px;"></td>	</tr>
+	<tr><th>电话</th><td><input type="text" name="user[phone]" value="{$user['phone']}" style="width:300px;"></td>	</tr>
+	<tr><th>QQ</th><td><input type="text" name="user[qq]" value="{$user['qq']}" style="width:300px;"></td>	</tr>
+	<tr><th>邮箱</th><td><input type="text" name="user[email]" value="{$user['email']}" style="width:300px;"></td>	</tr>
+	<tr><th>家庭住址</th><td><input type="text" name="user[address]" value="{$user['address']}" style="width:300px;"></td></tr>
+</table>
+</form> 
+<script>
+
+</script>

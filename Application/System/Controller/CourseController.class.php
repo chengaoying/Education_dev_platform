@@ -15,17 +15,19 @@ class CourseController extends BaseAuthController{
 		if(!IS_POST) {
 			//栏目和龄段
 			$classes = $this->getClass();
-			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>80));
-			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>80));
+			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>120));
+			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>120));
 			
 			//出版商，册数，课程类型,关键字
 			$proConf = get_pro_config_content('proConfig');
 			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
 			//$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>'','nullText'=>'请选择','width'=>80));
-			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>'','nullText'=>'请选择','width'=>80));
-			$keysHtml   = $this->getComboBox($proConf['keys'], 'keys',array('selVal'=>'','nullText'=>'请选择','width'=>80));
+			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$keysHtml   = $this->getComboBox($proConf['keys'], 'keys',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$subjectHtml   = $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$tagsHtml   = $this->getComboBox($proConf['courseTags'], 'tags',array('selVal'=>'','nullText'=>'请选择','width'=>120));
 				
-			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
+			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>120));
 			
 			$this->assign(array(			
 				'buttonStyle'	=> $this->buttonAuthStyle(array('add','edit','del')),
@@ -34,6 +36,8 @@ class CourseController extends BaseAuthController{
 				'pressHtml'		=> $pressHtml,
 				'typeHtml'		=> $typeHtml,
 				'keysHtml'		=> $keysHtml,
+				'subjectHtml'   => $subjectHtml,
+				'tagsHtml'      => $tagsHtml,
 				'statusHtml'	=> $statusHtml,						
 			));
 			$this->display();
@@ -81,11 +85,13 @@ class CourseController extends BaseAuthController{
 			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>$course['chId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
 			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>$course['stageId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
 			
-			//出版商，册数，课程类型,关键字
+			//出版商，册数，课程类型,关键字,科目,标签
 			$proConf = get_pro_config_content('proConfig');
 			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>$course['pressId'],'nullText'=>'请选择','width'=>150));
 			$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>$course['volume'],'nullText'=>'请选择','width'=>150));
 			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>$course['typeId'],'nullText'=>'请选择','width'=>150));
+			$subjectHtml   = $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>$course['subject'],'nullText'=>'请选择','width'=>150));
+			$tagsHtml   = $this->getComboBox($proConf['courseTags'], 'tags',array('selVal'=>$course['tags'],'nullText'=>'请选择','width'=>150));
 			
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$course['status'],'nullText'=>'','width'=>150));
 			
@@ -96,12 +102,13 @@ class CourseController extends BaseAuthController{
 				'pressHtml'   => $pressHtml,
 				'volumeHtml'  => $volumeHtml,
 				'typeHtml'    => $typeHtml,
+				'subjectHtml' => $subjectHtml,
+				'tagsHtml'    => $tagsHtml,
 				'statusHtml'  => $statusHtml,
 			));	
 			$this->display('edit');
 		} else {
 			$data = I('post.');
-			save_log('test',$data);
 			$this->showResult( D('Course')->saveData($data));
 		}
 	}
@@ -111,17 +118,19 @@ class CourseController extends BaseAuthController{
 	 */
 	public function loadAct(){
 		$type = I('get.type','');
-		$chId = I('get.chId','');
-		
 		if($type == 'stage'){ //龄段
 			$stages = get_cache('Stage');
-			$data = get_array_for_fieldval($stages, 'chId',$chId);
+			foreach ($stages as $k=>$v){
+				$data[] = array('id'=>$v['id'],'name'=>$v['name']);
+			}
+			save_log('load',$data);
 		}elseif($type == 'key'){ //关键字
 			$proConf = get_pro_config_content('proConfig');
 			foreach ($proConf['keys'] as $k => $v){
 				$data[] = array('id'=>$k,'name'=>$v);
 			}
 		}
+		
 		$this->ajaxReturn($data);
 	}
 	

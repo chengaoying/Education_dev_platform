@@ -24,7 +24,7 @@
 		<td>
 			<textarea name="imgUrl" id="imgUrl" cols="50" rows="3"><?php echo ($topic['imgUrl']); ?></textarea>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
-				onclick="upfileDialog(1,'<?php echo ($thumb); ?>','课程图片：<?php echo ($topic[name]); ?>',1,1,'#imgUrl','\r\n')"></a>
+				onclick="upfileDialog(1,'<?php echo ($thumb); ?>','知识点图片：<?php echo ($topic[name]); ?>',1,1,'#imgUrl','\r\n')"></a>
 		</td>
 	</tr>
 	<tr>

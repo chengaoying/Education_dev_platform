@@ -13,12 +13,15 @@ class TopicController extends BaseAuthController {
 	 */
 	public function indexAct() {		
 		if(!IS_POST) {
+			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
 			$this->assign(array(			
-				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),	
+				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
+				'statusHtml'  => $statusHtml,			
 			));
 			$this->display();
 		} else {
-			$list = D('Topic')->queryTopic();
+			$param['where'] = I('post.');
+			$list = D('Topic')->queryTopic($param);
 			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
 		}		

@@ -64,6 +64,10 @@ return array(
     				'name' => '题库资源',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
+                'Import' => array(
+                    'name' => '导入数据',
+    				'item' => array('index' => '查看'),
+                ),
     			'Upfile' => array(
     				'name'	=> '附件',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),

@@ -37,12 +37,15 @@
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	ID：<input type="text" name="id" placeholder="课程ID" style="width: 50px"></input>
+	ID：<input type="text" name="id" placeholder="课程ID" style="width: 120px"></input>
+	课程名称：<input type="text" name="name" placeholder="课程名称" style="width: 120px"></input>
 	所属栏目：<?php echo ($channelHtml); ?>
 	所属龄段：<?php echo ($stageHtml); ?>
 	出版商：<?php echo ($pressHtml); ?>
-	课程类型：<?php echo ($typeHtml); ?>
+	课程类型：<?php echo ($typeHtml); ?> 
+	科目：<?php echo ($subjectHtml); ?>    
 	关键字：<?php echo ($keysHtml); ?>
+	标签：<?php echo ($tagsHtml); ?>
 	状态：<?php echo ($statusHtml); ?>
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
@@ -90,17 +93,21 @@ $(function(){
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
             {field:'name',title:'课程名称',sortable:false,width:100},
             {field:'chId',title:'所属栏目',sortable:false,width:100},
-            {field:'stageId',title:'龄段',sortable:false,width:80},
+            {field:'stage',title:'龄段',sortable:false,width:80},
             {field:'pressId',title:'出版商',sortable:false,width:80},
             {field:'volume',title:'上/下册',sortable:false,width:60},           
+            {field:'subject',title:'科目',sortable:false,width:80},           
             {field:'typeId',title:'类型',sortable:false,width:60},           
+            {field:'tags',title:'标签',sortable:false,width:120},           
             {field:'price',title:'价格',sortable:false,width:60},           
             {field:'midLibId',title:'期中考试题库ID',sortable:false,width:120},           
             {field:'finalLibId',title:'期末考试题库ID',sortable:false,width:120},           
             {field:'topicIds',title:'包含的知识点ID',sortable:false,width:120},           
-            {field:'keys',title:'关键字',sortable:false,width:80},           
+            {field:'keys',title:'关键字',sortable:false,width:120},           
             {field:'imgUrl',title:'图片路径',sortable:false,width:80},           
-            {field:'linkUrl',title:'链接地址',sortable:false,width:80},           
+            {field:'linkUrl',title:'链接地址',sortable:false,width:80},  
+            {field:'organization',title:'机构',sortable:false,width:80},           
+            {field:'lecturer',title:'讲师',sortable:false,width:60},          
             {field:'description',title:'课程描述',sortable:false,width:80},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,

@@ -32,22 +32,32 @@ class CourseModel extends BaseModel {
 		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();
 		if($isTotal) $list['total'] = $this->where($param['where'])->count();
 		
-		//把栏目id,龄段id,出版社id,册数,关键字id,转换成名称在首页显示
+		//把栏目id,出版社id,类型,册数,科目id,标签,关键字id,龄段id,转换成名称在首页显示
 		$channels = get_cache('Channel');
 		$stages   = get_cache('Stage');
 		$proConf  = get_pro_config_content('proConfig');
 		foreach ($list['rows'] as $k=>$v){
 			$list['rows'][$k]['chId']	 = $channels[$v['chId']]['name'];
-			$list['rows'][$k]['stageId'] = $stages[$v['stageId']]['name'];
 			$list['rows'][$k]['pressId'] = $proConf['press'][$v['pressId']];
 			$list['rows'][$k]['typeId']  = $proConf['courseType'][$v['typeId']];
 			$list['rows'][$k]['volume']  = $proConf['volume'][$v['volume']];
+			$list['rows'][$k]['subject'] = $proConf['subject'][$v['subject']];
+			$list['rows'][$k]['tags']	 = $proConf['courseTags'][$v['tags']];
+			
 			$keys = explode(',', $v['keys']);
 			$keys = array_filter($keys);
 			foreach ($keys as $k1=>$v1){
 				$_keys .= $proConf['keys'][$v1].',';
 			}
 			$list['rows'][$k]['keys'] = $_keys;
+			
+			$s = explode(',', $v['stage']);
+			$s = array_filter($s);
+			foreach ($s as $k2=>$v2){
+				$_stages .= $stages[$v2]['name'].',';
+			}
+			$list['rows'][$k]['stage']	= $_stages;
+			
 		}
 		return $this->returnListData($list);
 	}

@@ -38,7 +38,11 @@
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	        				 
+	ID：<input type="text" name="id" placeholder="课时ID" style="width: 50px"></input>
+	课时名称：<input type="text" name="name" placeholder="课时名称" style="width: 100px"></input>
+	所属知识点ID：<input type="text" name="topicId" placeholder="知识点ID" style="width: 50px"></input>
+	状态：<?php echo ($statusHtml); ?>
+			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
 		</div>
@@ -88,7 +92,7 @@ $(function(){
             {field:'previewList',title:'预习ID列表',sortable:false,width:100},
             {field:'lessonList',title:'正文ID列表',sortable:false,width:100},
             {field:'imgUrl',title:'图片路径',sortable:false,width:120},           
-            {field:'description',title:'知识点描述',sortable:false,width:200},           
+            {field:'description',title:'课时描述',sortable:false,width:200},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){

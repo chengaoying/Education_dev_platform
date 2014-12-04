@@ -73,6 +73,10 @@ $(function(){
 				editDialog('更新缓存','#edit_form',null,"<?php echo U('Cache/update');?>",300,150);
 				return;
 			}
+            if(node.text=="导入数据"){
+				editDialog('导入数据','#import_form',null,"<?php echo U('Import/index');?>",600,300);
+				return;
+			}
 			if($("#mt").tabs('exists',node.text)){
 				$("#mt").tabs('select',node.text);
 			}else{			

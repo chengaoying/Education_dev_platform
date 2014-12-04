@@ -38,7 +38,11 @@
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	        				 
+	ID：<input type="text" name="id" placeholder="知识点ID" style="width: 50px"></input>
+	知识点名称：<input type="text" name="name" placeholder="知识点名称" style="width: 100px"></input>
+	所属课程ID：<input type="text" name="courseId" placeholder="课程ID" style="width: 50px"></input>
+	状态：<?php echo ($statusHtml); ?>
+			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
 		</div>

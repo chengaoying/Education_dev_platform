@@ -8,17 +8,15 @@
 		</td>
 	</tr>
 	<tr><th>所属栏目</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr>
-	<tr><th>龄段</th><td><?php echo ($stageHtml); ?> <em>*</em></td></tr>
-	<!-- <tr>
-		<th>龄段</th>
-		<td>
-			<input id="stageId" class="easyui-combobox" name="stageId" data-options="valueField:'id',textField:'name',data:[{id:'',name:'请选择'}]" style="width:150px"/> <em>*</em>
-		</td>
-	</tr> -->
-	
+	<tr><th>龄段</th><td>
+		<input type="hidden" id="aastage" name="stage" value="<?php echo ($course['stage']); ?>"/>
+		<input id="combobox_stage"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
+	</td></tr>
 	<tr><th>出版商</th><td><?php echo ($pressHtml); ?> <em>*</em></td></tr>
 	<tr><th>册数</th><td><?php echo ($volumeHtml); ?> <em>*</em></td></tr>
 	<tr><th>类型</th><td><?php echo ($typeHtml); ?> <em>*</em></td></tr>
+	<tr><th>科目</th><td><?php echo ($subjectHtml); ?> <em>*</em></td></tr>
+	<tr><th>标签</th><td><?php echo ($tagsHtml); ?> <em>*</em></td></tr>
 	<tr>
 		<th>价格</th>
 		<td>
@@ -44,8 +42,7 @@
 		</td>
 	</tr>
 	<tr><th>关键字</th><td>
-		<!-- <input type="text" id="keys" name="keys" value="<?php echo ($course['keys']); ?>"/> -->
-		<span id="aakeys">dfdsfsdf</span>
+		<input type="hidden" id="aakeys" name="keys" value="<?php echo ($course['keys']); ?>"/>
 		<input id="combobox_keys"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
 	</td></tr>
 	<tr>
@@ -60,6 +57,18 @@
 		<th>链接地址</th>
 		<td>
 			<input type="text" id="linkUrl" name="linkUrl" value="<?php echo ($course['linkUrl']); ?>"/><em>*</em>
+		</td>
+	</tr>
+	<tr>
+		<th>机构</th>
+		<td>
+			<input type="text" id="organization" name="organization" value="<?php echo ($course['organization']); ?>"/><em>*</em>
+		</td>
+	</tr>
+	<tr>
+		<th>讲师</th>
+		<td>
+			<input type="text" id="lecturer" name="lecturer" value="<?php echo ($course['lecturer']); ?>"/><em>*</em>
 		</td>
 	</tr>
 	<tr>
@@ -79,46 +88,40 @@
 <script>
 $(function(){	
 	
-	/* $("#stageId").combobox({
+	/* 龄段多选框  */
+	$("#combobox_stage").combobox({
+		multiple:true,
+		separator:',',
+		onSelect: function(){			
+			var vals = $("#combobox_stage").combobox('getValues');
+			$("#aastage").val(vals);
+		},
+		onUnselect:function(){
+			var vals = $("#combobox_stage").combobox('getValues');
+			$("#aastage").val(vals)
+		},	
 		onLoadSuccess: function(){
-			var stageId = "<?php echo ($course['stageId']); ?>";
-			if(stageId=="0") stageId = "";
-			$("#stageId").combobox("setValue",stageId);
-		}
-	}); */
+			$("#combobox_stage").combobox("setValues","<?php echo ($course['stage']); ?>".split(','));
+		},		
+	}).combobox('reload',"<?php echo U('Course/load');?>" + "?type=stage");
 	
+	/* 关键字多选框  */
 	$("#combobox_keys").combobox({
 		multiple:true,
 		separator:',',
-		
 		onSelect: function(){			
-			//var vals = $("#combobox_keys").combobox('getValues');
-			//alert(vals);
-			//$("#keys").html(vals);
-			alert($("#aakeys").html());
-			//$("#keys").val(vals);
+			var vals = $("#combobox_keys").combobox('getValues');
+			$("#aakeys").val(vals);
 		},
 		onUnselect:function(){
-			alert($("#aakeys").html());
-			//var vals = $("#combobox_keys").combobox('getValues');
-			//alert(vals);
-			//$("#keys").html(vals);
+			var vals = $("#combobox_keys").combobox('getValues');
+			$("#aakeys").val(vals)
 		},	
-		
 		onLoadSuccess: function(){
-			//$("#combobox_keys").combobox("setValues","<?php echo ($course['keys']); ?>".split(','));
+			$("#combobox_keys").combobox("setValues","<?php echo ($course['keys']); ?>".split(','));
 		},		
 	}).combobox('reload',"<?php echo U('Course/load');?>" + "?type=key");
 		
-	/* $("#chId").combobox({
-		onSelect: function(param){
-			//动态加载龄段
-			var url = "<?php echo U('Class/index');?>" + "?type=stage&chId="+param.value;
-            $('#stageId').combobox('reload', url);
-        }
-	}).combobox("select","<?php echo ($course['chId']); ?>"); */
-	
-	
 });
 
 </script>
