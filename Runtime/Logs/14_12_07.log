@@ -1,0 +1,664 @@
+[ 2014-12-07T10:54:41+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001687s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.038747s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+NOTIC: [8] Undefined index: REDIRECT_URL E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.035779s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.074925s ]
+
+[ 2014-12-07T10:54:42+08:00 ] 127.0.0.1 /System/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000796s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001113s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001510s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000386s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000834s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.414149s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.414780s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.112863s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.113557s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003809s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004355s ]
+
+[ 2014-12-07T10:54:45+08:00 ] 127.0.0.1 /System/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000787s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001449s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003254s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000180s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000413s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022323s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022551s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000911s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001223s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001421s ]
+
+[ 2014-12-07T10:54:53+08:00 ] 127.0.0.1 /System/Public/login/ajax/true.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001081s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001226s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001738s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003282s ]
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\System\Controller\BaseController.class.php 第 142 行.
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.296420s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('','Public','login',1417920890,'a:2:{s:3:\"get\";a:1:{s:4:\"ajax\";s:4:\"true\";}s:4:\"post\";a:1:{s:8:\"userName\";s:5:\"admin\";}}') [ RunTime:0.074937s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.055451s ]
+SQL: SELECT `id`,`lastTime`,`lastIp` FROM `t_sys_user` WHERE ( `name` = 'admin' ) AND ( `password` = '21232f297a57a5a743894a0e4a801fc3' ) AND ( `status` = 1 ) LIMIT 1   [ RunTime:0.054285s ]
+SQL: UPDATE `t_sys_user` SET `lastTime`='2014-12-07 10:54:50',`lastIp`='127.0.0.1' WHERE ( `id` = 1 ) [ RunTime:0.645496s ]
+
+[ 2014-12-07T10:54:53+08:00 ] 127.0.0.1 /System/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000591s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001035s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002596s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003999s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.058635s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000169s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000368s ]
+NOTIC: [8] Undefined variable: html E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\54ed2e14c6d75c29e191a0c6f138b065.php 第 54 行.
+NOTIC: [8] Undefined variable: proId E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\54ed2e14c6d75c29e191a0c6f138b065.php 第 96 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.089913s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.090167s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001068s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001355s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001597s ]
+
+[ 2014-12-07T10:55:24+08:00 ] 127.0.0.1 /System/ProConfig/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001511s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001198s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001718s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003225s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.005865s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000841s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000282s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000514s ]
+NOTIC: [8] Undefined index: configTpl E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\afa7d840b8e73a6b4785832d5f9f9d80.php 第 32 行.
+NOTIC: [8] Undefined index: configArea E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\afa7d840b8e73a6b4785832d5f9f9d80.php 第 33 行.
+NOTIC: [8] Undefined index: Sync E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\afa7d840b8e73a6b4785832d5f9f9d80.php 第 34 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.090113s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.090539s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001505s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001897s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002535s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002891s ]
+
+[ 2014-12-07T10:55:24+08:00 ] 127.0.0.1 /System/ProConfig/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000711s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000809s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001276s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002276s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.013629s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000442s ]
+SQL: SHOW COLUMNS FROM `t_pro_config` [ RunTime:0.026520s ]
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 90 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50   [ RunTime:0.008162s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_pro_config` LIMIT 1   [ RunTime:0.000227s ]
+
+[ 2014-12-07T10:55:27+08:00 ] 127.0.0.1 /System/ProConfig/edit?id=16&_=1417920927073
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000514s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000832s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002388s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002894s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000398s ]
+SQL: SHOW COLUMNS FROM `t_pro_config` [ RunTime:0.002873s ]
+SQL: SELECT * FROM `t_pro_config` WHERE ( `id` = 16 ) LIMIT 1   [ RunTime:0.000386s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000095s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000211s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028723s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000554s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000815s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000943s ]
+
+[ 2014-12-07T10:55:33+08:00 ] 127.0.0.1 /System/Course/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000548s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000738s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000914s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001905s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002852s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000453s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000522s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000986s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.091396s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.091861s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001637s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002016s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002694s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003072s ]
+
+[ 2014-12-07T10:55:34+08:00 ] 127.0.0.1 /System/Course/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000866s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000985s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002071s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002754s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `t_course` [ RunTime:0.052398s ]
+NOTIC: [8] Undefined index: isLogic E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Undefined index: keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 76 行.
+NOTIC: [8] Undefined index: _string E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 76 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 32 行.
+SQL: SELECT * FROM `t_course` WHERE ( (`keys` like "%%") ) ORDER BY id asc LIMIT 0,50   [ RunTime:0.001244s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_course` WHERE ( (`keys` like "%%") ) LIMIT 1   [ RunTime:0.000832s ]
+NOTIC: [8] Undefined index: subject E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined index:  E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined index: tags E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 45 行.
+NOTIC: [8] Undefined index:  E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 45 行.
+NOTIC: [8] Undefined variable: _keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 50 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 57 行.
+
+[ 2014-12-07T11:00:50+08:00 ] 127.0.0.1 /System/ProConfig/sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000088s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001911s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001536s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002364s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004399s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.005520s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000930s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.004799s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','ProConfig','sync',1417921249,'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:1:{s:2:\"id\";s:2:\"16\";}}') [ RunTime:0.123239s ]
+
+[ 2014-12-07T11:00:50+08:00 ] 127.0.0.1 /System/ProConfig/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000678s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000909s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001770s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002831s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000451s ]
+SQL: SHOW COLUMNS FROM `t_pro_config` [ RunTime:0.002732s ]
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 90 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50   [ RunTime:0.000382s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_pro_config` LIMIT 1   [ RunTime:0.000230s ]
+
+[ 2014-12-07T11:01:20+08:00 ] 127.0.0.1 /System/Stage/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001132s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001474s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001716s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003593s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003004s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000482s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000242s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000460s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.102770s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.103039s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001041s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001324s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001389s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001578s ]
+
+[ 2014-12-07T11:01:20+08:00 ] 127.0.0.1 /System/Stage/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000504s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000693s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001179s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002075s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002683s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000393s ]
+SQL: SHOW COLUMNS FROM `t_stage` [ RunTime:0.038999s ]
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 90 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_stage` ORDER BY id asc LIMIT 0,50   [ RunTime:0.000865s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_stage` LIMIT 1   [ RunTime:0.000651s ]
+
+[ 2014-12-07T11:07:00+08:00 ] 127.0.0.1 /Api/HproseTest
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000081s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001830s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001780s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003207s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005379s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001581s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001796s ]
+
+[ 2014-12-07T11:22:46+08:00 ] 127.0.0.1 /System/Course/edit?id=3&_=1417922565875
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001223s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001795s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004476s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.005187s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000881s ]
+SQL: SHOW COLUMNS FROM `t_course` [ RunTime:0.005714s ]
+SQL: SELECT * FROM `t_course` WHERE ( `id` = 3 ) LIMIT 1   [ RunTime:0.000729s ]
+NOTIC: [8] Undefined index: stageId E:\home\code\zendstudio\Education_dev_platform\Application\System\Controller\CourseController.class.php 第 86 行.
+NOTIC: [8] Undefined index: subject E:\home\code\zendstudio\Education_dev_platform\Application\System\Controller\CourseController.class.php 第 93 行.
+NOTIC: [8] Undefined index: tags E:\home\code\zendstudio\Education_dev_platform\Application\System\Controller\CourseController.class.php 第 94 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000228s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000483s ]
+NOTIC: [8] Undefined variable: thumb E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\c982d0be8c69bf2e61f9f509980e2ae6.php 第 53 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\c982d0be8c69bf2e61f9f509980e2ae6.php 第 53 行.
+NOTIC: [8] Undefined index: organization E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\c982d0be8c69bf2e61f9f509980e2ae6.php 第 65 行.
+NOTIC: [8] Undefined index: lecturer E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\c982d0be8c69bf2e61f9f509980e2ae6.php 第 71 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043050s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.043279s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001255s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001484s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002026s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002227s ]
+
+[ 2014-12-07T11:22:46+08:00 ] 127.0.0.1 /System/Course/load.html?type=stage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000998s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000950s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001165s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002322s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.004082s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.003319s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','Course','load',1417922566,'a:2:{s:3:\"get\";a:1:{s:4:\"type\";s:5:\"stage\";}s:4:\"post\";a:0:{}}') [ RunTime:0.073593s ]
+
+[ 2014-12-07T11:22:46+08:00 ] 127.0.0.1 /System/Course/load.html?type=key
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001524s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001837s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003677s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.006431s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000472s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.003324s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','Course','load',1417922566,'a:2:{s:3:\"get\";a:1:{s:4:\"type\";s:3:\"key\";}s:4:\"post\";a:0:{}}') [ RunTime:0.073410s ]
+
+[ 2014-12-07T11:22:47+08:00 ] 127.0.0.1 /System/Course/load.html?type=stage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001206s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001418s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001904s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003610s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003061s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000505s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.003035s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','Course','load',1417922566,'a:2:{s:3:\"get\";a:1:{s:4:\"type\";s:5:\"stage\";}s:4:\"post\";a:0:{}}') [ RunTime:0.069909s ]
+
+[ 2014-12-07T11:22:47+08:00 ] 127.0.0.1 /System/Course/load.html?type=key
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000622s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001106s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001446s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002759s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.004930s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000680s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.004699s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','Course','load',1417922566,'a:2:{s:3:\"get\";a:1:{s:4:\"type\";s:3:\"key\";}s:4:\"post\";a:0:{}}') [ RunTime:0.082319s ]
+
+[ 2014-12-07T11:23:07+08:00 ] 127.0.0.1 /System/Stage/edit?id=3&_=1417922586904
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000074s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001172s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001036s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001114s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002582s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002818s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000431s ]
+SQL: SHOW COLUMNS FROM `t_stage` [ RunTime:0.002673s ]
+SQL: SELECT * FROM `t_stage` WHERE ( `id` = 3 ) LIMIT 1   [ RunTime:0.000322s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000220s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009021s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009143s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000567s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000825s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000929s ]
+
+[ 2014-12-07T12:53:05+08:00 ] 127.0.0.1 /System/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000864s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001050s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002163s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003639s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000647s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000169s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000377s ]
+NOTIC: [8] Undefined variable: html E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\54ed2e14c6d75c29e191a0c6f138b065.php 第 54 行.
+NOTIC: [8] Undefined variable: proId E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\54ed2e14c6d75c29e191a0c6f138b065.php 第 96 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.074042s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.074236s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000730s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001029s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001197s ]
+
+[ 2014-12-07T12:53:07+08:00 ] 127.0.0.1 /System/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000614s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000768s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002038s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003000s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000465s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000173s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000343s ]
+NOTIC: [8] Undefined index: count E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\b4765bfb818069ee4e11db08b15f1333.php 第 55 行.
+NOTIC: [8] Undefined variable: credits E:\home\code\zendstudio\Education_dev_platform\Runtime\Cache\System\b4765bfb818069ee4e11db08b15f1333.php 第 103 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025978s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026102s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000566s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000785s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000901s ]
+
+[ 2014-12-07T12:53:07+08:00 ] 127.0.0.1 /System/User/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000525s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000729s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000794s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001740s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.005499s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000459s ]
+SQL: SHOW COLUMNS FROM `t_user` [ RunTime:0.003216s ]
+NOTIC: [8] Undefined index: isLogic E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Undefined index: where E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [8] Undefined variable: where E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\UserModel.class.php 第 46 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_user` ORDER BY userId desc LIMIT 0,50   [ RunTime:0.000240s ]
+ERR: 1054:Unknown column 'userId' in 'order clause'
+ [ SQL语句 ] : SELECT * FROM `t_user` ORDER BY userId desc LIMIT 0,50  
+SQL: SELECT COUNT(*) AS tp_count FROM `t_user` LIMIT 1   [ RunTime:0.000224s ]
+
+[ 2014-12-07T12:53:10+08:00 ] 127.0.0.1 /System/User/count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000523s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000800s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000746s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001795s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002873s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000378s ]
+SQL: SHOW COLUMNS FROM `t_sys_log` [ RunTime:0.002898s ]
+SQL: INSERT INTO `t_sys_log` (`userName`,`controller`,`action`,`addTime`,`data`) VALUES ('admin','User','count',1417927989,'a:2:{s:3:\"get\";a:0:{}s:4:\"post\";a:3:{s:5:\"where\";a:4:{s:6:\"userId\";s:0:\"\";s:8:\"opUserId\";s:0:\"\";s:10:\"opUserName\";s:0:\"\";s:5:\"phone\";s:0:\"\";}s:9:\"beginTime\";s:0:\"\";s:7:\"endTime\";s:0:\"\";}}') [ RunTime:0.120376s ]
+SQL: SHOW COLUMNS FROM `t_user` [ RunTime:0.009991s ]
+NOTIC: [8] Undefined index: isLogic E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Undefined index: where E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [8] Undefined variable: where E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\UserModel.class.php 第 46 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_user` ORDER BY userId desc LIMIT 0,50   [ RunTime:0.000686s ]
+ERR: 1054:Unknown column 'userId' in 'order clause'
+ [ SQL语句 ] : SELECT * FROM `t_user` ORDER BY userId desc LIMIT 0,50  
+SQL: SELECT COUNT(*) AS tp_count FROM `t_user` LIMIT 1   [ RunTime:0.000658s ]
+
+[ 2014-12-07T12:53:26+08:00 ] 127.0.0.1 /System/Role/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000539s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001696s ]
+ERR: 无法加载控制器:Role
+
+[ 2014-12-07T12:53:28+08:00 ] 127.0.0.1 /System/Stage/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000723s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001563s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002855s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.001005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000155s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000304s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010833s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010968s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000432s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000792s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000913s ]
+
+[ 2014-12-07T12:53:29+08:00 ] 127.0.0.1 /System/Stage/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000641s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000762s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001608s ]
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.004876s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000435s ]
+SQL: SHOW COLUMNS FROM `t_stage` [ RunTime:0.003834s ]
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 138 行.
+NOTIC: [8] Uninitialized string offset: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 139 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 90 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 142 行.
+NOTIC: [8] Undefined index: sortOrder E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 144 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 154 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 33 行.
+SQL: SELECT * FROM `t_stage` ORDER BY id asc LIMIT 0,50   [ RunTime:0.000403s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_stage` LIMIT 1   [ RunTime:0.000285s ]
+
+[ 2014-12-07T13:15:34+08:00 ] 127.0.0.1 /Api/UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000889s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001032s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002923s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001305s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001459s ]
+
+[ 2014-12-07T13:16:06+08:00 ] 127.0.0.1 /Api/UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000878s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001191s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001802s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003307s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001240s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001396s ]
+
+[ 2014-12-07T13:24:00+08:00 ] 127.0.0.1 /Api/UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000885s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001345s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001986s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003664s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001283s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001444s ]
+
+[ 2014-12-07T14:08:47+08:00 ] 127.0.0.1 /Api/UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001045s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001224s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001812s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003329s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000888s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001027s ]
+
+[ 2014-12-07T14:10:39+08:00 ] 127.0.0.1 /Api//UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000790s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001172s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002194s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000954s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001114s ]
+
+[ 2014-12-07T14:11:06+08:00 ] 127.0.0.1 /Api//UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000846s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002460s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000847s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000985s ]
+
+[ 2014-12-07T14:31:24+08:00 ] 127.0.0.1 /Api//UserApi
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000592s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000832s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_platform\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001301s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002350s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000768s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000905s ]
+

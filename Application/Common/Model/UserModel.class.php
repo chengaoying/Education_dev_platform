@@ -1,13 +1,13 @@
 <?php
 /**
- * 数据模型：专题
+ * 数据模型：用户信息
  */
 namespace Common\Model;
 class UserModel extends BaseModel {	
 	
 	
 	
-		//数据验证
+	//数据验证
 	protected $_validate = array(
 		//插入
 		array('opUserId','require','运营商的用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	

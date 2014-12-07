@@ -4,22 +4,22 @@
  */
 return array (
 		
-	//专区适配设置	
+	/* 专区适配设置 */	
 	'DEFAULT_MODULE'	=> 'System',	//默认分组模块
 	'AREA_CODE' 		=> '90017', 	//地区编码
 	'SERVER_IP'			=> '',			//服务器IP
 	
-	//主数据库
+	/* 主数据库  */
 	'DB_TYPE'		=> 'mysql', 		// 数据库类型
-	'DB_HOST'		=> '192.168.0.5',	// 服务器地址
+	'DB_HOST'		=> 'localhost',	// 服务器地址
 	'DB_NAME'		=> 'edu_hipi',	 	// 数据库名
-	'DB_USER'		=> 'edu', 			// 用户名
-	'DB_PWD'		=> 'edu',		 	// 密码
+	'DB_USER'		=> 'root', 			// 用户名
+	'DB_PWD'		=> '',		 	// 密码
 	'DB_PORT'		=> '3306', 			// 端口
 	'DB_PREFIX'		=> 't_', 			// 数据库表前缀
 	'DB_CHARSET'	=> 'utf8',
    
-	//附件上传
+	/* 附件上传  */
 	'UPFILE_ISREMOTE'	=> false,		 //是否保存到远程文件服务器
 	'UPFILE_FTP_SERVER'	=> '127.0.0.1',	 //远程FTP服务器	
 	'UPFILE_FTP_PROT'	=> '21',		 //远程FTP端口
@@ -28,7 +28,7 @@ return array (
 	'UPFILE_FTP_TIMEOUT'=> '90',		 //远程FTP超时时间(默认90秒)	
 	'UPFILE_LOCAL_PATH' => './upfiles',  //本地文件保存地址
 	
-    // 模版常量及常用资源访问路径设置
+    /* 模版常量及常用资源访问路径设置  */
 	'DEFAULT_THEME'     => 'v1',	//模板主题（此处一经修改，请同时修改TMPL_PARSE_STRING项下的各子项路径）	
 	'TMPL_PARSE_STRING' => array (
 		'__TITLE__' 		=> '掌世界嗨皮课堂', 						// 站点标题		
@@ -40,11 +40,11 @@ return array (
         '__CSSJS_VERSION__'	=> '20140208173232',  					//CSS和JS版本
 	),
 	
-	//与前端通讯参数
-	'WEB_URL'	=>	'http://192.168.0.152:8501/Api/Sync',	//数据同步地址
+	/* 与前端通讯配置  */
+	'WEB_URL'	 =>	'http://localhost:8501/Api/Sync',	    //数据同步地址
 	'CHECK_CODE' =>	'2014edu!@#',							//通讯校验码
 	
-    //与支撑部对接接口参数
+    /* 与支撑部对接接口参数  */
     /* 'ZCAPI_OPT_FLAG' => 'EDUCATION',
     'ZCAPI_PRODUCT_ID' => '1000705887',
     'ZCAPI_AREA_ID' => 'spa00022', //运营商提供的专区ID 支付审核用到

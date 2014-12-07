@@ -1,6 +1,6 @@
 <?php
 /**
- * 控制器：栏目
+ * 控制器：资源
  * @author CGY
  *
  */
@@ -80,19 +80,4 @@ class ResourceController extends BaseAuthController {
 			$this->showResult( D('Resource')->saveData($data));
 		}
 	}
-    
-    public function exportDataAct() {
-        $filename = 'channel_'.date("YmdHis",NOW_TIME).'.txt';
-        header( "Content-type:application/octet-stream "); 
-        header( "Accept-Ranges:bytes "); 
-        header( "Content-Disposition:attachment;filename=".$filename); 
-        header( "Expires:0 "); 
-        header( "Cache-Control:must-revalidate,post-check=0,pre-check=0 ");
-        $list = D('Channel')->queryChannel(); 
-        foreach ($list['rows'] as $key => $value) {
-            $data = json_encode($value)."@@\n";
-            echo $data;
-        }
-    }
-
 }
