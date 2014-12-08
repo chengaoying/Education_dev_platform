@@ -104,6 +104,7 @@ function save_log($type, $data = array(), $debugLog=0,$isTime=1) {
     return error_log($data, 3, $fileName);
 }
 
+
 /**
  * 对数组进行分页
  * @param array $data

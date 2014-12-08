@@ -24,6 +24,16 @@ class BaseModel extends \Think\Model {
 	
 	
 	/**
+	 * 获取一条数据
+	 * @param arr $param
+	 */
+	public function selectOne($param){
+		$param['where'] = $param;
+		$data = $this->where($param)->select();
+		return $data[0];
+	}
+	
+	/**
 	 * 按页读取数据
 	 * @param array $param 选择参数 格式:请参考initSelectParam方法;
 	 * @param bool $isTotal 是否返回总记录数
@@ -31,7 +41,7 @@ class BaseModel extends \Think\Model {
 	public function selectPage($param='',$isTotal=true){
 		$this->initSelectParam($param);
 		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();        
-		//save_log('execute_sql',array('sql'=>$this->getLastSql()),1);
+ 		save_log('execute_sql',array('sql'=>$this->getLastSql()),1);
         if($isTotal) $list['total'] = $this->where($param['where'])->count();
 		return $this->returnListData($list);
 	}

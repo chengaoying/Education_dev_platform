@@ -234,9 +234,9 @@ function editDialog(title,formId,datagrid,actUrl,width,height,maximized){
 				success: function(data){
 					$.messager.progress('close');
 					var json = $.parseJSON(data); 					
-					if (json.status == 1){							
-						if(datagrid!=null) datagrid.datagrid('reload');	// reload the user data
+					if (json.status == 1){	
 						$.messager.alert('提示信息',textDecode(json.info));//操作结果提示
+						if(datagrid!=null) datagrid.datagrid('reload');	// reload the user data
 						the_dialog.dialog('destroy');//销毁对话框 
 					}else {
 						$.messager.alert('错误信息',textDecode(json.info));//操作结果提示

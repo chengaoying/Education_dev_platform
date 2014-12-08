@@ -11,7 +11,7 @@ class TopicController extends BaseAuthController {
 	/**
 	 * 查看操作
 	 */
-	public function indexAct() {		
+	public function indexAct() {
 		if(!IS_POST) {
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
 			$this->assign(array(			
@@ -20,6 +20,7 @@ class TopicController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
+			
 			$param['where'] = I('post.');
 			$list = D('Topic')->queryTopic($param);
 			$list = array_values($list['rows']);

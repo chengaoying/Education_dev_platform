@@ -15,6 +15,7 @@ abstract class BaseAuthController extends BaseLoginController {
 	 * 初始化
 	 */
 	protected function _initialize() {
+		
 		parent::_initialize();
 		// 判断页面操作权限
 		//$this->authList = require(MODULE_PATH . 'Conf/auth.php'); // 载入菜单及页面操作权限结构

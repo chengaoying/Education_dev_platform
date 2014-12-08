@@ -11,8 +11,10 @@ namespace System\Controller;
 class IndexController extends BaseLoginController {
 	
 	public function indexAct() {
+		
 		// 导航菜单
 		$nav = get_auth_structure ( 'nav' );
+		
 		foreach ( $nav as $k1 => $v1 ) {
 			foreach ( $v1 ['item'] as $k2 => $v2 ) {
 				foreach ( $v2 ['item'] as $k3 => $v3 ) {

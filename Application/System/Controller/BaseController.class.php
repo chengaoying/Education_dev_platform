@@ -45,7 +45,9 @@ abstract class BaseController extends \Think\Controller {
 	 * 判断是否登录及获取当前管理员信息
 	 */
 	protected function getCurrUser() {
+	
 		$currUser = Session("system_curr_user");
+
 		if(empty($currUser)) return;
 		$currUser = unserialize(authcode($currUser));
 		if(! isset($currUser ['id'])) return;
@@ -136,6 +138,7 @@ abstract class BaseController extends \Think\Controller {
 	 * 保存操作日志
 	 */
 	private function saveLog(){
+		
 		if(!IS_POST) return;
 		if(in_array(ACTION_NAME,C('LOG_IGNOIE_ACTIONS'))) return;
 		$data = array(

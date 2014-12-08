@@ -10,12 +10,9 @@ class UserModel extends BaseModel {
 	//数据验证
 	protected $_validate = array(
 		//插入
-		array('opUserId','require','运营商的用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	
-		array('nickName','require','用户昵称不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	
-		//更新
-		//array('opUserId','require','运营商的用户ID不能为空！',self::EXISTS_VALIDATE,'',self::MODEL_UPDATE),
+		array('userId','require','用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	
 		//全部			
-		array('opUserId','','运营商的用户ID已存在！',self::EXISTS_VALIDATE,'unique'),
+		array('userId','','用户ID已存在！',self::EXISTS_VALIDATE,'unique'),
 	);
 	
 	//自动填充	
@@ -24,7 +21,7 @@ class UserModel extends BaseModel {
 	);
 	
 	//默认排序字段
-	protected  $sortOrder = 'userId desc';
+	protected  $sortOrder = 'id desc';
 	
 	//---------------扩展CRUD-----------------------
 	
@@ -35,39 +32,10 @@ class UserModel extends BaseModel {
 	 */
 	protected function initWhere($condition){
 		if(!is_empty_null($condition['userId'])) $where['userId'] = $condition['userId'];
-		if(!empty($condition['opUserId'])) $where['opUserId'] = $condition['opUserId'];
-		if(!empty($condition['opUserName'])) $where['opUserName'] = $condition['opUserName'];
-		if(!empty($condition['phone'])) $where['phone'] = $condition['phone'];
-// 		if(!empty($condition['email'])) $where['email'] = $condition['email'];
-// 		if(!empty($condition['address'])) $where['address'] = $condition['address'];
-        if(!is_empty_null($condition['addTime']) && is_empty_null($condition['addTime2'])) $where['addTime'] = $condition['addTime'];
-        if(is_empty_null($condition['addTime']) && !is_empty_null($condition['addTime2'])) $where['addTime'] = $condition['addTime2'];
-        if(!is_empty_null($condition['addTime']) && !is_empty_null($condition['addTime2'])) $where['addTime'] = array($condition['addTime'],$condition['addTime2'],'and');
+		if(!empty($condition['userToken'])) $where['userToken'] = $condition['userToken'];
+		if(!empty($condition['userName'])) $where['userName'] = $condition['userName'];
 		return $where;
 	}
-	
-		
-	
-	/**
-	 * 保存数据
-	 * @param array $data
-	 */
-	public function saveData($data){
-		if($this->create($data)){
-			if(!$data['userId']){
-				$userId = $this->add();
-				$result = result_data(1,'数据添加成功！',array('userId'=>$userId));
-			}else{
-				$rows = $this->save();
-				$result = result_data(1,'数据更新成功！',array('rows'=>$rows));
-			}
-			return $result;
-		}else{
-			return result_data(0,$this->getError());
-		}
-	}
-	
-		
 	
 	/**
 	 * 增加或减少某项值

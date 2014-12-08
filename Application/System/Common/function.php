@@ -55,6 +55,10 @@ function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
 	
 }	
 
+function p($array)
+{
+	dump($array, 1, '<pre>', 0);
+}
 
 /**
  * 添加时间
@@ -91,6 +95,7 @@ function get_month_last($date) {
  */
 function get_auth_structure($key=''){
 	$auth =  require(MODULE_PATH . 'Conf/auth.php');
+	
 	if(empty($key)) {
 		return $auth;
 	}else{

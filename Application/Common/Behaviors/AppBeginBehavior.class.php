@@ -20,3 +20,4 @@ class AppBeginBehavior extends Behavior{
 		define('APP_INITED',true);
 	}
 }
+?>

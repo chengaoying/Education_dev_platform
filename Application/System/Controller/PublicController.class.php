@@ -8,14 +8,19 @@
 
 namespace System\Controller;
 
-class PublicController extends BaseController {
+class PublicController extends \Think\Controller{
 	
 	/**
 	 * 登录页
 	 */
 	public function loginAct() {
+		
+	
 		$loginNum = session("system_login_num");
+		
+		
 		$loginNum = $loginNum === null ? 5 : $loginNum;
+		
 		if(! IS_POST) {
 			$this->display();
 		} else {

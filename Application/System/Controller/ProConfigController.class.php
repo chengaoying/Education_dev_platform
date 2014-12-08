@@ -12,12 +12,14 @@ class ProConfigController extends BaseAuthController {
 	 * 查看操作
 	 */
 	public function indexAct(){
+		
 		if(! IS_POST) {
 			$this->assign(array(
 				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del','config','cnftpl','sync')),
 			));
 			$this->display();
 		} else {
+			
 			$data = D('ProConfig')->selectPage();
 			$this->ajaxReturn($data);
 		}
