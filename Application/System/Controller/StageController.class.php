@@ -18,7 +18,8 @@ class StageController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
-			$list = D('Stage')->selectPage();
+			$param['sortOrder'] = 'sort asc';
+			$list = D('Stage')->selectPage($param);
 			$list = array_values($list['rows']);
 			
 			//获取顶级分类(二级栏目)

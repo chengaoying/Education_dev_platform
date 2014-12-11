@@ -19,7 +19,6 @@ class ProConfigController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
-			
 			$data = D('ProConfig')->selectPage();
 			$this->ajaxReturn($data);
 		}

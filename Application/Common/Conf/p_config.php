@@ -43,10 +43,10 @@ return array(
 			'info'	=> '',
 		),
 		
-		/* 课程标签配置 */
-		'courseTags'=>	array(
+		/* 能力标签配置 */
+		'tags'		=>	array(
 			'type'	=> 'array',
-			'title'	=> '标签',
+			'title'	=> '能力标签',
 			'value' => array(
 						1 => '音乐', 
 						2 => '美术',
@@ -61,11 +61,11 @@ return array(
 			'info'	=> '',
 		),
 		
-		/* 课程册数配置 */
-		'volume'	=>	array(
+		/* 学期配置 */
+		'session'	=>	array(
 			'type'	=> 'array',
-			'title'	=> '课程册数',
-			'value' => array(1 => '上册', 2 => '下册'),
+			'title'	=> '学期',
+			'value' => array(1 => '上学期', 2 => '下学期'),
 			'info'	=> '',
 		),
 		

@@ -81,6 +81,7 @@ class AdModel extends BaseModel {
 			$datas[$row['asId']][$row['id']] = $row;
 		}
         S('Ad',$datas);
+        return $datas;
 	}
 	
 	

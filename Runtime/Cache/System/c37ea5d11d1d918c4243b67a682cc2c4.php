@@ -53,12 +53,12 @@ $('#fLogin').form({
         // return false to prevent submit;   
     },   
     success:function(data){
-    	var data = eval('(' + data + ')');
+     	var data = eval('(' + data + ')');
     	if(data.status){
     		top.location=data.url;
     	}else{
     		$("#info").html(data.info);
-    	} 
+    	}  
     }   
 }); 
 </script>

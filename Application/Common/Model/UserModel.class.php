@@ -10,9 +10,8 @@ class UserModel extends BaseModel {
 	//数据验证
 	protected $_validate = array(
 		//插入
-		array('userId','require','用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	
-		//全部			
-		array('userId','','用户ID已存在！',self::EXISTS_VALIDATE,'unique'),
+		array('OpUserId','require','用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),	
+		array('OpUserId','','用户ID已存在！',self::EXISTS_VALIDATE,'unique',self::MODEL_INSERT),
 	);
 	
 	//自动填充	
@@ -31,20 +30,10 @@ class UserModel extends BaseModel {
 	 * @see Common\Model.BaseModel::initWhere()
 	 */
 	protected function initWhere($condition){
-		if(!is_empty_null($condition['userId'])) $where['userId'] = $condition['userId'];
-		if(!empty($condition['userToken'])) $where['userToken'] = $condition['userToken'];
-		if(!empty($condition['userName'])) $where['userName'] = $condition['userName'];
+		if(!is_empty_null($condition['OpUserId'])) $where['OpUserId'] = $condition['OpUserId'];
+		if(!empty($condition['OpUserToken'])) $where['OpUserToken'] = $condition['OpUserToken'];
+		if(!empty($condition['OpUserName'])) $where['OpUserName'] = $condition['OpUserName'];
 		return $where;
-	}
-	
-	/**
-	 * 增加或减少某项值
-	 * @param int $userId
-	 * @param array $data
-	 */
-	public function SetIncOrDec($userId,$data){		
-		$rows = $this->where(array('userId'=>$userId))->setField($this->getIncOrDecData($data));
-		return result_data(1,'数据更新成功！',array('rows'=>$rows));
 	}
 	
 	/**

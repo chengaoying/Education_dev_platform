@@ -88,10 +88,10 @@ $(function(){
 		//sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'userId',
 	    columns:[[ 
-            {field:'userId',title:'教育平台用户Id',sortable:true,align:'right',width:100},
-            {field:'opUserId',title:'运营商用户Id',sortable:true,width:100},
-            {field:'opUserName',title:'运营商用户名',sortable:true,width:100},
-            {field:'opUserToken',title:'运营商提供的UserToken',sortable:true,width:150},
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},
+            {field:'OpUserId',title:'机顶盒帐号(OpUserId)',sortable:true,width:150},
+            {field:'OpUserName',title:'用户名',sortable:true,width:100},
+            {field:'OpUserToken',title:'UserToken',sortable:true,width:150},
             {field:'nickName',title:'用户昵称',sortable:true,width:100},
             {field:'point',title:'用户积分',sortable:true,width:100},
             {field:'amount',title:'用户元宝',sortable:true,width:100},
@@ -100,7 +100,7 @@ $(function(){
             {field:'qq',title:'QQ',sortable:true,width:100},
             {field:'address',title:'用户地址',sortable:true,width:150},
             {field:'email',title:'邮箱',sortable:true,width:120},
-            <?php if(is_array($credits)): foreach($credits as $key=>$credit): ?>{ field:'<?php echo ($credit["cKey"]); ?>',title:'<?php echo ($credit["title"]); ?>',sortable:true,align:'right',width:80},<?php endforeach; endif; ?>
+            {field:'stbType',title:'机顶盒类型',sortable:true,width:120},
             {field:'addTime',title:'注册时间',sortable:true,width:150},
         ]],
 	    
@@ -139,7 +139,7 @@ function del(){
 
 
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/User/edit",600,520,'userId');
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/User/edit",600,520,'id');
 }
 function count(){
     post("/System/User/count",true,null,$.serializeObject($('#search_form')));

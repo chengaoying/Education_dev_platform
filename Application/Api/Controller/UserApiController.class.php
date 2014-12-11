@@ -20,12 +20,22 @@ class UserApiController extends BaseApiController{
 	}
 	
 	/**
-	 * 通过userId查询单个用户
+	 * 通过id查询单个用户
 	 * @param string $userId
 	 * @return obj
 	 */
-	public function load($userId){
-		$user = D('User')->selectOne(array('userId'=>$userId));
+	public function load($id){
+		$user = D('User')->find($id);
+		return $user;
+	}
+	
+	/**
+	 * 通过机顶盒帐号(OpUserId)查询单个用户
+	 * @param string $OpUserId
+	 * @return obj
+	 */
+	public function loadByOpUserId($OpUserId){
+		$user = D('User')->selectOne(array('OpUserId'=>$OpUserId));
 		return $user;
 	}
 }

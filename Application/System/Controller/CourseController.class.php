@@ -1,7 +1,7 @@
 <?php
 /**
- * 控制器：角色
- * @author WZH
+ * 控制器：课程
+ * @author CGY
  *
  */
 namespace System\Controller;
@@ -20,12 +20,10 @@ class CourseController extends BaseAuthController{
 			
 			//出版商，册数，课程类型,关键字
  			$proConf = get_pro_config_content('proConfig');
-			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
-			//$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>'','nullText'=>'请选择','width'=>80));
-			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
-			$keysHtml   = $this->getComboBox($proConf['keys'], 'keys',array('selVal'=>'','nullText'=>'请选择','width'=>120));
-			$subjectHtml   = $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>'','nullText'=>'请选择','width'=>120));
-			$tagsHtml   = $this->getComboBox($proConf['courseTags'], 'tags',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$pressHtml  	= $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$typeHtml   	= $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$keysHtml   	= $this->getComboBox($proConf['keys'], 'keys',array('selVal'=>'','nullText'=>'请选择','width'=>120));
+			$subjectHtml   	= $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>'','nullText'=>'请选择','width'=>120));
 					
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>120));
  		
@@ -37,12 +35,12 @@ class CourseController extends BaseAuthController{
 				'typeHtml'		=> $typeHtml,
 				'keysHtml'		=> $keysHtml,
 				'subjectHtml'   => $subjectHtml,
-				'tagsHtml'      => $tagsHtml,
 				'statusHtml'	=> $statusHtml,						
 			));
 			$this->display();
 		} else {
 			$param['where'] = I('post.');
+			$param['sortOrder'] = 'sort asc';
 			$list = D('Course')->queryCourse($param);
 			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
@@ -87,23 +85,21 @@ class CourseController extends BaseAuthController{
 			
 			//出版商，册数，课程类型,关键字,科目,标签
 			$proConf = get_pro_config_content('proConfig');
-			$pressHtml  = $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>$course['pressId'],'nullText'=>'请选择','width'=>150));
-			$volumeHtml = $this->getComboBox($proConf['volume'], 'volume',array('selVal'=>$course['volume'],'nullText'=>'请选择','width'=>150));
-			$typeHtml   = $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>$course['typeId'],'nullText'=>'请选择','width'=>150));
-			$subjectHtml   = $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>$course['subject'],'nullText'=>'请选择','width'=>150));
-			$tagsHtml   = $this->getComboBox($proConf['courseTags'], 'tags',array('selVal'=>$course['tags'],'nullText'=>'请选择','width'=>150));
+			$pressHtml  	= $this->getComboBox($proConf['press'], 'pressId',array('selVal'=>$course['pressId'],'nullText'=>'请选择','width'=>150));
+			$sessionHtml 	= $this->getComboBox($proConf['session'], 'session',array('selVal'=>$course['session'],'nullText'=>'请选择','width'=>150));
+			$typeHtml   	= $this->getComboBox($proConf['courseType'], 'typeId',array('selVal'=>$course['typeId'],'nullText'=>'请选择','width'=>150));
+			$subjectHtml   	= $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>$course['subject'],'nullText'=>'请选择','width'=>150));
 			
-			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$course['status'],'nullText'=>'','width'=>150));
+			$statusHtml 	= $this->getComboBox($this->statusNames, 'status',array('selVal'=>$course['status'],'nullText'=>'','width'=>150));
 			
 			$this->assign(array(
 				'course'	  => $course,
 				'channelHtml' => $channelHtml,
 				'stageHtml'   => $stageHtml,
 				'pressHtml'   => $pressHtml,
-				'volumeHtml'  => $volumeHtml,
+				'sessionHtml' => $sessionHtml,
 				'typeHtml'    => $typeHtml,
 				'subjectHtml' => $subjectHtml,
-				'tagsHtml'    => $tagsHtml,
 				'statusHtml'  => $statusHtml,
 			));	
 			$this->display('edit');

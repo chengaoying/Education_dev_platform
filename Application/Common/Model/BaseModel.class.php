@@ -27,10 +27,11 @@ class BaseModel extends \Think\Model {
 	 * 获取一条数据
 	 * @param arr $param
 	 */
-	public function selectOne($param){
-		$param['where'] = $param;
-		$data = $this->where($param)->select();
-		return $data[0];
+	public function selectOne($where = array(),$field = '',$fieldExcept = false){
+        if(!$where) return;
+		$data = array();
+        $data = $this->where($where)->field($field,$fieldExcept)->limit(1)->find();
+        return $data;
 	}
 	
 	/**
@@ -40,8 +41,12 @@ class BaseModel extends \Think\Model {
 	 */
 	public function selectPage($param='',$isTotal=true){
 		$this->initSelectParam($param);
-		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();        
- 		save_log('execute_sql',array('sql'=>$this->getLastSql()),1);
+        if($param['initPage'] === true){
+            $list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->select();        
+        }else{
+            $list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();        
+        }
+ 		save_log('execute_sql',array('sql'=>$this->getLastSql()));
         if($isTotal) $list['total'] = $this->where($param['where'])->count();
 		return $this->returnListData($list);
 	}
@@ -62,7 +67,8 @@ class BaseModel extends \Think\Model {
 			}
 			if($id>0){
 				if(method_exists($this, 'updateCache')) $this->updateCache();
-				if(!empty($this->sync)) $this->syncSend($this->sync);			}
+				if(!empty($this->sync)) $this->syncSend($this->sync);			
+			}
 			return $result;
 		}else{
 			return result_data(0,$this->getError());
@@ -161,8 +167,9 @@ class BaseModel extends \Think\Model {
 		}
 				
 		//页码
-		list($param['page'],$param['pageSize']) = $this->getPageNum($param['page'],$param['pageSize']);
-				
+        if($param['initPage'] !== true){
+            list($param['page'],$param['pageSize']) = $this->getPageNum($param['page'],$param['pageSize']);
+        }	
 	}
 	
 	

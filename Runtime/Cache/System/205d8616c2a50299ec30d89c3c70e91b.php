@@ -37,14 +37,15 @@
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	ID：<input type="text" name="id" placeholder="课程ID" style="width: 120px"></input>
-	课程名称：<input type="text" name="name" placeholder="课程名称" style="width: 120px"></input>
-	所属栏目：<?php echo ($channelHtml); ?>
+	ID：<input type="text" name="id" placeholder="角色ID" style="width: 120px"></input>
+<!-- 	课程名称：<input type="text" name="name" placeholder="课程名称" style="width: 120px"></input>
+	所属栏目：<?php echo ($channelHtml); ?> 
 	所属龄段：<?php echo ($stageHtml); ?>
 	出版商：<?php echo ($pressHtml); ?>
 	课程类型：<?php echo ($typeHtml); ?> 
 	科目：<?php echo ($subjectHtml); ?>    
 	关键字：<?php echo ($keysHtml); ?>
+	标签：<?php echo ($tagsHtml); ?> -->
 	状态：<?php echo ($statusHtml); ?>
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
@@ -73,7 +74,7 @@ var datagrid;
 $(function(){
 	//数据列表
 	datagrid = $("#datagrid").datagrid({
-		url: '/System/Course/index',
+		url: '/System/Role/index',
 		fit: true,
 		autoRowHeight: false, //自动行高
 		border:false,
@@ -90,25 +91,17 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'课程名称',sortable:false,width:100},
-            {field:'chId',title:'所属顶级分类',sortable:false,width:100},
-            {field:'stage',title:'龄段',sortable:false,width:80},
-            {field:'pressId',title:'出版商',sortable:false,width:80},
-            {field:'session',title:'学期',sortable:false,width:60},           
-            {field:'subject',title:'科目',sortable:false,width:80},           
-            {field:'typeId',title:'类型',sortable:false,width:60},           
-            {field:'price',title:'价格',sortable:false,width:60},           
-            {field:'midLibId',title:'期中考试题库ID',sortable:false,width:120},           
-            {field:'finalLibId',title:'期末考试题库ID',sortable:false,width:120},           
-            {field:'topicIds',title:'包含的知识点ID',sortable:false,width:120},           
-            {field:'keys',title:'关键字',sortable:false,width:120},           
-            {field:'imgUrl',title:'图片路径',sortable:false,width:80},           
-            {field:'linkUrl',title:'链接地址',sortable:false,width:80},  
-            {field:'organization',title:'机构',sortable:false,width:80},           
-            {field:'lecturer',title:'讲师',sortable:false,width:60},          
-            {field:'description',title:'课程描述',sortable:false,width:80},           
-            {field:'sort',title:'排序',sortable:true,width:80},
-            {field:'status',title:'状态',sortable:true,width:60,
+            {field:'userId',title:'用户ID',sortable:false,width:100},
+            {field:'stageId',title:'龄段ID',sortable:false,width:80},
+            {field:'sex',title:'用户性别',sortable:false,width:100},
+            {field:'nickName',title:'角色昵称',sortable:false,width:80},
+            {field:'interests',title:'兴趣爱好',sortable:false,width:60},           
+            {field:'advantage',title:'强项',sortable:false,width:80},           
+            {field:'disAdvantage',title:'弱项',sortable:false,width:60},           
+            {field:'level',title:'荣誉等级',sortable:false,width:120},           
+            {field:'point',title:'积分',sortable:false,width:60},           
+            {field:'face',title:'头像',sortable:false,width:120},           
+			{field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
             		return value==1 ? "启用" : "<font color=red>禁用</font>";
             	}
@@ -138,13 +131,13 @@ $(function(){
 });
 
 function add(){
-	addData("添加","#edit_form",datagrid,"/System/Course/add",edit_W,edit_H);
+	addData("添加","#edit_form",datagrid,"/System/Role/add",edit_W,edit_H);
 }
 function edit(rowIndex,rowData){
-	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Course/edit",edit_W,edit_H);
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"/System/Role/edit",edit_W,edit_H);
 }
 function del(){
-	delData(datagrid,"/System/Course/del");
+	delData(datagrid,"/System/Role/del");
 }
 
 

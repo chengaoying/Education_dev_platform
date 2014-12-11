@@ -21,16 +21,4 @@ class SectionModel extends BaseModel {
 	);
 
 	//---------------扩展CRUD-----------------------
-	/**
-	 * 按页读取数据并把数据中的
-	 * @param array $param 选择参数 格式:请参考initSelectParam方法;
-	 * @param bool $isTotal 是否返回总记录数
-	 */
-	public function querySection($param='',$isTotal=true){
-		$this->initSelectParam($param);
-		$list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();
-		if($isTotal) $list['total'] = $this->where($param['where'])->count();
-		return $this->returnListData($list);
-	}
-	
 }

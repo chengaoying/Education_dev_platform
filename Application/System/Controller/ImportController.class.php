@@ -20,7 +20,7 @@ class ImportController extends BaseAuthController {
         }else{
             $postDataType = $_POST['dataType'];
             $checkField = $_POST['checkField'];
-            if(!in_array($postDataType,  array_keys($this->$dataType))){
+            if(!in_array($postDataType,  array_keys($this->dataType))){
                 $this->showResult(result_data(0,'请选择导入对象！'));
             }
             if(empty($checkField)){

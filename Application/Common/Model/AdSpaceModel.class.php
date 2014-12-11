@@ -52,6 +52,7 @@ class AdSpaceModel extends BaseModel {
 			$datas[$row['id']] = $row;
 		}
         S('AdSpace',$datas);
+        return $datas;
 	}
 	
 }

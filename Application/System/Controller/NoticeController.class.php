@@ -1,33 +1,31 @@
 <?php
 /**
- * 控制器：知识点
- * @author CGY
+ * 数据模型：通告
+ * @author WZH
  *
  */
 namespace System\Controller;
-class TopicController extends BaseAuthController {
-	
-	
+
+class NoticeController extends BaseAuthController {
 	/**
 	 * 查看操作
 	 */
 	public function indexAct() {
 		if(!IS_POST) {
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
-			$this->assign(array(			
-				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
-				'statusHtml'  => $statusHtml,			
+			$this->assign(array(
+					'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
+					'statusHtml'  => $statusHtml,
 			));
 			$this->display();
 		} else {
 			$param['where'] = I('post.');
-			$param['sortOrder'] = 'sort asc';
-			$list = D('Topic')->selectPage($param);
+			$list = D('Notice')->queryNotice($param);
 			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
-		}		
+		}
 	}
-		
+	
 	/**
 	 * 添加操作
 	 */
@@ -45,30 +43,32 @@ class TopicController extends BaseAuthController {
 	 * 删除操作
 	 */
 	public function delAct() {
-		$this->showResult( D('Topic')->delData(I('id')));
+		$this->showResult( D('Notice')->delData(I('id')));
 	}
 	
 	/**
 	 * 添加/编辑
 	 */
-	private function set() {		
+	private function set() {
 		if(! IS_POST) {
 			$id = I( 'id', 0);
 			if($id > 0) {
-				$topic = D('Topic')->find($id);
+				$notice = D('Notice')->find($id);
 			}else{
-				$topic['status'] = 1; //状态默认为启用
-			}	
-			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$topic['status'],'nullText'=>'','width'=>150));
-			
+				$notice['status'] = 1; //状态默认为启用
+			}
+			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$notice['status'],'nullText'=>'','width'=>150));
+				
 			$this->assign(array(
-				'topic'  => $topic,
-				'statusHtml'  => $statusHtml,
-			));	
+					'notice'  => $notice,
+					'statusHtml'  => $statusHtml,
+			));
 			$this->display( 'edit');
 		} else {
 			$data = I('post.');
-			$this->showResult( D('Topic')->saveData($data));
+			$this->showResult( D('Notice')->saveData($data));
 		}
 	}
 }
+
+?>

@@ -17,7 +17,6 @@ class UserController extends BaseAuthController {
 			$buttonStyle['add'] = $buttonStyle['del'] = 'style="display:none;"';
 			$this->assign(array(
 				'buttonStyle' => $buttonStyle,
-				//'credits' => get_cache('Credit_'.$this->currProduct['id']),
 			)); 
 			$this->display();
 		} else {
@@ -42,18 +41,16 @@ class UserController extends BaseAuthController {
 	 */
 	public function editAct() {
 		if(!IS_POST){
-			$userId = I('userId',0);
-			if(empty($userId)) $this->showResult(result_data(0,'用户参数错误！'));			
-			$user = D('User')->find($userId); //用户信息
+			$id = I('id',0);
+			if(empty($id)) $this->showResult(result_data(0,'用户参数错误！'));			
+			$user = D('User')->find($id); //用户信息
 			if(empty($user)) $this->showResult(result_data(0,'用户不存在！'));
-            //$proConfig = get_cache('ProductConfig_1');	
 			$this->assign(array(
 				'user' => $user,
-				//'credits' => get_cache('Credit_'.$this->currProduct['id']),
 			));	
 			$this->display('edit');
 		}else{
-			$user = I('post.user');	
+			$user = I('post.');	
 			$result = D('User')->saveData($user);
 			if(!$result['status']) $this->showResult($result);			
 			$this->showResult($result);

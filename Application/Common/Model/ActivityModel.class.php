@@ -5,30 +5,22 @@
 namespace Common\Model;
 class ActivityModel extends BaseModel {	
 	
-	//protected $connection = 'DB_ACTIVITY';
-	
 	//数据验证
 	protected $_validate = array(
 		//插入
-		array('title','require','活动标题不能为空',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		array('actType',array(0,1),'活动类型不能为空',self::MUST_VALIDATE,'in',self::MODEL_INSERT),
-		array('rule','require','规则不能为空',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		array('beginTime','require','活动起始时间不能为空',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		array('endTime','require','活动结束时间不能为空',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		array('status',array(0,1),'活动状态不能正确',self::MUST_VALIDATE,'in',self::MODEL_INSERT),
 		
 		//更新
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
-		array('title','require','活动标题不能为空',self::EXISTS_VALIDATE,'',self::MODEL_UPDATE),
-		array('actType',array(0,1),'活动类型不能为空',self::EXISTS_VALIDATE,'in',self::MODEL_UPDATE),
-		array('rule','require','规则不能为空',self::EXISTS_VALIDATE,'',self::MODEL_UPDATE),
-		array('beginTime','require','活动起始时间不能为空',self::EXISTS_VALIDATE,'',self::MODEL_UPDATE),
-		array('endTime','require','活动结束时间不能为空',self::EXISTS_VALIDATE,'',self::MODEL_UPDATE),
-		array('status',array(0,1),'活动状态不能正确',self::EXISTS_VALIDATE,'in',self::MODEL_UPDATE),
-		//全部
+        
+        //全部
+		array('title','require','活动标题不能为空',self::EXISTS_VALIDATE,''),
+		array('actType',array(0,1),'活动类型不能为空',self::EXISTS_VALIDATE,'in'),
+		array('rule','require','规则不能为空',self::EXISTS_VALIDATE,''),
+		array('beginTime','require','活动起始时间不能为空',self::EXISTS_VALIDATE,''),
+		array('endTime','require','活动结束时间不能为空',self::EXISTS_VALIDATE,''),
+		array('status',array(0,1),'活动状态不能正确',self::EXISTS_VALIDATE,'in'),
+		
 	);
-	
-	
 	
 	//自动填充	
 	protected $_auto = array(

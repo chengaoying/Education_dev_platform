@@ -7,16 +7,15 @@
 			<input type="text" id="name" name="name" value="<?php echo ($course['name']); ?>"/><em>*</em>
 		</td>
 	</tr>
-	<tr><th>所属栏目</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr>
+	<tr><th>所属顶级分类</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr>
 	<tr><th>龄段</th><td>
 		<input type="hidden" id="aastage" name="stage" value="<?php echo ($course['stage']); ?>"/>
 		<input id="combobox_stage"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
 	</td></tr>
 	<tr><th>出版商</th><td><?php echo ($pressHtml); ?> <em>*</em></td></tr>
-	<tr><th>册数</th><td><?php echo ($volumeHtml); ?> <em>*</em></td></tr>
+	<tr><th>学期</th><td><?php echo ($sessionHtml); ?> <em>*</em></td></tr>
 	<tr><th>类型</th><td><?php echo ($typeHtml); ?> <em>*</em></td></tr>
 	<tr><th>科目</th><td><?php echo ($subjectHtml); ?> <em>*</em></td></tr>
-	<tr><th>标签</th><td><?php echo ($tagsHtml); ?> <em>*</em></td></tr>
 	<tr>
 		<th>价格</th>
 		<td>

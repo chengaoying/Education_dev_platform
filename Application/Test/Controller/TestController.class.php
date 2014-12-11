@@ -49,9 +49,10 @@ class TestController extends \Think\Controller {
 		$proConf  = get_pro_config_content('proConfig');
 		dump($proConf['keys']); */
 		
-		$stages = get_cache('Stage');
+		//$stages = get_cache('Stage');
 		//$data = get_array_for_fieldval($stages, 'chId',20);
-		dump($stages);
+		//$stages = D('Stage')->updateCache();
+		dump(S('Stage'));
 		exit;
 		$this->display();
 	}

@@ -31,7 +31,9 @@ class StageModel extends BaseModel {
 	 * @param string $exKey 父栏目id
 	 */
 	public function updateCache($exKey=''){
-		$list = D('Stage')->selectPage(array('status'=>1));
+		$param['sortOrder'] = 'sort asc';
+		$param['where'] = array('status'=>1);
+		$list = D('Stage')->selectPage($param);
 		foreach ($list['rows'] as $k => $v){
 			$data[$v['id']] = $v;
 		}

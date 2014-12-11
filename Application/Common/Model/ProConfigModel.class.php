@@ -51,16 +51,6 @@ class ProConfigModel extends BaseModel
 	//---------------扩展CRUD-----------------------
 	
 	/**
-	 * 获取一条数据
-	 * @param arr $param
-	 */
-	public function selectOne($param){
-		$param['where'] = $param;
-		$data = $this->where($param)->select();
-		return $data[0];
-	}
-	
-	/**
 	 * 更新缓存（全部：NO,$exKey：YES）
 	 * @param string $exKey
 	 */

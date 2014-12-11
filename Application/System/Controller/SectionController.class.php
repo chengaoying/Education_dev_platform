@@ -21,7 +21,8 @@ class SectionController extends BaseAuthController {
 			$this->display();
 		} else {
 			$param['where'] = I('post.');
-			$list = D('Section')->querySection($param);
+			$param['sortOrder'] = 'sort asc';
+			$list = D('Section')->selectPage($param);
 			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
 		}		

@@ -29,9 +29,9 @@ class BaseLogic {
 		if(strpos($cnfKey, '.php') === false){
 			$r = D('ProConfig')->selectOne(array('cKey' => $cnfKey));
 			$filename = $r['templete'];
-		} 
-		else 
+		}else{ 
 			$filename = $cnfKey;
+		}	
 		if(!is_file(CONF_PATH.$filename)) return result_data(0,'配置模版'. $filename .'不存在！','');
 		$configTpl = include(CONF_PATH.$filename);
 		return result_data(1,'读取模版文件成功！',$configTpl);

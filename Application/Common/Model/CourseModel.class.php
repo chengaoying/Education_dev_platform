@@ -40,24 +40,30 @@ class CourseModel extends BaseModel {
 			$list['rows'][$k]['chId']	 = $channels[$v['chId']]['name'];
 			$list['rows'][$k]['pressId'] = $proConf['press'][$v['pressId']];
 			$list['rows'][$k]['typeId']  = $proConf['courseType'][$v['typeId']];
-			$list['rows'][$k]['volume']  = $proConf['volume'][$v['volume']];
+			$list['rows'][$k]['session']  = $proConf['session'][$v['session']];
 			$list['rows'][$k]['subject'] = $proConf['subject'][$v['subject']];
-			$list['rows'][$k]['tags']	 = $proConf['courseTags'][$v['tags']];
 			
 			$keys = explode(',', $v['keys']);
 			$keys = array_filter($keys);
-			foreach ($keys as $k1=>$v1){
-				$_keys .= $proConf['keys'][$v1].',';
+			if(count($keys)>0){
+				foreach ($keys as $k1=>$v1){
+					$_keys .= $proConf['keys'][$v1].',';
+				}
+				$list['rows'][$k]['keys'] = $_keys;
+				unset($_keys);
 			}
-			$list['rows'][$k]['keys'] = $_keys;
+			unset($keys);
 			
 			$s = explode(',', $v['stage']);
 			$s = array_filter($s);
-			foreach ($s as $k2=>$v2){
-				$_stages .= $stages[$v2]['name'].',';
+			if(count($s)>0){
+				foreach ($s as $k2=>$v2){
+					$_stages .= $stages[$v2]['name'].',';
+				}
+				$list['rows'][$k]['stage']	= $_stages;
+				unset($_stages);
 			}
-			$list['rows'][$k]['stage']	= $_stages;
-			
+			unset($s);
 		}
 		return $this->returnListData($list);
 	}
