@@ -1,0 +1,54 @@
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_stage` WHERE ( `status` = 1 ) ORDER BY sort asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_stage` WHERE ( `status` = 1 ) ORDER BY sort asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  

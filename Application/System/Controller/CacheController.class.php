@@ -30,6 +30,7 @@ class CacheController extends BaseAuthController {
 				$obj = D($key);
 				if(method_exists($obj,'updateCache')){
 					$obj->updateCache();
+					if($obj->needSys()) $obj->syncSend($obj->sync);
 					$msg .= $c.'缓存更新成功<br/>';
 				}else{
 					$msg .= '<font color=red>'.$c.'缓存更新失败</font><br/>';

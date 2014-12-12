@@ -191,9 +191,16 @@ class BaseModel extends \Think\Model {
 	 * 向子产品同步数据
 	 * @param str $name //同步数据项名
 	 */
-	protected  function syncSend($name){
+	public  function syncSend($name){
 		return D('Sync','Logic')->send($name); //同步数据
 	}
 	
-	
+	/**
+	 * 判断是否需要同步操作
+	 * @return boolean
+	 */
+	public function needSys()
+	{
+		return empty($this->sync) ? false : true;
+	}
 }
