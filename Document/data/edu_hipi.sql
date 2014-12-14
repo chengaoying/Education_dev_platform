@@ -345,6 +345,16 @@ CREATE TABLE `t_role_resource` (
 -- Records of t_role_resource
 -- ----------------------------
 
+DROP TABLE IF EXISTS `t_role_course`;
+CREATE TABLE `t_role_course` (
+  `id` int(11) DEFAULT NULL COMMENT 'id',
+  `roleId` int(11) DEFAULT NULL COMMENT '角色ID',
+  `courseId` int(11) DEFAULT NULL COMMENT '课程ID',
+  `courseName` varchar(30) DEFAULT NULL COMMENT '课程名',
+  `courseImg` varchar(50) DEFAULT NULL,
+  `addTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for t_section
 -- ----------------------------
