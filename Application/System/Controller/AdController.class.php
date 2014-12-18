@@ -13,14 +13,14 @@ class AdController extends BaseAuthController {
 	 * 查看操作
 	 */
 	public function indexAct() {
-        $proConfig = get_cache('ProConfig_p*config');
+        $proConfig = get_pro_config_content('proConfig');
 		if(!IS_POST) {
 			$this->assign(array(
 				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
 				'adSpaceHtml' => $this->getComboBox(get_cache('AdSpace'),'where[asId]',array('valKey'=>'id','textKey'=>'title')),
 				'adClassHtml' => $this->getComboBox($this->adClassNames,'where[adClass]',array('selVal'=>-1,'width'=>80)),
 				'adTypeHtml' => $this->getComboBox($this->adTypeNames,'where[adType]',array('selVal'=>-1,'width'=>80)),
-				'apHtml' => $this->getComboBox($proConfig['content']['ap'],'where[apId]',array('width'=>100)),
+				'apHtml' => $this->getComboBox($proConfig['ap'],'where[apId]',array('width'=>100)),
 				'statusHtml' => $this->getComboBox($this->statusNames,'where[status]',array('selVal'=>-1,'width'=>60)),
 			));
 			$this->display();
@@ -30,7 +30,7 @@ class AdController extends BaseAuthController {
             //print_r($adSpaces);
 			foreach($data['rows'] as $key=>$row){
 				$data['rows'][$key]['asId'] = $adSpaces[$row['asId']]['title'];
-                $data['rows'][$key]['apId'] = $proConfig['content']['ap'][$row['apId']];
+                $data['rows'][$key]['apId'] = $proConfig['ap'][$row['apId']];
 			}
 			$this->ajaxReturn($data);
 		}
@@ -71,13 +71,13 @@ class AdController extends BaseAuthController {
 				$ad['adClass'] = $ad['adType']='0';
 				$ad['status']=1;
 			}
-            $proConfig = get_cache('ProConfig_p*config');
+            $proConfig = get_pro_config_content('proConfig');
 			$this->assign(array(
 				'ad' => $ad,
 				'adSpaceHtml' => $this->getComboBox(get_cache('AdSpace'),'asId',array('selVal'=>$ad['asId'],'valKey'=>'id','textKey'=>'title')),
 				'adClassHtml' => $this->getComboBox($this->adClassNames,'adClass',array('selVal'=>$ad['adClass'],'nullText'=>'','editable'=>true)),
 				'adTypeHtml' => $this->getComboBox($this->adTypeNames,'adType',array('selVal'=>$ad['adType'],'nullText'=>'','editable'=>true)),
-				'apHtml' => $this->getComboBox($proConfig['content']['ap'],'apId',array('selVal'=>$ad['apId'],'editable'=>true)),
+				'apHtml' => $this->getComboBox($proConfig['ap'],'apId',array('selVal'=>$ad['apId'],'editable'=>true)),
 				'statusHtml' => $this->getComboBox($this->statusNames,'status',array('selVal'=>$ad['status'],'nullText'=>'','editable'=>true)),
 			));	
 			$this->display( 'edit');

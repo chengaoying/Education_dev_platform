@@ -1,0 +1,6 @@
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  

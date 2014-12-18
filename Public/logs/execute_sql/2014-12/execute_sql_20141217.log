@@ -1,0 +1,15 @@
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_ad` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_topic` ORDER BY sort asc LIMIT 0,50  
+SELECT * FROM `t_section` ORDER BY sort asc LIMIT 0,50  
+SELECT * FROM `t_resource` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_library` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
