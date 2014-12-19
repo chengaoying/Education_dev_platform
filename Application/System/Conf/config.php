@@ -26,7 +26,7 @@ return array (
 		1 => array('name'=>'image','exName'=>'bmp,jpg,jpeg,gif,png'),	//图片文件
 		2 => array('name'=>'j2me','exName'=>'jar,jad'),					//j2me文件
 		3 => array('name'=>'audio','exName'=>'mp3'),					//高清音频文件
-		4 => array('name'=>'other','exName'=>'xls,xlsx'),				//其它文件
+		4 => array('name'=>'excel','exName'=>'xls,xlsx'),				//excel文件
 	),	
 		
 );

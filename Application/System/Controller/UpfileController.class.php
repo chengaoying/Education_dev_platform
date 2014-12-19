@@ -7,7 +7,7 @@
 namespace System\Controller;
 class UpfileController extends BaseAuthController {
 	
-    protected $fileType = array(1=>'image',2=>'J2ME',3=>'Other');
+    protected $fileType = array(1=>'image',2=>'j2me',3=>'audio',4=>'excel');
 
 	/**
 	 * 附件管理首页
@@ -16,12 +16,15 @@ class UpfileController extends BaseAuthController {
         if(!IS_POST){
             $buttonStyle = $this->buttonAuthStyle(array('edit','del'));
             $buttonStyle['add'] = 'style="display:none;"';
+            $type = $this->getComboBox($this->fileType, 'fileType',array('selVal'=>'','nullText'=>'请选择'));
             $this->assign(array(
 				'buttonStyle' => $buttonStyle,
+				'type' => $type,
             ));
             $this->display();
         }else{
-            $data = D('Upfile')->selectPage($this->getSelectParam());
+        	$param['where'] = I('post.');
+            $data = D('Upfile')->selectPage($param);
             foreach ($data['rows'] as $key => $value) {
                 $data['rows'][$key]['fileType'] = $this->fileType[$value['fileType']];
                 $data['rows'][$key]['realUrl'] = get_upfile_url($value['url']);

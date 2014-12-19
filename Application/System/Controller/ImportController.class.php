@@ -7,18 +7,15 @@
 namespace System\Controller;
 class ImportController extends BaseAuthController {
     
-    private $fileExt = array('xls');
-    private $dataType = array(1=>'课程资源',2=>'视频资源');
-
-
     public function indexAct() {
         if(!IS_POST){
-            $this->assign(array(
-                'dataTypeHtml'=> $this->getComboBox($this->dataType, 'dataType',array('selVal'=>-1,'width'=>120)),	
-            ));
             $this->display();
         }else{
-            $postDataType = $_POST['dataType'];
+        	$fileUrl = I('fileUrl','');
+        	$fileUrl = UPFILE_LOCAL_PATH . '/' . $fileUrl;
+        	
+        	
+           /*  $postDataType = $_POST['dataType'];
             $checkField = $_POST['checkField'];
             if(!in_array($postDataType,  array_keys($this->dataType))){
                 $this->showResult(result_data(0,'请选择导入对象！'));
@@ -56,7 +53,7 @@ class ImportController extends BaseAuthController {
                 if($i%1000 == 0){ //每插入1000条数据 让数据库休息
                     sleep(5);
                 }
-            } 
+            }  */
             
         }
     }

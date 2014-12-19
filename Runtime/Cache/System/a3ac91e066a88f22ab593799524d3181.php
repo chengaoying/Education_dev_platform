@@ -30,15 +30,16 @@
 		
 	</div>
     
-    <div id="datagrid_img" class="datagrid_img" style="width:120px; display: none;">
-        <img id="imgsrc" src="" />
+    <div id="datagrid_img" class="datagrid_img" style="display: none;">
     </div>
 
 	<div id="datagrid_toolbar" style="padding:5px;">
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	        				 
+	文件类型：<?php echo ($type); ?>
+	备注：<input type="text" name="memo" placeholder="备注信息" style="width: 120px"></input>
+			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
 			</form>
 		</div>
@@ -49,9 +50,9 @@
 			<span class="toolbar-btn-separator"></span>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()" <?php echo ($buttonStyle['del']); ?>>删除</a>			
 			
-    <style type="text/css">
+    <!-- <style type="text/css">
         #search_form a{display: none}
-    </style>
+    </style> -->
     <a href="#" class="easyui-linkbutton" iconCls="icon-sum" plain="true" onclick="count()" <?php echo ($buttonStyle['count']); ?>>统计</a>
 
 			<a href="#" ></a>

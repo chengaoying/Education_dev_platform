@@ -1,15 +1,21 @@
 <extend name="./base_list" />
 <block name="button">
-    <style type="text/css">
+    <!-- <style type="text/css">
         #search_form a{display: none}
-    </style>
+    </style> -->
     <a href="#" class="easyui-linkbutton" iconCls="icon-sum" plain="true" onclick="count()" {$buttonStyle['count']}>统计</a>
 </block>
+
+<block name="search">
+	文件类型：{$type}
+	备注：<input type="text" name="memo" placeholder="备注信息" style="width: 120px"></input>
+</block>
+
 <block name="datagrid_img">
-    <div id="datagrid_img" class="datagrid_img" style="width:120px; display: none;">
-        <img id="imgsrc" src="" />
+    <div id="datagrid_img" class="datagrid_img" style="display: none;">
     </div>
 </block>
+
 <block name="datagrid">
         idField:'id',
 	    columns:[[                        
