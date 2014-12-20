@@ -75,6 +75,26 @@ class BaseModel extends \Think\Model {
 		}
 	}
 	
+	/**
+	 * 带id保存数据(用于数据导入)
+	 * 先添加数据，如果数据记录存在，则更新数据
+	 * @param array $data
+	 */
+	public function _saveData($data){
+		if($this->create($data)){
+			$id = $this->add();
+			$result = result_data(1,'数据添加成功！',array('id'=>$id));
+			if(!$id){
+				$this->create($data);
+				$id = $this->save();
+				$result = result_data(1,'数据更新成功！',array('rows'=>$id));
+			}
+			return $result;
+		}else{
+			return result_data(0,$this->getError());
+		}
+	}
+	
 	
 	/**
 	 * 删除数据

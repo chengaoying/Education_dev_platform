@@ -62,45 +62,74 @@ class TestController extends \Think\Controller {
 	}
 	
 	private function importTest(){
-		$fileUrl = 'b/5493d6271a28e.xlsx';//I('fileUrl','');
-		$fileUrl = './upfiles/' . $fileUrl;
-		
-		//加载第三方类库PHPExcel
-         vendor('PHPExcel.PHPExcel');
-         vendor('PHPExcel.PHPExcel.IOFactory');
-         //vendor('PHPExcel.PHPExcel.Reader.Excel5');
-         //vendor('PHPExcel.PHPExcel.Reader.Excel2007');
-         
-         $objReader = \PHPExcel_IOFactory::createReaderForFile($fileUrl);
-         $objPHPExcel = $objReader->load($fileUrl);
-		 $sheet_count = $objPHPExcel->getSheetCount(); 
-		 for ($s = 0; $s < $sheet_count; $s++) 
-   		 { 
-		    $currentSheet = $objPHPExcel->getSheet($s);		// 当前工作表 
-		    $row_num = $currentSheet->getHighestRow();		// 当前工作表行数 
-		    $col_max = $currentSheet->getHighestColumn(); 	// 当前工作表列数 
-		    $arr = $currentSheet->toArray(null, true, true, true);
-		    array_filter($arr);
-		 	dump($arr);
-		 	
-		 	exit;
-		    // 循环从第二行开始，第一行往往是表头 
-		    /* for($i = 2; $i <= $row_num; $i++) 
-		    { 
-		        $cell_values = array(); 
-		        for($j = 'A'; $j < $col_max; $j++) 
-		        { 
-		            $address = $j . $i; // 单元格坐标 
-		            $cell_values[] = $currentSheet->getCell($address)->getFormattedValue(); 
-		        } 
+		 $fileUrl = './upfiles/a/5494d93f388d2.xlsx';
+		 $result = readExcelData($fileUrl);
+		 $data = $result['data'];
 		 
-		        // 看看数据 
-		        print_r($cell_values); 
-		    }  */
-		} 
-		exit;
+		 //顶级分类
+		 $class = $this->getClass();
+		 //配置项：
+		 $proConf = get_pro_config_content('proConfig');
+		 $subject = $proConf['subject'];		//科目
+		 $courseType = $proConf['courseType'];	//课程类型
+		 $session = $proConf['session'];		//学期
+		 $keys = $proConf['keys'];				//关键字
+		 $press = $proConf['press'];			//出版社
+		 $rp = $proConf['rp'];					//资源提供商
+		 $ap = $proConf['ap'];					//广告提供商
+		 $tags = $proConf['tags'];				//标签
+		 
+		 //dump($proConf);exit;
+		 
+		 //课程
+		 $course = $data['course'];
+		 foreach ($course as $k => $v){
+		 	$v['chId'] = $this->getKeyByName($v['chId'],$class);
+		 	$v['session'] = array_search($v['session'], $session);
+		 	$v['typeId'] = array_search($v['typeId'], $courseType);
+		 	$v['subject'] = array_search($v['subject'], $subject);
+		 	$v['pressId'] = array_search($v['pressId'], $press);
+		 	
+		 	$_keys = explode(',', $v['keys']);
+		 	unset($v['keys']);
+		 	foreach ($_keys as $k1 => $v1){
+		 		$v['keys'] .= array_search($v1, $keys).',';
+		 	}
+		 	$v['keys'] = substr($v['keys'], 0, strlen($v['keys'])-1);
+		 	$r = D('Course')->_saveData($v);
+		 }
+		 exit;
+		/*  foreach ($data as $k => $v){
+		 	$mode = D(ucfirst($k));
+		 	foreach ($v as $k1 => $v2){
+		 		$r = $mode->_saveData($v2);
+		 		dump($r);
+		 		exit;
+		 	}
+		 }
+		 
+		 // 看看数据
+		 dump($r);
+		 exit; */
 	}
 	
+	/**
+	 * 获取龄段顶级分类(顶级栏目-全部课程下的二级栏目)
+	 * 先获取顶级栏目-全部课程，然后再获取全部课程下的二级栏目(顶级分类)
+	 */
+	private function getClass(){
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','allcourse');
+		$topChannel = array_slice($topChannel,0,count($topChannel));
+		$id = $topChannel[0]['id'];
+		$class = get_array_for_fieldval($channel, 'pId',$id);//二级栏目(顶级分类)
+		return $class;
+	}
 	
+	private function getKeyByName($name,$class){
+		foreach ($class as $k => $v){
+			if($v['name'] == $name) return $v['id'];
+		}
+	}
 	
 }

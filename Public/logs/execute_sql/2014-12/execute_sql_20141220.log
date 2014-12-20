@@ -1,0 +1,11 @@
+SELECT * FROM `t_upfile` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_upfile` WHERE ( `fileType` = 4 ) ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_upfile` ORDER BY id desc LIMIT 0,50  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  
+SELECT * FROM `t_pro_config` ORDER BY id asc LIMIT 0,50  

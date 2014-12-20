@@ -177,3 +177,48 @@ function is_json($string){
 	json_decode($string); 
 	return (json_last_error() == JSON_ERROR_NONE);
 }
+
+/**
+ * 读取Excel表格中的数据
+ * @param unknown_type $fileUrl 文件地址
+ */
+function readExcelData($fileUrl){
+	if(!is_file($fileUrl)) return result_data(0,'文件'.$fileUrl.'不存在！');
+	
+	//加载第三方类库PHPExcel
+	vendor('PHPExcel.PHPExcel');
+	vendor('PHPExcel.PHPExcel.IOFactory');
+	 
+	//创建reader对象
+	$objReader = \PHPExcel_IOFactory::createReaderForFile($fileUrl);
+	$objPHPExcel = $objReader->load($fileUrl);
+	$sheet_count = $objPHPExcel->getSheetCount();
+		
+	//存储数据的变量
+	$data = array();
+		
+	for ($s = 0; $s < $sheet_count; $s++)
+	{
+		$currentSheet = $objPHPExcel->getSheet($s);		// 当前工作表
+		$workbookTitle = $currentSheet->getTitle();		// 当前工作薄名称
+		$row_num = $currentSheet->getHighestRow();		// 当前工作表行数
+		$col_max = $currentSheet->getHighestColumn(); 	// 当前工作表列数
+		$arr = $currentSheet->toArray(null, true, true, true); //转换成数组
+		
+		// 数据从从第二行开始，第一行是表头
+		for($i = 2; $i <= $row_num; $i++)
+		{
+			for($j = 'A'; $j < $col_max; $j++)
+			{
+				$field = $arr[1][$j]; //字段名称
+				$cell_value = $arr[$i][$j]; //单元格数据
+				$data[$workbookTitle][$i-2][$field] = $cell_value;
+			}
+		}
+	}
+	return result_data(1,'',$data);
+}
+
+
+
+

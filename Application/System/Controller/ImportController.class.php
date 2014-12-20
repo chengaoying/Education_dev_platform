@@ -12,50 +12,140 @@ class ImportController extends BaseAuthController {
             $this->display();
         }else{
         	$fileUrl = I('fileUrl','');
-        	$fileUrl = UPFILE_LOCAL_PATH . '/' . $fileUrl;
-        	
-        	
-           /*  $postDataType = $_POST['dataType'];
-            $checkField = $_POST['checkField'];
-            if(!in_array($postDataType,  array_keys($this->dataType))){
-                $this->showResult(result_data(0,'请选择导入对象！'));
-            }
-            if(empty($checkField)){
-                $this->showResult(result_data(0,'头部字段不能为空！'));
-            }
-            $file = $_FILES['importFile'];
-            if($file['type'] != 'application/vnd.ms-excel'){
-                $this->showResult(result_data(0,'文件格式错误'));
-            }
-            $data = new \Org\Util\Spreadsheet_Excel_Reader();
-            $data->setOutputEncoding('utf-8'); //编码
-            $data->read($file['tmp_name']);
-            $firstRow = $data->sheets[0]['cells'][1]; //第一行的数据
-            $fieldArr = explode(',', strtolower($checkField));
-            if(count($fieldArr) != count($fieldArr)){
-                $this->showResult(result_data(0,'核对字段和文件里头部字段不一致'));
-            }
-            //print_r($firstRow);
-            $allField = array();
-            foreach ($firstRow as $value) {
-                if(!in_array($value, $fieldArr)){
-                    $this->showResult(result_data(0,'文件里缺少 '.$value.'字段'));
-                }else{
-                    $allField[] = $value;
-                }
-            }
-            for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {   
-                if($postDataType == 1){ //课程
-                    
-                }else if($postDataType == 2){ //视频
-                    
-                }
-                if($i%1000 == 0){ //每插入1000条数据 让数据库休息
-                    sleep(5);
-                }
-            }  */
-            
+        	$fileUrl = C('UPFILE_LOCAL_PATH') . '/' . $fileUrl;
+        	$result = readExcelData($fileUrl);
+			if(!$result['status']) $this->ajaxReturn($result);
+
+			//总数据
+			$data = $result['data'];
+			
+			//导入课程
+			$course = $data['course'];
+			$this->importCourse($course);
+			
+			//导入知识点
+			$topic = $data['topic'];
+			$this->importTopic($topic);
+			
+			//导入课时
+			$section = $data['section'];
+			$this->importSection($section);
+			
+			//导入视频资源
+			$resource = $data['resource'];
+			$this->importResource($resource);
+			
+			//导入题库资源
+			$library = $data['library'];
+			$this->importLibrary($library);
+			
+			$this->ajaxReturn(result_data(1,'数据导入完成！'));
         }
     }
     
+    /**
+     * 导入课程
+     * @param unknown_type $course
+     */
+    private function importCourse($course){
+    	//顶级分类
+    	$class = $this->getClass();
+    	//配置项：
+    	$proConf = get_pro_config_content('proConfig');
+    	$subject = $proConf['subject'];			//科目
+    	$courseType = $proConf['courseType'];	//课程类型
+    	$session = $proConf['session'];			//学期
+    	$keys = $proConf['keys'];				//关键字
+    	$press = $proConf['press'];				//出版社
+    	$rp = $proConf['rp'];					//资源提供商
+    	$ap = $proConf['ap'];					//广告提供商
+    	$tags = $proConf['tags'];				//标签
+    	
+    	$r = array(); //数据导入结果集
+    	foreach ($course as $k => $v){
+    		$v['chId'] = $this->getKeyByName($v['chId'],$class);
+    		$v['session'] = array_search($v['session'], $session);
+    		$v['typeId'] = array_search($v['typeId'], $courseType);
+    		$v['subject'] = array_search($v['subject'], $subject);
+    		$v['pressId'] = array_search($v['pressId'], $press);
+    	
+    		$_keys = explode(',', $v['keys']);
+    		unset($v['keys']);
+    		foreach ($_keys as $k1 => $v1){
+    			$v['keys'] .= array_search($v1, $keys).',';
+    		}
+    		$v['keys'] = substr($v['keys'], 0, strlen($v['keys'])-1);
+    		$r[] = D('Course')->_saveData($v);
+    	}
+    	save_log('import_course',$r);
+    }
+    
+    /**
+     * 导入知识点
+     * @param str $topic
+     */
+    private function importTopic($topic){
+    	$r = array(); //数据导入结果集
+    	foreach ($topic as $k => $v){
+    		$r[] = D('Topic')->_saveData($v);
+    	}
+    	save_log('import_topic',$r);
+    }
+    
+    /**
+     * 导入课时
+     * @param str $section
+     */
+    private function importSection($section){
+    	//配置项：
+    	$proConf = get_pro_config_content('proConfig');
+    	$tags = $proConf['tags'];	//标签
+    	
+    	$r = array(); //数据导入结果集
+    	foreach ($section as $k => $v){
+    		$_tags = explode(',', $v['tags']);
+    		unset($v['tags']);
+    		foreach ($_tags as $k1 => $v1){
+    			$v['tags'] .= array_search($v1, $tags).',';
+    		}
+    		$v['tags'] = substr($v['tags'], 0, strlen($v['tags'])-1);
+    		$r[] = D('Section')->_saveData($v);
+    	}
+    	save_log('import_section',$r);
+    }
+    
+    /**
+     * 导入视频资源
+     * @param str $resource
+     */
+    private function importResource($resource){
+    	$r = array(); //数据导入结果集
+    	foreach ($resource as $k => $v){
+    		$r[] = D('Resource')->_saveData($v);
+    	}
+    	save_log('import_resource',$r);
+    }
+    
+    /**
+     * 导入题库资源
+     * @param str $library
+     */
+    private function importLibrary($library){
+    	$r = array(); //数据导入结果集
+    	foreach ($library as $k => $v){
+    		$r[] = D('Library')->_saveData($v);
+    	}
+    	save_log('import_library',$r);
+    }
+    
+    /**
+     * 获取二维数组中value对应的key
+     * @param str $name
+     * @param arr $class
+     */
+    private function getKeyByName($name,$class){
+    	foreach ($class as $k => $v){
+    		if($v['name'] == $name) return $v['id'];
+    	}
+    }
 }
