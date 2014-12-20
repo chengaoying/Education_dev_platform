@@ -119,8 +119,18 @@ class ImportController extends BaseAuthController {
      * @param str $resource
      */
     private function importResource($resource){
+    	//配置项：
+    	$proConf = get_pro_config_content('proConfig');
+    	$keys = $proConf['keys'];	//标签
+    	
     	$r = array(); //数据导入结果集
     	foreach ($resource as $k => $v){
+    		$_keys = explode(',', $v['keyList']);
+    		unset($v['keyList']);
+    		foreach ($_keys as $k1 => $v1){
+    			$v['keyList'] .= array_search($v1, $keys).',';
+    		}
+    		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1);
     		$r[] = D('Resource')->_saveData($v);
     	}
     	save_log('import_resource',$r);
