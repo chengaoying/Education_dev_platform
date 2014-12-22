@@ -9,7 +9,7 @@
 	</tr>
 	<tr><th>所属顶级分类</th><td>{$channelHtml} <em>*</em></td></tr>
 	<tr><th>龄段</th><td>
-		<input type="hidden" id="aastage" name="stage" value="{$course['stage']}"/>
+		<input type="hidden" id="aastage" name="stageIds" value="{$course['stageIds']}"/>
 		<input id="combobox_stage"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
 	</td></tr>
 	<tr><th>出版商</th><td>{$pressHtml} <em>*</em></td></tr>
@@ -100,7 +100,7 @@ $(function(){
 			$("#aastage").val(vals)
 		},	
 		onLoadSuccess: function(){
-			$("#combobox_stage").combobox("setValues","{$course['stage']}".split(','));
+			$("#combobox_stage").combobox("setValues","{$course['stageIds']}".split(','));
 		},		
 	}).combobox('reload',"{:U('Course/load')}" + "?type=stage");
 	

@@ -18,6 +18,14 @@
 		<td><?php echo ($classHtml); ?><em>*</em></td>
 	</tr>
 	<tr>
+		<th>图片地址</th>
+		<td>
+			<textarea name="imgUrl" id="imgUrl" cols="50" rows="3"><?php echo ($stage['imgUrl']); ?></textarea>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				onclick="upfileDialog(1,'','龄段图片：<?php echo ($stage[name]); ?>',1,1,'#imgUrl','\r\n')"></a>
+		</td>
+	</tr>
+	<tr>
 		<th>排序</th>
 		<td><input type="text" id="sort" name="sort" value="<?php echo ($stage['sort']); ?>"/></td>
 	</tr>

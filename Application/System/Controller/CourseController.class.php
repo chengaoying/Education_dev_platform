@@ -16,7 +16,7 @@ class CourseController extends BaseAuthController{
 			//栏目和龄段
 	  		$classes = $this->getClass();
 			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>120)); 
- 			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>120));
+ 			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageIds',array('selVal'=>'','valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>120));
 			
 			//出版商，册数，课程类型,关键字
  			$proConf = get_pro_config_content('proConfig');
@@ -81,7 +81,7 @@ class CourseController extends BaseAuthController{
 			//栏目和龄段
 			$classes = $this->getClass();
 			$channelHtml = $this->getComboBox($classes, 'chId',array('selVal'=>$course['chId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
-			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageId',array('selVal'=>$course['stageId'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
+			$stageHtml = $this->getComboBox(get_cache('Stage'), 'stageIds',array('selVal'=>$course['stageIds'],'valKey'=>'id','textKey'=>'name','levelKey'=>'','nullText'=>'请选择','width'=>150));
 			
 			//出版商，册数，课程类型,关键字,科目,标签
 			$proConf = get_pro_config_content('proConfig');

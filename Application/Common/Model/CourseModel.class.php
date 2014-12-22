@@ -54,13 +54,13 @@ class CourseModel extends BaseModel {
 			}
 			unset($keys);
 			
-			$s = explode(',', $v['stage']);
+			$s = explode(',', $v['stageIds']);
 			$s = array_filter($s);
 			if(count($s)>0){
 				foreach ($s as $k2=>$v2){
 					$_stages .= $stages[$v2]['name'].',';
 				}
-				$list['rows'][$k]['stage']	= $_stages;
+				$list['rows'][$k]['stageIds']	= $_stages;
 				unset($_stages);
 			}
 			unset($s);
@@ -78,9 +78,15 @@ class CourseModel extends BaseModel {
 		foreach ($where as $k=>$v){
 			if($v == '') unset($where[$k]);
 		}
+		
 		//关键字匹配
-		$where['_string'] .= '(`keys` like "%'.$where['keys'].'%")';
+		$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
+		//龄段匹配
+		if($where['stageIds'])
+			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`stageIds` like "%'.$where['stageIds'].'%")';
+		
 		unset($where['keys']);
+		unset($where['stageIds']);
 		
 		return $where;
 	}

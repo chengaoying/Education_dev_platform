@@ -55,8 +55,10 @@ class TestController extends \Think\Controller {
 		/* dump(S('Stage'));
 		exit; */
 		
-		$this->importTest();
+		//$this->importTest();
 		
+		$key = get_array_keyval(S('Channel'),18,'id','chKey');
+		dump($key);
 		
 		$this->display();
 	}

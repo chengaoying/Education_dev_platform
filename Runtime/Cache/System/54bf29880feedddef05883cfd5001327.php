@@ -84,7 +84,8 @@ $(function(){
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
             {field:'name',title:'龄段名称',sortable:false,width:200},
             {field:'sKey',title:'龄段KEY',sortable:false,width:100},
-            {field:'chId',title:'所属于顶级分类',sortable:false,width:180},           
+            {field:'chId',title:'所属于顶级分类',sortable:false,width:100},           
+            {field:'imgUrl',title:'图片地址',sortable:false,width:180},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
