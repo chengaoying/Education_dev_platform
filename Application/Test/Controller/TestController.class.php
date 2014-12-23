@@ -55,13 +55,30 @@ class TestController extends \Think\Controller {
 		/* dump(S('Stage'));
 		exit; */
 		
+		/* $str = '这是中文逗号，';
+		dump($str);
+		$str = str_replace('，',',',$str);
+		dump($str); */
 		//$this->importTest();
 		
-		$key = get_array_keyval(S('Channel'),18,'id','chKey');
-		dump($key);
+		/* $key = get_array_keyval(S('Channel'),18,'id','chKey');
+		dump($key); */
 		
+		/* //测试读取excel表格中的图片
+		$this->readExcelImages(); */
+		$str = get_array_keyval(S('Stage'),'0-1岁','name','id');
+		dump($str);
+		exit;
 		$this->display();
 	}
+	
+	private function readExcelImages(){
+		$fileUrl = 'D:\\test_image.xls';
+		$result = readExcelData($fileUrl);
+		$data = $result['data'];
+		dump($data);exit;
+	}
+	
 	
 	private function importTest(){
 		 $fileUrl = './upfiles/a/5494d93f388d2.xlsx';

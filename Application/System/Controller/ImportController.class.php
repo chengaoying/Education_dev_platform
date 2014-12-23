@@ -50,6 +50,8 @@ class ImportController extends BaseAuthController {
     private function importCourse($course){
     	//顶级分类
     	$class = $this->getClass();
+    	//龄段
+    	$stage = S('Stage');
     	//配置项：
     	$proConf = get_pro_config_content('proConfig');
     	$subject = $proConf['subject'];			//科目
@@ -68,7 +70,18 @@ class ImportController extends BaseAuthController {
     		$v['typeId'] = array_search($v['typeId'], $courseType);
     		$v['subject'] = array_search($v['subject'], $subject);
     		$v['pressId'] = array_search($v['pressId'], $press);
+    		
+    		//龄段
+    		$v['stageIds'] = str_replace('，',',',$v['stageIds']);
+    		$_stages = explode(',', $v['stageIds']);
+    		unset($v['stageIds']);
+    		foreach ($_stages as $k2=>$v2){
+    			$v['stageIds'] .= get_array_keyval(S('Stage'),$v2,'name','id').',';
+    		}
+    		$v['stageIds'] = substr($v['stageIds'], 0, strlen($v['stageIds'])-1);
     	
+    		//关键字
+    		$v['keys'] = str_replace('，',',',$v['keys']);
     		$_keys = explode(',', $v['keys']);
     		unset($v['keys']);
     		foreach ($_keys as $k1 => $v1){
@@ -103,6 +116,7 @@ class ImportController extends BaseAuthController {
     	
     	$r = array(); //数据导入结果集
     	foreach ($section as $k => $v){
+    		$v['tags'] = str_replace('，',',',$v['tags']);
     		$_tags = explode(',', $v['tags']);
     		unset($v['tags']);
     		foreach ($_tags as $k1 => $v1){
@@ -125,6 +139,7 @@ class ImportController extends BaseAuthController {
     	
     	$r = array(); //数据导入结果集
     	foreach ($resource as $k => $v){
+    		$v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
     		unset($v['keyList']);
     		foreach ($_keys as $k1 => $v1){
