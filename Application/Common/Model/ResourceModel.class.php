@@ -14,7 +14,6 @@ class ResourceModel extends BaseModel {
 		array('content','require','视频流code不能为空！',self::MUST_VALIDATE,''),
 		array('rpId','require','所属于资源商ID不能为空',self::MUST_VALIDATE,''),
 		array('outId','require','外部统一编号不能为空',self::MUST_VALIDATE,''),
-		array('sort','require','资源排序不能为空',self::MUST_VALIDATE,''),
 		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'),
 	);
 	

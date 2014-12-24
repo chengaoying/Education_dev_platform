@@ -64,6 +64,8 @@ class ImportController extends BaseAuthController {
     	$tags = $proConf['tags'];				//标签
     	
     	$r = array(); //数据导入结果集
+    	$failCount = 0; //失败记录数
+    	$successCount = 0; //成功记录数
     	foreach ($course as $k => $v){
     		$v['chId'] = $this->getKeyByName($v['chId'],$class);
     		$v['session'] = array_search($v['session'], $session);
@@ -88,8 +90,22 @@ class ImportController extends BaseAuthController {
     			$v['keys'] .= array_search($v1, $keys).',';
     		}
     		$v['keys'] = substr($v['keys'], 0, strlen($v['keys'])-1);
-    		$r[] = D('Course')->_saveData($v);
+    		
+    		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['sort'])) $v['sort'] = 0;
+    		if(empty($v['status'])) $v['status'] = 1;
+    		
+    		$_r = D('Course')->_saveData($v);
+    		if(!$_r['status']){
+    			$failCount ++;
+    			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
+    		}else{
+    			$successCount ++;
+    		} 
     	}
+    	$r['total'] = '数据导入总条数：'.count($course);
+    	$r['fail'] = '数据导入失败条数：'.$failCount;
+    	$r['success'] = '数据导入成功条数：'.$successCount;
     	save_log('import_course',$r);
     }
     
@@ -99,9 +115,24 @@ class ImportController extends BaseAuthController {
      */
     private function importTopic($topic){
     	$r = array(); //数据导入结果集
+    	$failCount = 0; //失败记录数
+    	$successCount = 0; //成功记录数
     	foreach ($topic as $k => $v){
-    		$r[] = D('Topic')->_saveData($v);
+    		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['sort'])) $v['sort'] = 0;
+    		if(empty($v['status'])) $v['status'] = 1;
+    		
+    		$_r = D('Topic')->_saveData($v);
+    		if(!$_r['status']){
+    			$failCount ++;
+    			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
+    		}else{
+    			$successCount ++;
+    		} 
     	}
+    	$r['total'] = '数据导入总条数：'.count($topic);
+    	$r['fail'] = '数据导入失败条数：'.$failCount;
+    	$r['success'] = '数据导入成功条数：'.$successCount;
     	save_log('import_topic',$r);
     }
     
@@ -115,6 +146,8 @@ class ImportController extends BaseAuthController {
     	$tags = $proConf['tags'];	//标签
     	
     	$r = array(); //数据导入结果集
+    	$failCount = 0; //失败记录数
+    	$successCount = 0; //成功记录数
     	foreach ($section as $k => $v){
     		$v['tags'] = str_replace('，',',',$v['tags']);
     		$_tags = explode(',', $v['tags']);
@@ -123,8 +156,22 @@ class ImportController extends BaseAuthController {
     			$v['tags'] .= array_search($v1, $tags).',';
     		}
     		$v['tags'] = substr($v['tags'], 0, strlen($v['tags'])-1);
-    		$r[] = D('Section')->_saveData($v);
+    		
+    		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['sort'])) $v['sort'] = 0;
+    		if(empty($v['status'])) $v['status'] = 1;
+    		
+    		$_r = D('Section')->_saveData($v);
+    		if(!$_r['status']){
+    			$failCount ++;
+    			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
+    		}else{
+    			$successCount ++;
+    		} 
     	}
+    	$r['total'] = '数据导入总条数：'.count($section);
+    	$r['fail'] = '数据导入失败条数：'.$failCount;
+    	$r['success'] = '数据导入成功条数：'.$successCount;
     	save_log('import_section',$r);
     }
     
@@ -138,6 +185,8 @@ class ImportController extends BaseAuthController {
     	$keys = $proConf['keys'];	//标签
     	
     	$r = array(); //数据导入结果集
+    	$failCount = 0; //失败记录数
+    	$successCount = 0; //成功记录数
     	foreach ($resource as $k => $v){
     		$v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
@@ -146,8 +195,21 @@ class ImportController extends BaseAuthController {
     			$v['keyList'] .= array_search($v1, $keys).',';
     		}
     		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1);
-    		$r[] = D('Resource')->_saveData($v);
+    		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['sort'])) $v['sort'] = 0;
+    		if(empty($v['status'])) $v['status'] = 1;
+    		
+    		$_r = D('Resource')->_saveData($v);
+    		if(!$_r['status']){
+    			$failCount ++;
+    			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
+    		}else{
+    			$successCount ++;
+    		} 
     	}
+    	$r['total'] = '数据导入总条数：'.count($resource);
+    	$r['fail'] = '数据导入失败条数：'.$failCount;
+    	$r['success'] = '数据导入成功条数：'.$successCount;
     	save_log('import_resource',$r);
     }
     
@@ -157,9 +219,24 @@ class ImportController extends BaseAuthController {
      */
     private function importLibrary($library){
     	$r = array(); //数据导入结果集
+    	$failCount = 0; //失败记录数
+    	$successCount = 0; //成功记录数
     	foreach ($library as $k => $v){
-    		$r[] = D('Library')->_saveData($v);
+    		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['sort'])) $v['sort'] = 0;
+    		if(empty($v['status'])) $v['status'] = 1;
+    		
+    		$_r = D('Library')->_saveData($v);
+    		if(!$_r['status']){
+    			$failCount ++;
+    			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
+    		}else{
+    			$successCount ++;
+    		} 
     	}
+    	$r['total'] = '数据导入总条数：'.count($library);
+    	$r['fail'] = '数据导入失败条数：'.$failCount;
+    	$r['success'] = '数据导入成功条数：'.$successCount;
     	save_log('import_library',$r);
     }
     
