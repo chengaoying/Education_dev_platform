@@ -216,6 +216,14 @@ function readExcelData($fileUrl){
 			}
 		}
 	}
+	
+	//清除空的数据（）
+	foreach ($data as $k => $v){
+		foreach ($v as $k1 => $v1){
+			if(empty($v1['id'])) unset($data[$k][$k1]);
+		}
+	}
+	
 	return result_data(1,'',$data);
 }
 
