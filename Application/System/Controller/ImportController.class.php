@@ -117,6 +117,7 @@ class ImportController extends BaseAuthController {
     	$r = array(); //数据导入结果集
     	$failCount = 0; //失败记录数
     	$successCount = 0; //成功记录数
+    	$cTopic = array(); //课程的知识点数组
     	foreach ($topic as $k => $v){
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
@@ -128,8 +129,24 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
+    			$cTopic[$v['courseId']] .= $v['id'].',';
     		} 
     	}
+    	
+    	//更新课程的知识点属性()
+    	foreach ($cTopic as $k2 => $v2){
+    		$param['id'] = $k2;
+    		$param['topicIds'] = $v2;
+    		$res = D('Course')->saveData($param);
+    		if(!$res['status']){
+    			$r[$k2] = '同步更新课程('.$k2.')失败，知识点id集：'.$v2.'失败原因：'.$res['info'];
+    		}else{
+    			$r[$k2] = '同步更新课程('.$k2.')成功,';
+    		}
+    		unset($param);
+    	}
+    	
+    	
     	$r['total'] = '数据导入总条数：'.count($topic);
     	$r['fail'] = '数据导入失败条数：'.$failCount;
     	$r['success'] = '数据导入成功条数：'.$successCount;
@@ -148,6 +165,7 @@ class ImportController extends BaseAuthController {
     	$r = array(); //数据导入结果集
     	$failCount = 0; //失败记录数
     	$successCount = 0; //成功记录数
+    	$tSection = array();//知识点的课时数组
     	foreach ($section as $k => $v){
     		$v['tags'] = str_replace('，',',',$v['tags']);
     		$_tags = explode(',', $v['tags']);
@@ -167,8 +185,23 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
+    			$tSection[$v['topicId']] .= $v['id'].',';
     		} 
     	}
+    	
+    	//更新知识点的课时点属性()
+    	foreach ($tSection as $k2 => $v2){
+    		$param['id'] = $k2;
+    		$param['sectionIds'] = $v2;
+    		$res = D('Topic')->saveData($param);
+    		if(!$res['status']){
+    			$r[$k2] = '同步更新知识点('.$k2.')失败，知课时id集：'.$v2.'失败原因：'.$res['info'];
+    		}else{
+    			$r[$k2] = '同步更新知识点('.$k2.')成功,';
+    		}
+    		unset($param);
+    	}
+    	
     	$r['total'] = '数据导入总条数：'.count($section);
     	$r['fail'] = '数据导入失败条数：'.$failCount;
     	$r['success'] = '数据导入成功条数：'.$successCount;
@@ -187,6 +220,7 @@ class ImportController extends BaseAuthController {
     	$r = array(); //数据导入结果集
     	$failCount = 0; //失败记录数
     	$successCount = 0; //成功记录数
+    	$sResource = array();//课时的视频资源数组
     	foreach ($resource as $k => $v){
     		$v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
@@ -205,8 +239,23 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
+    			$sResource[$v['sectionId']] .= $v['id'].',';
     		} 
     	}
+    	
+    	//更新课时的视频资源属性()
+    	foreach ($sResource as $k2 => $v2){
+    		$param['id'] = $k2;
+    		$param['lessonList'] = $v2;
+    		$res = D('Section')->saveData($param);
+    		if(!$res['status']){
+    			$r[$k2] = '同步更新课时('.$k2.')失败，视频id集：'.$v2.'失败原因：'.$res['info'];
+    		}else{
+    			$r[$k2] = '同步更新课时('.$k2.')成功,';
+    		}
+    		unset($param);
+    	}
+    	
     	$r['total'] = '数据导入总条数：'.count($resource);
     	$r['fail'] = '数据导入失败条数：'.$failCount;
     	$r['success'] = '数据导入成功条数：'.$successCount;
@@ -221,6 +270,7 @@ class ImportController extends BaseAuthController {
     	$r = array(); //数据导入结果集
     	$failCount = 0; //失败记录数
     	$successCount = 0; //成功记录数
+    	$sLibrary = array();//课时的题库数组
     	foreach ($library as $k => $v){
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
@@ -232,8 +282,23 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
+    			$sLibrary[$v['libId']] = $v['id'].',';
     		} 
     	}
+    	
+    	//更新课时的题库属性()
+    	foreach ($sLibrary as $k2 => $v2){
+    		$param['id'] = $k2;
+    		$param['libId'] = $v2;
+    		$res = D('Section')->saveData($param);
+    		if(!$res['status']){
+    			$r[$k2] = '同步更新课时('.$k2.')失败，题库id集：'.$v2.'失败原因：'.$res['info'];
+    		}else{
+    			$r[$k2] = '同步更新课时('.$k2.')成功,';
+    		}
+    		unset($param);
+    	}
+    	
     	$r['total'] = '数据导入总条数：'.count($library);
     	$r['fail'] = '数据导入失败条数：'.$failCount;
     	$r['success'] = '数据导入成功条数：'.$successCount;

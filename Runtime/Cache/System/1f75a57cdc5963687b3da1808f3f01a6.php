@@ -90,7 +90,7 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'课程名称',sortable:false,width:100},
+            {field:'name',title:'课程名称',sortable:false,width:200},
             {field:'chId',title:'所属顶级分类',sortable:false,width:100},
             {field:'stageIds',title:'龄段',sortable:false,width:80},
             {field:'pressId',title:'出版商',sortable:false,width:80},

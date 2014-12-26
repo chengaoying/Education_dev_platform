@@ -20,6 +20,9 @@ class RoleModel extends BaseModel {
 	protected $_auto = array(
 		array('addTime',DATE_TIME,self::MODEL_INSERT),			
 	);
+	
+	//数据同步(子项)
+	protected $sync = 'Role';
 
 	//---------------扩展CRUD-----------------------
 	/**
@@ -34,6 +37,14 @@ class RoleModel extends BaseModel {
 		
 		return $this->returnListData($list);
 	}
-	
+
+	/**
+	 * 更新缓存（全部：NO,$exKey：YES）
+	 * @param string $exKey 父栏目id
+	 */
+	public function updateCache($exKey=''){
+		$all = $this->queryRole();
+		S('Role',$all['rows']);
+	}
 
 }

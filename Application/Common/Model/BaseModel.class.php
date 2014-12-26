@@ -28,8 +28,6 @@ class BaseModel extends \Think\Model {
 	 * @param arr $param
 	 */
 	public function selectOne($where = array(),$field = '',$fieldExcept = false){
-        if(!$where) return;
-		$data = array();
         $data = $this->where($where)->field($field,$fieldExcept)->limit(1)->find();
         return $data;
 	}

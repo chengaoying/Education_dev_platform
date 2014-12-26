@@ -12,6 +12,7 @@ class SyncLogic extends BaseLogic {
 	 */
 	public function send($name=''){
 		$items = array(
+			'Role',	
 			'ProConfig',
 			'Channel',
 			'Stage',

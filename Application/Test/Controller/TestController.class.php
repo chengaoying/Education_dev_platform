@@ -66,9 +66,32 @@ class TestController extends \Think\Controller {
 		
 		/* //测试读取excel表格中的图片
 		$this->readExcelImages(); */
-		$str = get_array_keyval(S('Stage'),'0-1岁','name','id');
-		dump($str);
-		exit;
+		/* $str = get_array_keyval(S('Stage'),'0-1岁','name','id');
+		dump($str);*/
+		
+		/* $r = D('Course','Logic')->queryCourseListByKeys(3,'1',1,2);
+		dump($r);
+		exit;  */
+		
+		/* $wk_day = date('w');
+		$week   = date('W');
+		dump($week);
+		
+		exit;  */
+		
+		/* $wk_day=date('w');   //得到今天是星期几
+		$date_now=date('j'); //得到今天是几号
+		$wkday_ar=array('日','一','二','三','四','五','六'); //规范化周日的表达
+		$cal_result=ceil($date_now/7); //计算是第几个星期几
+		$str=date("Y年n月j日")." 星期".$wkday_ar[$wk_day]." - 本月的第 ".$cal_result." 个星期".$wkday_ar[$wk_day];
+		echo $str;  */
+		//$course = D('Course')->find(1001);
+		$param['id'] = 1001;
+    	$param['topicIds'] = '1001,1002';
+    	$res = D('Course')->saveData($param);
+    	save_log('test',$res);
+    	dump($res);
+    	exit;
 		$this->display();
 	}
 	
@@ -81,10 +104,10 @@ class TestController extends \Think\Controller {
 	
 	
 	private function importTest(){
-		 $fileUrl = './upfiles/a/5494d93f388d2.xlsx';
+		 $fileUrl = './upfiles/7/549d0cdc1434d.xlsx';
 		 $result = readExcelData($fileUrl);
 		 $data = $result['data'];
-		 
+		
 		 //顶级分类
 		 $class = $this->getClass();
 		 //配置项：

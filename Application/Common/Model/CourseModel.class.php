@@ -10,10 +10,10 @@ class CourseModel extends BaseModel {
 	//数据验证
 	protected $_validate = array(
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
-		array('name','require','课程名称不能为空！',self::MUST_VALIDATE,''),
-		array('chId','require','顶级分类不能为空！',self::MUST_VALIDATE,''),
-		array('typeId','require','课程类型不能为空！',self::MUST_VALIDATE,''),
-		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'),
+		array('name','require','课程名称不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		array('chId','require','顶级分类不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		array('typeId','require','课程类型不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in',self::MODEL_INSERT),
 	);
 	
 	//自动填充	

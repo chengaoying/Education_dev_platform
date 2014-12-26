@@ -86,7 +86,7 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'知识点名称',sortable:false,width:100},
+            {field:'name',title:'知识点名称',sortable:false,width:200},
             {field:'courseId',title:'所属课程',sortable:false,width:100},
             {field:'sectionIds',title:'课时ID列表',sortable:false,width:100},
             {field:'imgUrl',title:'图片路径',sortable:false,width:120},           

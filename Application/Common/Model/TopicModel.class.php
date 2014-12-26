@@ -10,10 +10,10 @@ class TopicModel extends BaseModel {
 	//数据验证
 	protected $_validate = array(
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
-		array('name','require','名称不能为空！',self::MUST_VALIDATE,''),
-		array('courseId','require','课程不能为空！',self::MUST_VALIDATE,''),
-		array('sectionIds','require','课时ID列表不能为空！',self::MUST_VALIDATE,''),
-		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'),
+		array('name','require','名称不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		array('courseId','require','课程不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		//array('sectionIds','require','课时ID列表不能为空！',self::MUST_VALIDATE,''),
+		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in',self::MODEL_INSERT),
 	);
 	
 	//自动填充	
