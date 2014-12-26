@@ -86,11 +86,14 @@ class TestController extends \Think\Controller {
 		$str=date("Y年n月j日")." 星期".$wkday_ar[$wk_day]." - 本月的第 ".$cal_result." 个星期".$wkday_ar[$wk_day];
 		echo $str;  */
 		//$course = D('Course')->find(1001);
-		$param['id'] = 1001;
+		/* $param['id'] = 1001;
     	$param['topicIds'] = '1001,1002';
     	$res = D('Course')->saveData($param);
     	save_log('test',$res);
-    	dump($res);
+    	dump($res); */
+		$r = D('Course','Logic')->queryCourseListByKeys(3,'1',1,2);
+		dump($r);
+		exit;
     	exit;
 		$this->display();
 	}
