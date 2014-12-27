@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 配置
+ * 产品相关配置
  * 配置类型(type)有：array,string,numeric,textarea,bool
  */
 return array(
@@ -63,7 +63,7 @@ return array(
 		'keys'	=>	array(
 			'type'	=> 'array',
 			'title'	=> '关键字列表',
-			'value' => array(1 => '首页', 2 => '推荐', 3 => '热门'),
+			'value' => array(1 => '特别推荐', 2 => '一般推荐'),
 			'info'	=> '',
 		),
 		

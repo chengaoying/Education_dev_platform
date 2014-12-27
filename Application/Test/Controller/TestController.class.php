@@ -91,15 +91,16 @@ class TestController extends \Think\Controller {
     	$res = D('Course')->saveData($param);
     	save_log('test',$res);
     	dump($res); */
-		$r = D('Course','Logic')->queryCourseListByKeys(3,'1',1,2);
-		dump($r);
-		exit;
+		
+		$this->readExcelImages();
+		
+		
     	exit;
 		$this->display();
 	}
 	
 	private function readExcelImages(){
-		$fileUrl = 'D:\\test_image.xls';
+		$fileUrl = './upfiles/0/test.xls';
 		$result = readExcelData($fileUrl);
 		$data = $result['data'];
 		dump($data);exit;

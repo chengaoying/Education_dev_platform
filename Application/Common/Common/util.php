@@ -188,7 +188,7 @@ function readExcelData($fileUrl){
 	//加载第三方类库PHPExcel
 	vendor('PHPExcel.PHPExcel');
 	vendor('PHPExcel.PHPExcel.IOFactory');
-	 
+	
 	//创建reader对象
 	$objReader = \PHPExcel_IOFactory::createReaderForFile($fileUrl);
 	$objPHPExcel = $objReader->load($fileUrl);
@@ -196,7 +196,7 @@ function readExcelData($fileUrl){
 		
 	//存储数据的变量
 	$data = array();
-		
+	
 	for ($s = 0; $s < $sheet_count; $s++)
 	{
 		$currentSheet = $objPHPExcel->getSheet($s);		// 当前工作表
@@ -208,7 +208,7 @@ function readExcelData($fileUrl){
 		// 数据从从第二行开始，第一行是表头
 		for($i = 2; $i <= $row_num; $i++)
 		{
-			for($j = 'A'; $j < $col_max; $j++)
+			for($j = 'A'; $j <= $col_max; $j++)
 			{
 				$field = $arr[1][$j]; //字段名称
 				$cell_value = $arr[$i][$j]; //单元格数据
@@ -217,12 +217,12 @@ function readExcelData($fileUrl){
 		}
 	}
 	
-	//清除空的数据（）
-	foreach ($data as $k => $v){
-		foreach ($v as $k1 => $v1){
-			if(empty($v1['id'])) unset($data[$k][$k1]);
-		}
-	}
+// 	//清除空的数据（）
+// 	foreach ($data as $k => $v){
+// 		foreach ($v as $k1 => $v1){
+// 			if(empty($v1['id'])) unset($data[$k][$k1]);
+// 		}
+// 	}
 	
 	return result_data(1,'',$data);
 }
