@@ -92,10 +92,10 @@ class TestController extends \Think\Controller {
     	save_log('test',$res);
     	dump($res); */
 		
-		$this->readExcelImages();
+		//$this->readExcelImages();
 		
 		
-    	exit;
+    	//exit;
 		$this->display();
 	}
 	
