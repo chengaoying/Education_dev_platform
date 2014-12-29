@@ -183,7 +183,7 @@ function is_json($string){
  * @param unknown_type $fileUrl 文件地址
  */
 function readExcelData($fileUrl){
-	if(!is_file($fileUrl)) return result_data(0,'文件'.$fileUrl.'不存在！');
+	if(!file_exists($fileUrl)) return result_data(0,'文件'.$fileUrl.'不存在！');
 	
 	//加载第三方类库PHPExcel
 	vendor('PHPExcel.PHPExcel');
@@ -212,17 +212,12 @@ function readExcelData($fileUrl){
 			{
 				$field = $arr[1][$j]; //字段名称
 				$cell_value = $arr[$i][$j]; //单元格数据
+				if(empty($arr[$i]['A']) && empty($arr[$i]['B']))
+					continue;
 				$data[$workbookTitle][$i-2][$field] = $cell_value;
 			}
 		}
 	}
-	
-// 	//清除空的数据（）
-// 	foreach ($data as $k => $v){
-// 		foreach ($v as $k1 => $v1){
-// 			if(empty($v1['id'])) unset($data[$k][$k1]);
-// 		}
-// 	}
 	
 	return result_data(1,'',$data);
 }
