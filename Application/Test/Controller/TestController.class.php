@@ -94,6 +94,7 @@ class TestController extends \Think\Controller {
 		
 		//$this->readExcelImages();
 		
+		$this->cenvertData();
 		
     	//exit;
 		$this->display();
@@ -106,57 +107,43 @@ class TestController extends \Think\Controller {
 		dump($data);exit;
 	}
 	
+	private function cenvertData(){
+		
+		$tables = array('课程'=>'course','知识点'=>'topic','课时'=>'section','视频'=>'resource','题库'=>'library');
+		
+		$fields['course'] = array(
+			'课程id'=>'id','课程名'=>'name','一级分类'=>'chId','龄段名称'=>'stageIds','出版社'=>'pressId',
+			'学期'=>'session','科目'=>'subject','类型'=>'typeId','价格'=>'price','期中考试题库'=>'midLibId',
+			'期末考试题库'=>'finalLibId','知识点id列表'=>'topicIds','关键字'=>'keys','图片路径'=>'imgUrl','访问地址'=>'linkUrl',
+			'机构'=>'organization','讲师'=>'lecturer','描述'=>'description','排序'=>'sort','状态'=>'status',
+		);
+		$fields['topic'] = array(
+			'知识点id'=>'id','知识点名称'=>'name','课程id'=>'courseId','课时列表id'=>'sectionIds',
+			'图片路径'=>'imgUrl','描述'=>'description','排序'=>'sort','状态'=>'status'
+		);
+		$fields['section'] = array(
+			'课时id'=>'id','课时名'=>'name','知识点id'=>'topicId','题库id'=>'libId','预习视频列表'=>'previewList',	
+			'正文视频列表'=>'lessonList','图片路径'=>'imgUrl','标签'=>'tags','描述'=>'description','排序'=>'sort','状态'=>'status'			
+		);
+		$fields['resource'] = array(
+			'资源id'=>'id','标题'=>'title','课时id'=>'sectionId','code'=>'content','资源商id'=>'rpId',
+			'权限'=>'playAuth','关键字'=>'keyList','价格'=>'price','图片路径'=>'imgUrl','对外统计id'=>'outId',
+			'播放次数'=>'playCount','赞次数'=>'praiseCount','收藏次数'=>'favorCount','描述'=>'description','排序'=>'sort','状态'=>'status',	
+		);
+		$fields['library'] = array(
+			'题库id'=>'id','标题'=>'title','课时id'=>'sectionId','资源提供商'=>'rpId','权限'=>'auth',
+			'价格'=>'price','题库路径'=>'libUrl','图片路径'=>'imgUrl','描述'=>'description','排序'=>'sort','状态'=>'status'							
+		);
+		
+		$data = $this->importTest();
+		dump($data['课程']);exit;
+	}
 	
 	private function importTest(){
-		 $fileUrl = './upfiles/7/549d0cdc1434d.xlsx';
+		 $fileUrl = './upfiles/7/1001.xlsx';
 		 $result = readExcelData($fileUrl);
 		 $data = $result['data'];
-		
-		 //顶级分类
-		 $class = $this->getClass();
-		 //配置项：
-		 $proConf = get_pro_config_content('proConfig');
-		 $subject = $proConf['subject'];		//科目
-		 $courseType = $proConf['courseType'];	//课程类型
-		 $session = $proConf['session'];		//学期
-		 $keys = $proConf['keys'];				//关键字
-		 $press = $proConf['press'];			//出版社
-		 $rp = $proConf['rp'];					//资源提供商
-		 $ap = $proConf['ap'];					//广告提供商
-		 $tags = $proConf['tags'];				//标签
-		 
-		 //dump($proConf);exit;
-		 
-		 //课程
-		 $course = $data['course'];
-		 foreach ($course as $k => $v){
-		 	$v['chId'] = $this->getKeyByName($v['chId'],$class);
-		 	$v['session'] = array_search($v['session'], $session);
-		 	$v['typeId'] = array_search($v['typeId'], $courseType);
-		 	$v['subject'] = array_search($v['subject'], $subject);
-		 	$v['pressId'] = array_search($v['pressId'], $press);
-		 	
-		 	$_keys = explode(',', $v['keys']);
-		 	unset($v['keys']);
-		 	foreach ($_keys as $k1 => $v1){
-		 		$v['keys'] .= array_search($v1, $keys).',';
-		 	}
-		 	$v['keys'] = substr($v['keys'], 0, strlen($v['keys'])-1);
-		 	$r = D('Course')->_saveData($v);
-		 }
-		 exit;
-		/*  foreach ($data as $k => $v){
-		 	$mode = D(ucfirst($k));
-		 	foreach ($v as $k1 => $v2){
-		 		$r = $mode->_saveData($v2);
-		 		dump($r);
-		 		exit;
-		 	}
-		 }
-		 
-		 // 看看数据
-		 dump($r);
-		 exit; */
+		 return $data;
 	}
 	
 	/**

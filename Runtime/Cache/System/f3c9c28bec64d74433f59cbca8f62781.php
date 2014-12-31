@@ -81,11 +81,11 @@ $(function(){
         remoteSort:true,//是否通过远程服务器对数据排序
         singleSelect:true,//只允许选择单行
         
-	    //sortName:'sort',//默认排序字段
-		//sortOrder:'asc',//默认排序方式 'desc' 'asc'
+	    sortName:'sort',//默认排序字段
+		sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'id',
 	    columns:[[  
-            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'id',title:'ID',sortable:false,align:'right',width:100},
             {field:'title',title:'视频标题',sortable:false,width:200},
             {field:'sectionId',title:'课时ID',sortable:false,width:70},
             {field:'content',title:'视频流code',sortable:true,width:120},

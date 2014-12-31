@@ -183,15 +183,23 @@ function is_json($string){
  * @param unknown_type $fileUrl 文件地址
  */
 function readExcelData($fileUrl){
-	if(!file_exists($fileUrl)) return result_data(0,'文件'.$fileUrl.'不存在！');
+	if(strpos($fileUrl,"http://") === 0){
+		$_fileUrl = './upfiles/lib/test.xls';
+		$fp_input = fopen($fileUrl, 'r');
+		file_put_contents($_fileUrl, $fp_input);
+	}else{
+		$_fileUrl = $fileUrl;
+	}
+	if(!file_exists($_fileUrl)) return result_data(0,'文件'.$_fileUrl.'不存在！');
 	
 	//加载第三方类库PHPExcel
 	vendor('PHPExcel.PHPExcel');
 	vendor('PHPExcel.PHPExcel.IOFactory');
 	
 	//创建reader对象
-	$objReader = \PHPExcel_IOFactory::createReaderForFile($fileUrl);
-	$objPHPExcel = $objReader->load($fileUrl);
+	$objReader = \PHPExcel_IOFactory::createReaderForFile($_fileUrl);
+	$objPHPExcel = new \PHPExcel();
+	$objPHPExcel = $objReader->load($_fileUrl);
 	$sheet_count = $objPHPExcel->getSheetCount();
 		
 	//存储数据的变量
@@ -223,5 +231,43 @@ function readExcelData($fileUrl){
 }
 
 
+/**
+ * 因为某一键名的值不能重复，删除重复项
+ * @param 二维数组$arr
+ * @param 重复的键值$key
+ * @return 返回删除了重复键值的数组
+ */
+function assoc_unique($arr, $key)
+{
+	$tmp_arr = array();
+	foreach($arr as $k => $v)
+	{
+		if(in_array($v[$key], $tmp_arr))//搜索$v[$key]是否在$tmp_arr数组中存在，若存在返回true
+		{
+			unset($arr[$k]);
+		}
+		else {
+			$tmp_arr[] = $v[$key];
+		}
+	}
+	sort($arr); //sort函数对数组进行排序
+	return $arr;
+}
 
+/**
+ * 一维数组不能完全相同，而删除重复项
+ * @param 二维数组$array2D
+ * @return 数组
+ */
+function array_unique_fb($array2D){
+	foreach ($array2D as $v){
+		$v = join(",",$v); //降维,也可以用implode,将一维数组转换为用逗号连接的字符串
+		$temp[] = $v;
+	}
+	$temp = array_unique($temp);    //去掉重复的字符串,也就是重复的一维数组
+	foreach ($temp as $k => $v){
+		$temp[$k] = explode(",",$v);   //再将拆开的数组重新组装
+	}
+	return $temp;
+}
 

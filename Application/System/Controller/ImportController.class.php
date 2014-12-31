@@ -43,6 +43,8 @@ class ImportController extends BaseAuthController {
         }
     }
     
+    private function convertData(){}
+    
     /**
      * 导入课程
      * @param unknown_type $course

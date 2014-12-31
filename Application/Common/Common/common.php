@@ -35,10 +35,6 @@ function get_upfile_url($url, $suffix = '', $path = '') {
 	} elseif (empty($path)) {		
 		$search = array('__COMMON__','__SD__','__HD__','__THEME__');
 		$replace = array($tmpl['__COMMON__'],$tmpl['__SD__'],$tmpl['__HD__'],$tmpl['__THEME__']);
-		foreach(C('ALBUM_TYPE') as $key=>$v){
-			$search[] = 'album'.$key;
-			$replace[] = 'album'.$tmpl[$key];
-		}
 		$url = str_replace($search, $replace, $url);
 		if (substr($url, 0, 1) == '/' || substr($url, 0, 2) == './' || substr($url, 0, 3) == '../' || substr($url, 0, 7) == 'http://' || substr($url, 0, 8) == 'https://' || substr($url, 0, 6) == 'ftp://') {
 			return $url;
