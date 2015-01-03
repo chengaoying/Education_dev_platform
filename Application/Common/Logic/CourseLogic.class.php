@@ -33,7 +33,7 @@ class CourseLogic extends BaseLogic {
 		$param['sortOrder'] = 'sort asc';
 		
 		$data = D('Course')->selectPage($param);
-		return $data['rows'];
+		return $data;
 	}
 	
 	/**
@@ -49,6 +49,34 @@ class CourseLogic extends BaseLogic {
 		$param['sortOrder'] = 'sort asc';
 	
 		$data = D('Course')->selectPage($param);
-		return $data['rows'];
+		return $data;
 	}
+	
+	/**
+	 * 通过课程id查找单个课程
+	 * @param int $courseId
+	 */
+	public function queryCourseById($courseId){
+		$data = D('Course')->find($courseId);
+		return $data;
+	}
+	
+	/**
+	 * 通过课程类型查询课程列表
+	 * @param unknown_type $stageId 龄段id
+	 * @param unknown_type $type 课程类型
+	 * @param unknown_type $pageNo 页号
+	 * @param unknown_type $pageSize 每页记录数
+	 */
+	public function queryCourseListByType($stageId, $type, $pageNo, $pageSize){
+		$param['where']['stageIds']  = $stageId;
+		$param['where']['typeId']    = $type;
+		$param['page'] 		= $pageNo;
+		$param['pageSize'] 	= $pageSize;
+		$param['sortOrder'] = 'sort asc';
+	
+		$data = D('Course')->selectPage($param);
+		return $data;
+	}
+	
 }

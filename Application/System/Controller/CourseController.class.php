@@ -42,7 +42,6 @@ class CourseController extends BaseAuthController{
 			$param['where'] = I('post.');
 			$param['sortOrder'] = 'sort asc';
 			$list = D('Course')->queryCourse($param);
-			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
 		}		
 	}
@@ -119,7 +118,6 @@ class CourseController extends BaseAuthController{
 			foreach ($stages as $k=>$v){
 				$data[] = array('id'=>$v['id'],'name'=>$v['name']);
 			}
-			save_log('load',$data);
 		}elseif($type == 'key'){ //关键字
 			$proConf = get_pro_config_content('proConfig');
 			foreach ($proConf['keys'] as $k => $v){

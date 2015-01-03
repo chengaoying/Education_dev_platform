@@ -85,7 +85,7 @@ $(function(){
 		sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'id',
 	    columns:[[  
-            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'id',title:'ID',sortable:false,align:'right',width:100},
             {field:'title',title:'标题',sortable:false,width:200},
             {field:'sectionId',title:'课时ID',sortable:true,width:200},
             {field:'rpId',title:'资源商',sortable:true,width:100},

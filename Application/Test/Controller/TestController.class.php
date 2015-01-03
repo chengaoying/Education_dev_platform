@@ -109,13 +109,13 @@ class TestController extends \Think\Controller {
 	
 	private function cenvertData(){
 		
-		$tables = array('课程'=>'course','知识点'=>'topic','课时'=>'section','视频'=>'resource','题库'=>'library');
+		$tables = array('课程'=>'course','知识点'=>'topic','课时'=>'section','视频资源'=>'resource','题库资源'=>'library');
 		
 		$fields['course'] = array(
 			'课程id'=>'id','课程名'=>'name','一级分类'=>'chId','龄段名称'=>'stageIds','出版社'=>'pressId',
 			'学期'=>'session','科目'=>'subject','类型'=>'typeId','价格'=>'price','期中考试题库'=>'midLibId',
 			'期末考试题库'=>'finalLibId','知识点id列表'=>'topicIds','关键字'=>'keys','图片路径'=>'imgUrl','访问地址'=>'linkUrl',
-			'机构'=>'organization','讲师'=>'lecturer','描述'=>'description','排序'=>'sort','状态'=>'status',
+			'机构'=>'organization','讲师'=>'lecturer','描述'=>'description','排序'=>'sort','状态(0-禁用，1-启用)'=>'status',
 		);
 		$fields['topic'] = array(
 			'知识点id'=>'id','知识点名称'=>'name','课程id'=>'courseId','课时列表id'=>'sectionIds',
@@ -127,7 +127,7 @@ class TestController extends \Think\Controller {
 		);
 		$fields['resource'] = array(
 			'资源id'=>'id','标题'=>'title','课时id'=>'sectionId','code'=>'content','资源商id'=>'rpId',
-			'权限'=>'playAuth','关键字'=>'keyList','价格'=>'price','图片路径'=>'imgUrl','对外统计id'=>'outId',
+			'权限(0-免费，1-收费)'=>'playAuth','关键字'=>'keyList','价格'=>'price','图片路径'=>'imgUrl','对外统计id'=>'outId',
 			'播放次数'=>'playCount','赞次数'=>'praiseCount','收藏次数'=>'favorCount','描述'=>'description','排序'=>'sort','状态'=>'status',	
 		);
 		$fields['library'] = array(
@@ -136,11 +136,25 @@ class TestController extends \Think\Controller {
 		);
 		
 		$data = $this->importTest();
-		dump($data['课程']);exit;
+		foreach ($data as $k => $v){
+			$data[$tables[$k]] = $v;
+			unset($data[$k]);
+		}
+		
+		foreach ($data as $k1 => $v1){
+			foreach ($v1 as $k2 => $v2){
+				foreach ($v2 as $k3 => $v3){
+					$data[$k1][$k2][$fields[$k1][$k3]] = $v3;
+					unset($data[$k1][$k2][$k3]);
+				}
+			}
+		}
+		
+		dump($data);exit;
 	}
 	
 	private function importTest(){
-		 $fileUrl = './upfiles/7/1001.xlsx';
+		 $fileUrl = './upfiles/6/54a403009f51f.xlsx';
 		 $result = readExcelData($fileUrl);
 		 $data = $result['data'];
 		 return $data;

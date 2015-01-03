@@ -19,6 +19,8 @@ class ImportController extends BaseAuthController {
 			//总数据
 			$data = $result['data'];
 			
+			$data = $this->cenvertData($data);
+			
 			//导入课程
 			$course = $data['course'];
 			$this->importCourse($course);
@@ -43,7 +45,53 @@ class ImportController extends BaseAuthController {
         }
     }
     
-    private function convertData(){}
+    /**
+     * 把表格中字段转换成英文（与数据库字段对应）
+     * @param unknown_type $data
+     */
+    private function cenvertData($data){
+    
+    	$tables = array('课程'=>'course','知识点'=>'topic','课时'=>'section','视频资源'=>'resource','题库资源'=>'library');
+    
+    	$fields['course'] = array(
+    			'课程id'=>'id','课程名'=>'name','一级分类'=>'chId','龄段名称'=>'stageIds','出版社'=>'pressId',
+    			'学期'=>'session','科目'=>'subject','类型'=>'typeId','价格'=>'price','期中考试题库'=>'midLibId',
+    			'期末考试题库'=>'finalLibId','知识点id列表'=>'topicIds','关键字'=>'keys','图片路径'=>'imgUrl','访问地址'=>'linkUrl',
+    			'机构'=>'organization','讲师'=>'lecturer','描述'=>'description','排序'=>'sort','状态'=>'status',
+    	);
+    	$fields['topic'] = array(
+    			'知识点id'=>'id','知识点名称'=>'name','课程id'=>'courseId','课时列表id'=>'sectionIds',
+    			'图片路径'=>'imgUrl','描述'=>'description','排序'=>'sort','状态'=>'status'
+    	);
+    	$fields['section'] = array(
+    			'课时id'=>'id','课时名'=>'name','知识点id'=>'topicId','题库id'=>'libId','预习视频列表'=>'previewList',
+    			'正文视频列表'=>'lessonList','图片路径'=>'imgUrl','标签'=>'tags','描述'=>'description','排序'=>'sort','状态'=>'status'
+    	);
+    	$fields['resource'] = array(
+    			'资源id'=>'id','标题'=>'title','课时id'=>'sectionId','code'=>'content','资源商id'=>'rpId',
+    			'权限'=>'playAuth','关键字列表'=>'keyList','价格'=>'price','图片路径'=>'imgUrl','对外统计id'=>'outId',
+    			'播放次数'=>'playCount','赞次数'=>'praiseCount','收藏次数'=>'favorCount','描述'=>'description','排序'=>'sort','状态'=>'status',
+    	);
+    	$fields['library'] = array(
+    			'题库id'=>'id','标题'=>'title','课时id'=>'sectionId','资源提供商'=>'rpId','权限'=>'auth',
+    			'价格'=>'price','题库路径'=>'libUrl','图片路径'=>'imgUrl','描述'=>'description','排序'=>'sort','状态'=>'status'
+    	);
+    
+    	foreach ($data as $k => $v){
+    		$data[$tables[$k]] = $v;
+    		unset($data[$k]);
+    	}
+    
+    	foreach ($data as $k1 => $v1){
+    		foreach ($v1 as $k2 => $v2){
+    			foreach ($v2 as $k3 => $v3){
+    				$data[$k1][$k2][$fields[$k1][$k3]] = $v3;
+    				unset($data[$k1][$k2][$k3]);
+    			}
+    		}
+    	}
+    	return $data;
+    }
     
     /**
      * 导入课程
@@ -224,13 +272,13 @@ class ImportController extends BaseAuthController {
     	$successCount = 0; //成功记录数
     	$sResource = array();//课时的视频资源数组
     	foreach ($resource as $k => $v){
-    		$v['keyList'] = str_replace('，',',',$v['keyList']);
+    		/* $v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
     		unset($v['keyList']);
     		foreach ($_keys as $k1 => $v1){
     			$v['keyList'] .= array_search($v1, $keys).',';
     		}
-    		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1);
+    		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1); */
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;

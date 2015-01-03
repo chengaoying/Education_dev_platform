@@ -10,7 +10,7 @@ return array(
 		'courseType'	=>	array(
 			'type'	=> 'array',
 			'title'	=> '课程类型',
-			'value' => array(1 => '基础', 2 => '拓展'),
+			'value' => array(1 => '基础', 2 => '专题', 3 => '拓展'),
 			'info'	=> '',
 		),
 		
@@ -63,7 +63,7 @@ return array(
 		'keys'	=>	array(
 			'type'	=> 'array',
 			'title'	=> '关键字列表',
-			'value' => array(1 => '特别推荐', 2 => '一般推荐'),
+			'value' => array(1 => '特别推荐一',2=>'特别推荐二', 3 => '一般推荐'),
 			'info'	=> '',
 		),
 		

@@ -23,7 +23,6 @@ class TopicController extends BaseAuthController {
 			$param['where'] = I('post.');
 			$param['sortOrder'] = 'sort asc';
 			$list = D('Topic')->selectPage($param);
-			$list = array_values($list['rows']);
 			$this->ajaxReturn($list);
 		}		
 	}

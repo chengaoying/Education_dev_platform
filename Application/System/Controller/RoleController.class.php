@@ -84,7 +84,6 @@ class RoleController extends BaseAuthController{
 			foreach ($stages as $k=>$v){
 				$data[] = array('id'=>$v['id'],'name'=>$v['name']);
 			}
-			save_log('load',$data);
 		}elseif($type == 'key'){ //关键字
 			$proConf = get_pro_config_content('proConfig');
 			foreach ($proConf['keys'] as $k => $v){

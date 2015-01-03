@@ -80,7 +80,16 @@ class CourseModel extends BaseModel {
 		}
 		
 		//关键字匹配
-		$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
+		if(is_array($where['keys'])){
+			$where['_string'] = '(';
+			for($i=0;$i<count($where['keys']);$i++){
+				$where['_string'] .= ' (`keys` like "%'.$where['keys'][$i].'%") OR';
+			}
+			$where['_string'] = substr($where['_string'],0,strlen($where['_string'])-2);
+			$where['_string'] .= ')';
+		}else{
+			$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
+		}
 		//龄段匹配
 		if($where['stageIds'])
 			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`stageIds` like "%'.$where['stageIds'].'%")';
