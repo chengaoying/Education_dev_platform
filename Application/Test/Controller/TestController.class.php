@@ -96,14 +96,6 @@ class TestController extends \Think\Controller {
 		
 		//$this->cenvertData();
 		//$str = "/static/v1/hd/images/common/channel/recommend_course.png,/static/v1/hd/images/common/channel/recommend_course_over.png";
-		$str = "test,test";
-		//dump($str);
-		//$c = $this->getDelimiterInStr($str);
-
-		$arr = explode('1', $str);
-	
-		dump($arr);
-    	exit;
 		$this->display();
 	}
 	

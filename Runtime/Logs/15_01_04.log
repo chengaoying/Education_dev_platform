@@ -6082,3 +6082,207 @@ NOTIC: [8] Undefined index: 0 D:\home\coding\zendstudio\edu\Education_dev_platfo
 NOTIC: [8] Undefined variable: _keys D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\CourseModel.class.php 第 50 行.
 NOTIC: [8] Undefined variable: _stages D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\CourseModel.class.php 第 61 行.
 
+[ 2015-01-04T23:01:53+08:00 ] 127.0.0.1 /System/Public/login/ajax/true.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000754s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001085s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002480s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.004089s ]
+SQL: SELECT `id`,`lastTime`,`lastIp` FROM `t_sys_user` WHERE ( `name` = 'admin' ) AND ( `password` = '21232f297a57a5a743894a0e4a801fc3' ) AND ( `status` = 1 ) LIMIT 1   [ RunTime:0.000393s ]
+SQL: UPDATE `t_sys_user` SET `lastTime`='2015-01-04 23:01:52',`lastIp`='127.0.0.1' WHERE ( `id` = 1 ) [ RunTime:0.230342s ]
+
+[ 2015-01-04T23:01:56+08:00 ] 127.0.0.1 /System/Course/index
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003013s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003889s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000456s ]
+SQL: SHOW COLUMNS FROM `t_course` [ RunTime:0.004135s ]
+NOTIC: [8] Undefined index: isLogic E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 172 行.
+NOTIC: [8] Undefined index: keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 83 行.
+NOTIC: [8] Undefined index: keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 91 行.
+NOTIC: [8] Undefined index: _string E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 91 行.
+NOTIC: [8] Undefined index: stageIds E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 94 行.
+NOTIC: [8] Undefined index: fieldExcept E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 176 行.
+NOTIC: [8] Undefined index: initPage E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 188 行.
+NOTIC: [8] Undefined index: page E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 189 行.
+NOTIC: [8] Undefined index: pageSize E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\BaseModel.class.php 第 189 行.
+NOTIC: [8] Undefined index: field E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 32 行.
+SQL: SELECT * FROM `t_course` WHERE ( `sort` = 0 ) AND ( (`keys` like "%%")  ) ORDER BY sort asc LIMIT 0,50   [ RunTime:0.000775s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_course` WHERE ( `sort` = 0 ) AND ( (`keys` like "%%")  ) LIMIT 1   [ RunTime:0.000327s ]
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SHOW COLUMNS FROM `t_channel` [ RunTime:0.004267s ]
+SQL: SELECT * FROM `t_channel` WHERE ( `status` = 1 ) ORDER BY sort  [ RunTime:0.000568s ]
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined variable: arr E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 67 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\ChannelModel.class.php 第 59 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 50 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 50 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 50 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _keys E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 50 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 2002 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 43 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 44 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+NOTIC: [8] Undefined index: 0 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 41 行.
+NOTIC: [8] Undefined variable: _stages E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\CourseModel.class.php 第 61 行.
+
+[ 2015-01-04T23:02:41+08:00 ] 127.0.0.1 /System/Cache/update.html?_=1420383761046
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001587s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005963s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() E:\home\code\zendstudio\Education_dev_platform\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.003941s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000596s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000226s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008038s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008170s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000523s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000831s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000965s ]
+

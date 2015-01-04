@@ -1,0 +1,6 @@
+SELECT * FROM `t_role_course` WHERE ( `userId` = 6 ) ORDER BY sort asc LIMIT 0,10  
+SELECT * FROM `t_role_course` WHERE ( `userId` = 6 ) ORDER BY sort asc LIMIT 0,10  
+SELECT * FROM `t_role_course` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role_course` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_role_course` WHERE ( `userId` = 6 ) ORDER BY id asc LIMIT 0,10  
+SELECT * FROM `t_section` WHERE ( `topicId` IN ('') ) ORDER BY sort asc LIMIT 0,10  

@@ -20,13 +20,18 @@ class CourseLogic extends BaseLogic {
 	}
 	
 	/**
-	 * 查询角色的课程列表
-	 * @param int $roleId	角色id
+	 * 查询用户购买的课程列表
+	 * @param int $userId	用户id
 	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
-	public function queryRoleCourseList($roleId, $pageNo, $pageSize){
+	public function queryUserCourseList($userId, $pageNo, $pageSize){
+		$param['where']['userId'] = $userId;
+		$param['page'] 		= $pageNo;
+		$param['pageSize'] 	= $pageSize;
 		
+		$data = D('RoleCourse')->selectPage($param);
+		return $data;
 	}
 	
 	/**
