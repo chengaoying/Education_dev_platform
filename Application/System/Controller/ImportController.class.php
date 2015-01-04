@@ -142,6 +142,7 @@ class ImportController extends BaseAuthController {
     		$v['keys'] = substr($v['keys'], 0, strlen($v['keys'])-1);
     		
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
+    		if(empty($v['privilege'])) $v['privilege'] = 1;
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;
     		

@@ -43,6 +43,7 @@
 	所属龄段：<?php echo ($stageHtml); ?>
 	出版商：<?php echo ($pressHtml); ?>
 	课程类型：<?php echo ($typeHtml); ?> 
+	权限：<?php echo ($privilegeHtml); ?>
 	科目：<?php echo ($subjectHtml); ?>    
 	关键字：<?php echo ($keysHtml); ?>
 	状态：<?php echo ($statusHtml); ?>
@@ -97,7 +98,12 @@ $(function(){
             {field:'pressId',title:'出版商',sortable:false,width:80},
             {field:'session',title:'学期',sortable:false,width:60},           
             {field:'subject',title:'科目',sortable:false,width:80},           
-            {field:'typeId',title:'类型',sortable:false,width:60},           
+            {field:'typeId',title:'类型',sortable:false,width:60}, 
+            {field:'privilege',title:'权限',sortable:true,width:60,
+            	formatter:function(value,row,index){
+            		return value==1 ? "收费" : "<font color=red>免费</font>";
+            	}
+            },           
             {field:'price',title:'价格',sortable:false,width:60},           
             {field:'midLibId',title:'期中考试题库ID',sortable:false,width:120},           
             {field:'finalLibId',title:'期末考试题库ID',sortable:false,width:120},           

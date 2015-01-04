@@ -9,6 +9,17 @@ class CourseLogic extends BaseLogic {
 	
 	
 	/**
+	 * 查询用户订购的单个课程
+	 * @param int $roleId	角色id
+	 * @param int $courseId 课程id
+	 * @param int $pageNo 	页号
+	 * @param int $pageSize 每页记录数
+	 */
+	public function queryUserCourseByCourseId($userId, $courseId, $pageNo, $pageSize){
+		
+	}
+	
+	/**
 	 * 查询角色的课程列表
 	 * @param int $roleId	角色id
 	 * @param int $pageNo	页号

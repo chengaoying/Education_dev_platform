@@ -17,25 +17,19 @@ class RoleWrongLibraryModel extends BaseModel {
 	);
 	
 	
-	/**
-	 * 重写像类initWhere
-	 * @see Common\Model.BaseModel::initWhere()
-	 */
-	protected function initWhere($condition){
-		if(!is_empty_null($condition['id'])) $where['id'] = $condition['id'];
-		//资源商
-		if(!empty($condition['rpId'])) $where['rpId'] = $condition['rpId'];
-		//题库权限
-		if(!is_empty_null($condition['auth'])) $where['auth'] = $condition['auth'];
-		//状态
-		if(!is_empty_null($condition['status'])) $where['status'] = $condition['status'];
-		
-		return $where;
-	}
+// 	/**
+// 	 * 重写像类initWhere
+// 	 * @see Common\Model.BaseModel::initWhere()
+// 	 */
+// 	protected function initWhere($condition){
+// 		if(!empty($condition['sectionId'])) $where['sectionId'] = $condition['sectionId'];
+// 		return $where;
+// 	}
 	
 	public function findSection($param='',$isTotal=true){
 		$this->initSelectParam($param);
 		$query = '(select name from t_section where id = t_role_wrong_library.sectionId) as sectionName';
+
 		if($param['field']){
 			$findField = $param['field'].','.$query;
 		}else{

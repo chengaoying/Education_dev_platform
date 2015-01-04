@@ -16,37 +16,52 @@ class LibraryLogic extends BaseLogic {
 	public function saveRoleLib($roleId,$data){
 		$param['where']['roleId'] = $roleId;
 		$sectionId = $data['sectionId'];
-		$wrongList = $this->queryRoleWrongLib($roleId, $sectionId,1,1000);
+		$topicId = $data['topicId'];
+		$wrongList = $this->queryRoleWrongLib($roleId,$topicId,$sectionId);
 		$delList = "";
 		$saveList = "";
+		$roleLibrary['roleId'] = $roleId;
+		$roleLibrary['redFlower'] = $data['redFlower'];
+		$roleLibrary['score'] = $data['score'];
 		$i = 0;
-		foreach ($data as $key=>$value){
+// 		return $data['lib'];
+		foreach ($data['lib'] as $key=>$value){
+			$roleLibrary['topicId'] = $value['topicId'];
+			$roleLibrary['sectionId'] = $value['sectionId'];
 			$isSave = true;
 			foreach ($wrongList['rows'] as $key1=>$value1){
 				if($value['itemId']==$value1['itemId']){
 					$isSave = false;
 					$delList.= $value1['id'].",";
-					if($value['state']==0){//0代表答错了
-						unset($value['state']);
-						$saveList[$i] = $value;
+					if($value['status']=='false'){//0代表答错了
+						unset($value['status']);
+						$saveList[] = $value;
 						$i++;
 					}
 				}
 			}
-			if($isSave&&$value['state']==0){
-				unset($value['state']);
+			if($isSave&&$value['status']=='false'){
+				unset($value['status']);
 				$saveList[] = $value;
 				$i++;
 			}
 		}
+		D('RoleLibrary')->saveData($roleLibrary);
 		if($delList!=""){
 			$delList = substr($delList,0,strlen($delList)-1);
 			$param['id'] = array(in,$delList);
 			D('RoleWrongLibrary')->where($param)->delete();
 		}
+// 		return $saveList;
 		if($saveList!=""){
-			return D('RoleWrongLibrary')->addAll($data);
+			$ids  = D('RoleWrongLibrary')->addAll($saveList);
+			if(is_numeric($ids)&&$ids!=0){
+				return result_data(1,'数据保存成功！',null);
+			}else{
+				return result_data(1,'数据保存失败！',null);
+			}
 		}
+		return result_data(1,'数据保存成功！',null);
 	}
 	
 	/**
@@ -58,16 +73,16 @@ class LibraryLogic extends BaseLogic {
 	 * @param int $pageSize 每页记录数
 	 * @return array $data 查询的数组
 	 */
-	public function queryRoleWrongLib($roleId,$topicId,$sectionId,$pageNo=1,$pageSize=6) {
-		$param['where']['roleId'] = $roleId;
+	public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo=1,$s_pageSize=7,$l_pageNo=1,$l_pageSize=6,$isQuerySection = false,$initPage = false) {
+		if($isQuerySection){
+			$data1 = $this->querySection($roleId,$topicId,$s_pageNo,$s_pageSize);
+		}
 		$param['where']['topicId'] = $topicId;
-		$param['where']['page'] = 1;
-		$param['where']['pageSize'] = 10000;
-		$data1 = D('RoleWrongLibrary')->findSection($param);
-		$data1 = assoc_unique($data1['rows'],'sectionId');
+		$param['where']['roleId'] = $roleId;
 		$param['where']['sectionId'] = $sectionId;
-		$param['where']['page'] = $pageNo;
-		$param['where']['pageSize'] = $pageSize;
+		$param['page'] = $l_pageNo;
+		$param['pageSize'] = $l_pageSize;
+        $param['where']['initPage'] = $initPage;
 		$data = D('RoleWrongLibrary')->selectPage($param);
 		$dataExcl = $this->queryLib($topicId,$sectionId);
 		foreach ($data['rows'] as $key=>$value){
@@ -81,17 +96,28 @@ class LibraryLogic extends BaseLogic {
 		return $data;
 	}
 	
+	public function querySection($roleId,$topicId,$s_pageNo,$s_pageSize){
+		$param['where']['topicId'] = $topicId;
+		$param['where']['roleId'] = $roleId;
+		$param['page'] = $s_pageNo;
+		$param['pageSize'] = $s_pageSize;
+		$param['field'] = 't_role_wrong_library.sectionId';
+		$data = D('RoleWrongLibrary')->findSection($param);
+		$data['rows'] = assoc_unique($data['rows'],'sectionId');
+		$data['total'] = count($data['rows']);
+		return $data;
+	}
+	
 	/**
 	 * 查询题库
-	 * @param int $topicId 知识点id
 	 * @param int $sectionId 课程id
 	 * @return array 返回题库内容
 	 */
-	public function queryLib($topicId,$sectionId){
-		$param['where']['sectionId'] = $sectionId;
-		$param['where']['topicId'] = $topicId;
+	public function queryLib($sectionId){
+		$param['sectionId'] = $sectionId;
+// 		$param['where']['topicId'] = $topicId;
 		$data = D('Library')->selectOne($param);
-		$fileUrl = C('UPFILE_LOCAL_PATH').'/lib/test.xls';
+		$fileUrl = C('UPFILE_LOCAL_PATH').'/'.$data['libUrl'];
 		$_temp = readExcelData($fileUrl);
 		foreach ($_temp['data']['library'] as $key=>$value){
 			if($value['kind']=='word'){

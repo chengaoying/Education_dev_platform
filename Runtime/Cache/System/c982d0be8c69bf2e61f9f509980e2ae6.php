@@ -16,6 +16,7 @@
 	<tr><th>学期</th><td><?php echo ($sessionHtml); ?> <em>*</em></td></tr>
 	<tr><th>类型</th><td><?php echo ($typeHtml); ?> <em>*</em></td></tr>
 	<tr><th>科目</th><td><?php echo ($subjectHtml); ?> <em>*</em></td></tr>
+	<tr><th>权限</th><td><?php echo ($privilegeHtml); ?> <em>*</em></td></tr>
 	<tr>
 		<th>价格</th>
 		<td>

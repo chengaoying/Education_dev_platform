@@ -1,0 +1,1 @@
+SELECT *,(select name from t_section where id = t_role_wrong_library.sectionId) as sectionName FROM `t_role_wrong_library` ORDER BY id asc LIMIT 0,10  

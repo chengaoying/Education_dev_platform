@@ -15,6 +15,7 @@ abstract class BaseController extends \Think\Controller {
 	public $isLogined = false;  // 是否登录
 	public $statusNames = array('禁用','启用');
 	public $isShow = array('不显示','显示');
+	public $privilege = array('免费','收费');
 	
 	/**
 	 * 初始化

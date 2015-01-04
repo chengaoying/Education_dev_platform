@@ -94,10 +94,32 @@ class TestController extends \Think\Controller {
 		
 		//$this->readExcelImages();
 		
-		$this->cenvertData();
-		
-    	//exit;
+		//$this->cenvertData();
+		//$str = "/static/v1/hd/images/common/channel/recommend_course.png,/static/v1/hd/images/common/channel/recommend_course_over.png";
+		$str = "test,test";
+		//dump($str);
+		//$c = $this->getDelimiterInStr($str);
+
+		$arr = explode('1', $str);
+	
+		dump($arr);
+    	exit;
 		$this->display();
+	}
+	
+	private function getDelimiterInStr($str){
+		$s = '';
+		dump(strchr($str,PHP_EOL));
+		if(strchr($str,',')){
+			$s = ',';
+		}
+		elseif(strchr($str,'，')){
+			$s = '，';
+		}
+		elseif(strchr($str,PHP_EOL)){
+			$s = PHP_EOL;
+		}
+		return $s;
 	}
 	
 	private function readExcelImages(){

@@ -26,6 +26,7 @@ class CourseController extends BaseAuthController{
 			$subjectHtml   	= $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>'','nullText'=>'请选择','width'=>120));
 					
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>120));
+			$privilegeHtml = $this->getComboBox($this->privilege, 'privilege',array('selVal'=>'-1','nullText'=>'请选择','width'=>120));
  		
 			$this->assign(array(			
 				'buttonStyle'	=> $this->buttonAuthStyle(array('add','edit','del')),
@@ -36,6 +37,7 @@ class CourseController extends BaseAuthController{
 				'keysHtml'		=> $keysHtml,
 				'subjectHtml'   => $subjectHtml,
 				'statusHtml'	=> $statusHtml,						
+				'privilegeHtml'	=> $privilegeHtml,						
 			));
 			$this->display();
 		} else {
@@ -90,7 +92,8 @@ class CourseController extends BaseAuthController{
 			$subjectHtml   	= $this->getComboBox($proConf['subject'], 'subject',array('selVal'=>$course['subject'],'nullText'=>'请选择','width'=>150));
 			
 			$statusHtml 	= $this->getComboBox($this->statusNames, 'status',array('selVal'=>$course['status'],'nullText'=>'','width'=>150));
-			
+			$privilegeHtml = $this->getComboBox($this->privilege, 'privilege',array('selVal'=>$course['privilege'],'nullText'=>'','width'=>150));
+				
 			$this->assign(array(
 				'course'	  => $course,
 				'channelHtml' => $channelHtml,
@@ -100,6 +103,7 @@ class CourseController extends BaseAuthController{
 				'typeHtml'    => $typeHtml,
 				'subjectHtml' => $subjectHtml,
 				'statusHtml'  => $statusHtml,
+				'privilegeHtml'  => $privilegeHtml,
 			));	
 			$this->display('edit');
 		} else {
