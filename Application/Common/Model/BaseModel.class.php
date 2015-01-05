@@ -28,7 +28,10 @@ class BaseModel extends \Think\Model {
 	 * @param arr $param
 	 */
 	public function selectOne($where = array(),$field = '',$fieldExcept = false){
-        $data = $this->where($where)->field($field,$fieldExcept)->limit(1)->find();
+		$order = $where['sortOrder'];
+		unset($where['sortOrder']);
+        $data = $this->where($where)->field($field,$fieldExcept)->order($order)->limit(1)->find();
+		//save_log('execute_sql',array('sql'=>$this->getLastSql()));
         return $data;
 	}
 	

@@ -87,7 +87,7 @@ $(function(){
         singleSelect:true,//只允许选择单行
         
 	    sortName:'id',//默认排序字段
-		sortOrder:'desc',//默认排序方式 'desc' 'asc'
+		sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'id',
 	    columns:[[             
             {field:'id',title:'ID',sortable:true,align:'right',width:60},

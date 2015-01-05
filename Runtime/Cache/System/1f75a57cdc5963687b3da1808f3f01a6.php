@@ -87,6 +87,7 @@ $(function(){
         remoteSort:true,//是否通过远程服务器对数据排序
         singleSelect:true,//只允许选择单行
         
+		//pagination:false, //分页栏
 		sortName:'sort',//默认排序字段
 		sortOrder:'asc',//默认排序方式 'desc' 'asc'
 		idField : 'id',

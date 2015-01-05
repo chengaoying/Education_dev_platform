@@ -18,6 +18,9 @@ class LibraryLogic extends BaseLogic {
 		$sectionId = $data['sectionId'];
 		$topicId = $data['topicId'];
 		$wrongList = $this->queryRoleWrongLib($roleId,$topicId,$sectionId);
+		if($wrongList['status']==0){
+			return $wrongList;
+		}
 		$delList = "";
 		$saveList = "";
 		$roleLibrary['roleId'] = $roleId;
@@ -74,8 +77,11 @@ class LibraryLogic extends BaseLogic {
 	 * @return array $data 查询的数组
 	 */
 	public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo=1,$s_pageSize=7,$l_pageNo=1,$l_pageSize=6,$isQuerySection = false,$initPage = false) {
+		
+		
 		if($isQuerySection){
 			$data1 = $this->querySection($roleId,$topicId,$s_pageNo,$s_pageSize);
+			$score = $this->queryScore($topicId, $roleId, $sectionId);
 		}
 		$param['where']['topicId'] = $topicId;
 		$param['where']['roleId'] = $roleId;
@@ -84,7 +90,10 @@ class LibraryLogic extends BaseLogic {
 		$param['pageSize'] = $l_pageSize;
         $param['where']['initPage'] = $initPage;
 		$data = D('RoleWrongLibrary')->selectPage($param);
-		$dataExcl = $this->queryLib($topicId,$sectionId);
+		$dataExcl = $this->queryLib($sectionId);
+		if($dataExcl['status']==0){
+			return $dataExcl;
+		}
 		foreach ($data['rows'] as $key=>$value){
 			foreach ($dataExcl['content'] as $key1=>$value1){
 				if($value['itemId']==$value1['id']){
@@ -93,7 +102,17 @@ class LibraryLogic extends BaseLogic {
 			}
 		}
 		$data['sectionList'] = $data1;
+		$data['score'] = $score;
 		return $data;
+	}
+	
+	protected  function queryScore($topicId,$roleId,$sectionId) {
+		$param['topicId'] = $topicId;
+		$param['roleId'] = $roleId;
+		$param['sectionId'] = $sectionId;
+		$param['sortOrder'] = 'id desc';
+		$scoreArr = D('RoleLibrary')->selectOne($param);
+		return $scoreArr['score'];
 	}
 	
 	public function querySection($roleId,$topicId,$s_pageNo,$s_pageSize){
@@ -115,10 +134,13 @@ class LibraryLogic extends BaseLogic {
 	 */
 	public function queryLib($sectionId){
 		$param['sectionId'] = $sectionId;
-// 		$param['where']['topicId'] = $topicId;
 		$data = D('Library')->selectOne($param);
+		if($data==null){
+			return result_data(0,'题库不存在！',null);
+		}
 		$fileUrl = C('UPFILE_LOCAL_PATH').'/'.$data['libUrl'];
 		$_temp = readExcelData($fileUrl);
+		$_temp['data'] = $this->cenvertData($_temp['data']);
 		foreach ($_temp['data']['library'] as $key=>$value){
 			if($value['kind']=='word'){
 				$_temp['data']['library'][$key]['itemList'][] = $_temp['data']['library'][$key]['answer0'];
@@ -147,4 +169,56 @@ class LibraryLogic extends BaseLogic {
 		$data['content'] = $_temp['data']['library'];
 		return $data;
 	}
+	
+	
+	/**
+	 * 把表格中字段转换成英文（与数据库字段对应）
+	 * @param unknown_type $data
+	 */
+	private function cenvertData($data){
+	
+		$tables = array('题库'=>'library');
+	
+		$fields['library'] = array(
+				'编号'=>'id',
+				'题目类型(文字/图片)'=>'kind',
+				'题目'=>'title',
+				'选项A'=>'answer0',
+				'选项B'=>'answer1',
+				'选项C'=>'answer2',
+				'选项D'=>'answer3',
+				'分值'=>'score',
+				'正确答案'=>'correct'
+		);
+	
+		foreach ($data as $k => $v){
+			$data[$tables[$k]] = $v;
+			unset($data[$k]);
+		}
+	
+		foreach ($data as $k1 => $v1){
+			foreach ($v1 as $k2 => $v2){
+				foreach ($v2 as $k3 => $v3){
+					$data[$k1][$k2][$fields[$k1][$k3]] = $v3;
+					if($data[$k1][$k2]['correct']=='A'){
+						$data[$k1][$k2][$fields[$k1][$k3]]=1;
+					}else if($data[$k1][$k2]['correct']=='B'){
+						$data[$k1][$k2][$fields[$k1][$k3]]=2;
+					}else if($data[$k1][$k2]['correct']=='C'){
+						$data[$k1][$k2][$fields[$k1][$k3]]=3;
+					}else if($data[$k1][$k2]['correct']=='D'){
+						$data[$k1][$k2][$fields[$k1][$k3]]=4;
+					}
+					if($data[$k1][$k2]['kind']=='文字'){
+						$data[$k1][$k2][$fields[$k1][$k3]]='word';
+					}else if($data[$k1][$k2]['kind']=='图片'){
+						$data[$k1][$k2][$fields[$k1][$k3]]='pic';
+					}
+					unset($data[$k1][$k2][$k3]);
+				}
+			}
+		}
+		return $data;
+	}
+	
 }
