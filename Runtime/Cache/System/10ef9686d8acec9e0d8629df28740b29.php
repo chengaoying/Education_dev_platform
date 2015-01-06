@@ -41,6 +41,7 @@
 	ID：<input type="text" name="id" placeholder="课时ID" style="width: 50px"></input>
 	课时名称：<input type="text" name="name" placeholder="课时名称" style="width: 100px"></input>
 	所属知识点ID：<input type="text" name="topicId" placeholder="知识点ID" style="width: 50px"></input>
+	权限：<?php echo ($privilegeHtml); ?>
 	状态：<?php echo ($statusHtml); ?>
 			 
 				<a href="javascript:search(datagrid,'#search_form');" class="easyui-linkbutton" iconCls="icon-search" plain="true" >查 询</a>
@@ -92,7 +93,12 @@ $(function(){
             {field:'libId',title:'练习题库ID',sortable:false,width:80},
             {field:'previewList',title:'预习ID列表',sortable:false,width:100},
             {field:'lessonList',title:'正文ID列表',sortable:false,width:100},
-            {field:'imgUrl',title:'图片路径',sortable:false,width:120},           
+            {field:'imgUrl',title:'图片路径',sortable:false,width:120}, 
+            {field:'privilege',title:'权限',sortable:true,width:60,
+            	formatter:function(value,row,index){
+            		return value==1 ? "收费" : "<font color=red>免费</font>";
+            	}
+            },          
             {field:'description',title:'课时描述',sortable:false,width:200},           
             {field:'sort',title:'排序',sortable:true,width:80},
             {field:'status',title:'状态',sortable:true,width:60,

@@ -18,7 +18,7 @@ class LibraryLogic extends BaseLogic {
 		$sectionId = $data['sectionId'];
 		$topicId = $data['topicId'];
 		$wrongList = $this->queryRoleWrongLib($roleId,$topicId,$sectionId);
-		if($wrongList['status']==0){
+		if($wrongList==null){
 			return $wrongList;
 		}
 		$delList = "";
@@ -26,8 +26,11 @@ class LibraryLogic extends BaseLogic {
 		$roleLibrary['roleId'] = $roleId;
 		$roleLibrary['redFlower'] = $data['redFlower'];
 		$roleLibrary['score'] = $data['score'];
+		$userParam['id'] = $roleId;
+		$userData = D('Role')->selectOne($userParam);
+		$userParam['point'] = $userData['point']+$data['redFlower'];
+		D('Role')->save($userParam);
 		$i = 0;
-// 		return $data['lib'];
 		foreach ($data['lib'] as $key=>$value){
 			$roleLibrary['topicId'] = $value['topicId'];
 			$roleLibrary['sectionId'] = $value['sectionId'];
@@ -61,7 +64,7 @@ class LibraryLogic extends BaseLogic {
 			if(is_numeric($ids)&&$ids!=0){
 				return result_data(1,'数据保存成功！',null);
 			}else{
-				return result_data(1,'数据保存失败！',null);
+				return result_data(0,'数据保存失败！',null);
 			}
 		}
 		return result_data(1,'数据保存成功！',null);
@@ -77,8 +80,6 @@ class LibraryLogic extends BaseLogic {
 	 * @return array $data 查询的数组
 	 */
 	public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo=1,$s_pageSize=7,$l_pageNo=1,$l_pageSize=6,$isQuerySection = false,$initPage = false) {
-		
-		
 		if($isQuerySection){
 			$data1 = $this->querySection($roleId,$topicId,$s_pageNo,$s_pageSize);
 			$score = $this->queryScore($topicId, $roleId, $sectionId);
@@ -92,7 +93,7 @@ class LibraryLogic extends BaseLogic {
 		$data = D('RoleWrongLibrary')->selectPage($param);
 		$dataExcl = $this->queryLib($sectionId);
 		if($dataExcl['status']==0){
-			return $dataExcl;
+			return null;
 		}
 		foreach ($data['rows'] as $key=>$value){
 			foreach ($dataExcl['content'] as $key1=>$value1){

@@ -14,9 +14,11 @@ class SectionController extends BaseAuthController {
 	public function indexAct() {		
 		if(!IS_POST) {
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>'-1','nullText'=>'请选择','width'=>80));
+			$privilegeHtml = $this->getComboBox($this->privilege, 'privilege',array('selVal'=>'-1','nullText'=>'请选择','width'=>120));
 			$this->assign(array(			
 				'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
-				'statusHtml'  => $statusHtml,			
+				'statusHtml'  => $statusHtml,	
+				'privilegeHtml'	=> $privilegeHtml,
 			));
 			$this->display();
 		} else {
@@ -59,10 +61,12 @@ class SectionController extends BaseAuthController {
 				$section['status'] = 1; //状态默认为启用
 			}	
 			$statusHtml = $this->getComboBox($this->statusNames, 'status',array('selVal'=>$section['status'],'nullText'=>'','width'=>150));
-			
+			$privilegeHtml = $this->getComboBox($this->privilege, 'privilege',array('selVal'=>$section['privilege'],'nullText'=>'','width'=>150));
+				
 			$this->assign(array(
 				'section'     => $section,
 				'statusHtml'  => $statusHtml,
+				'privilegeHtml'  => $privilegeHtml,
 			));	
 			$this->display( 'edit');
 		} else {

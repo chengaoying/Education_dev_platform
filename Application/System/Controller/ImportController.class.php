@@ -229,6 +229,7 @@ class ImportController extends BaseAuthController {
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;
+    		if(empty($v['privilege'])) $v['privilege'] = 1;
     		
     		$_r = D('Section')->_saveData($v);
     		if(!$_r['status']){

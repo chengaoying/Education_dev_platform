@@ -39,6 +39,7 @@
 				onclick="upfileDialog(1,'<?php echo ($thumb); ?>','课时图片：<?php echo ($topic[name]); ?>',1,1,'#imgUrl','\r\n')"></a>
 		</td>
 	</tr>
+	<tr><th>权限</th><td><?php echo ($privilegeHtml); ?> <em>*</em></td></tr>
 	<tr>
 		<th>知识点描述</th>
 		<td>
