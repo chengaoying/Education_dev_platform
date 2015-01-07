@@ -35,7 +35,7 @@ class RoleWrongLibraryModel extends BaseModel {
 		}else{
 			$findField = '*,'.$query;
 		}
-		$list['rows'] = $this->where($param['where'])->field($findField,$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();
+		$list['rows'] = $this->where($param['where'])->field($findField,$param['fieldExcept'])->order($param['sortOrder'])->select();
 		save_log('execute_sql',array('sql'=>$this->getLastSql()));
 		if($isTotal) $list['total'] = $this->where($param['where'])->count();
 		return $this->returnListData($list);

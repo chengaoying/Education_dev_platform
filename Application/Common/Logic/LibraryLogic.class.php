@@ -125,6 +125,17 @@ class LibraryLogic extends BaseLogic {
 		$data = D('RoleWrongLibrary')->findSection($param);
 		$data['rows'] = assoc_unique($data['rows'],'sectionId');
 		$data['total'] = count($data['rows']);
+		if ($data ['total'] > $s_pageSize) {
+			$i=0;
+			foreach ( $data ['rows'] as $key => $value ) {
+				if($i>=($s_pageNo - 1) * $s_pageSize&&$i<$s_pageNo * $s_pageSize){
+					$newData[] = $value;
+				}
+				$i++;
+			}
+			unset($data['rows']);
+		}
+		$data['rows'] = $newData;
 		return $data;
 	}
 	

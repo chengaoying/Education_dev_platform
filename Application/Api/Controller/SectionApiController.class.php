@@ -28,4 +28,15 @@ class SectionApiController extends BaseApiController{
 		return $data;
 	}
 	
+	/**
+	 * 根据privilege(免费/收费)查找该知识点下的课时列表
+	 * @param arr $topicId	知识点id数组
+	 * @param int $pageNo	页号
+	 * @param int $pageSize	每页记录数
+	 */
+	public function querySectionListByPrivilege($privilege, $pageNo, $pageSize){
+		$data = D('Section','Logic')->querySectionListByPrivilege($privilege, $pageNo, $pageSize);
+		return $data;
+	}
+	
 }

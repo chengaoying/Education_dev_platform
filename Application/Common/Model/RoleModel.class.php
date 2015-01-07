@@ -10,8 +10,8 @@ class RoleModel extends BaseModel {
 	//数据验证
 	protected $_validate = array(
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
- 		array('userId','require','用户ID不能为空！',self::MUST_VALIDATE,''),
-		array('stageId','require','段龄ID不能为空！',self::MUST_VALIDATE,''),
+ 		array('userId','require','用户ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
+		array('stageId','require','段龄ID不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
 		//array('sex','require','用户性别不能为空！',self::MUST_VALIDATE,''), 
 		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'),
 	);
