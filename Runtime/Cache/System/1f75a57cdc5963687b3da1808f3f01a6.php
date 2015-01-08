@@ -39,7 +39,7 @@
 	        	
 	ID：<input type="text" name="id" placeholder="课程ID" style="width: 120px"></input>
 	课程名称：<input type="text" name="name" placeholder="课程名称" style="width: 120px"></input>
-	所属栏目：<?php echo ($channelHtml); ?>
+	所属顶级分类：<?php echo ($channelHtml); ?>
 	所属龄段：<?php echo ($stageHtml); ?>
 	出版商：<?php echo ($pressHtml); ?>
 	课程类型：<?php echo ($typeHtml); ?> 

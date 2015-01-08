@@ -271,3 +271,22 @@ function array_unique_fb($array2D){
 	return $temp;
 }
 
+/**
+ * 获取字符传中的分隔符(英文逗号(,)、中文逗号(，)、回车键)
+ * @param unknown_type $str
+ */
+function getDelimiterInStr($str){
+	$s = ',';
+	if(strchr($str,',')){
+		$s = ',';
+	}
+	elseif(strchr($str,'，')){
+		$s = '，';
+	}
+	elseif(strchr($str,PHP_EOL)){
+		$s = PHP_EOL;
+	}
+	return $s;
+}
+
+

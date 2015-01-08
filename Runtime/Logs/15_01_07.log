@@ -2146,3 +2146,24 @@ NOTIC: [8] Undefined index: field D:\home\coding\zendstudio\edu\Education_dev_pl
 SQL: SELECT * FROM `t_stage` ORDER BY sort asc LIMIT 0,50   [ RunTime:0.001161s ]
 SQL: SELECT COUNT(*) AS tp_count FROM `t_stage` LIMIT 1   [ RunTime:0.000932s ]
 
+[ 2015-01-07T19:06:42+08:00 ] 192.168.0.152 /System/Cache/update.html?_=1420628802772
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000875s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001947s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002709s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000950s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000123s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000285s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007805s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007910s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000297s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000594s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000683s ]
+

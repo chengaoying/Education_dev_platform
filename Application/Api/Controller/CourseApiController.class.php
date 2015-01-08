@@ -45,6 +45,28 @@ class CourseApiController extends BaseApiController{
 	}
 	
 	/**
+	 * 推荐课程查询:(有帐号的课程推荐):
+	 * 早教：关键字（特别推荐一/特别推荐二）,角色月龄对应的课程
+	 * 幼教：关键字（特别推荐一/特别推荐二）,当前周数对应的课程
+	 * 小学以上：关键字（特别推荐一/特别推荐二），
+	 * @param int $stageId	龄段id
+	 * @param array $param  查询参数	格式：array('key'=>'月龄/周'),(推荐课程的关键字=>课程的月龄（早教）/课程的周数（幼教）)
+	 */
+	public function queryRecommendCourse($stageId, $keys){
+		$data = D('Course','Logic')->queryRecommendCourse($stageId, $keys);
+		return $data;
+	}
+	
+	/**
+	 * 推荐课程查询:(游客的课程推荐):
+	 * @param array $keys  关键字数组，格式：array(k1,k2,k3).k1为特别推荐一，k2为特别推荐二，k3为一般推荐
+	 */
+	public function queryRandomRecommendCourse($keys){
+		$data = D('Course','Logic')->queryRandomRecommendCourse($keys);
+		return $data;
+	}
+	
+	/**
 	 * 通过顶级分类（二级栏目）查询课程列表
 	 * @param int $chId		分类（栏目）id
 	 * @param int $pageNo	页号

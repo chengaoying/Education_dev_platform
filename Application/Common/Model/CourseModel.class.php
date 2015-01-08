@@ -37,11 +37,21 @@ class CourseModel extends BaseModel {
 		$stages   = get_cache('Stage');
 		$proConf  = get_pro_config_content('proConfig');
 		foreach ($list['rows'] as $k=>$v){
-			$list['rows'][$k]['chId']	 = $channels[$v['chId']]['name'];
 			$list['rows'][$k]['pressId'] = $proConf['press'][$v['pressId']];
 			$list['rows'][$k]['typeId']  = $proConf['courseType'][$v['typeId']];
 			$list['rows'][$k]['session']  = $proConf['session'][$v['session']];
 			$list['rows'][$k]['subject'] = $proConf['subject'][$v['subject']];
+			
+			$c = explode(',', $v['chId']);
+			$c = array_filter($c);
+			if(count($c)>0){
+				foreach ($c as $k3=>$v3){
+					$_c .= $channels[$v3]['name'].',';
+				}
+				$list['rows'][$k]['chId'] = $_c;
+				unset($_c);
+			}
+			unset($keys);
 			
 			$keys = explode(',', $v['keys']);
 			$keys = array_filter($keys);
@@ -90,12 +100,23 @@ class CourseModel extends BaseModel {
 		}else{
 			$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
 		}
+		
+		//顶级分类匹配
+		if($where['chId'])
+			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`chId` like "%'.$where['chId'].'%")';
+		
 		//龄段匹配
 		if($where['stageIds'])
 			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`stageIds` like "%'.$where['stageIds'].'%")';
 		
+		//课程名称匹配
+		if($where['name'])
+			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`name` like "%'.$where['name'].'%")';
+		
 		unset($where['keys']);
+		unset($where['chId']);
 		unset($where['stageIds']);
+		unset($where['name']);
 		
 		return $where;
 	}

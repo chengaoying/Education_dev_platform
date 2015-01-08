@@ -74,7 +74,7 @@ class LibraryController extends BaseAuthController {
 			$this->assign(array(
 				'res'	=> $resource,
 				'thumb'		=> '',
-				'allSection' =>$this->getComboBox($allSection,'courseId',array('selVal'=>$resource['sectionId'],'width'=>250)),
+				'allSection' =>$this->getComboBox($allSection,'sectionId',array('selVal'=>$resource['sectionId'],'width'=>250)),
 				'rpHtml' => $this->getComboBox($proConf['rp'],'rpId',array('selVal'=>$resource['rpId'],'width'=>200)),
 				'statusHtml'=> $this->getComboBox($this->statusNames, 'status',array('selVal'=>$resource['status'],'nullText'=>'')),
 			));	

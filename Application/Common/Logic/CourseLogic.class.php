@@ -53,6 +53,62 @@ class CourseLogic extends BaseLogic {
 	}
 	
 	/**
+	 * 推荐课程查询(有帐号的课程推荐):
+	 * 早教：关键字（特别推荐一/特别推荐二）,角色月龄对应的课程
+	 * 幼教：关键字（特别推荐一/特别推荐二）,当前周数对应的课程
+	 * 小学以上：关键字（特别推荐一/特别推荐二），
+	 * @param int $stageId	龄段id
+	 * @param array $param  查询参数	格式：array('key'=>'月龄/周'),(推荐课程的关键字=>课程的月龄（早教）/课程的周数（幼教）)
+	 */
+	public function queryRecommendCourse($stageId, $keys){
+		$param['where']['stageIds'] = $stageId;
+		foreach ($keys as $k => $v){
+			$param['where']['keys'] = $k;
+			$param['where']['name'] = $v;
+			$param['page'] 		= 1;
+			$param['pageSize'] 	= 1;
+			$_data = D('Course')->selectPage($param);
+			$data[$k] = $_data['rows'][0];
+			unset($param['where']['keys']);
+			unset($param['where']['name']);
+		}
+		return $data;
+	}
+	
+	/**
+	 * 推荐课程查询:(游客的课程推荐):
+	 * @param array $keys  关键字数组，格式：array(k1,k2,k3).k1为特别推荐一，k2为特别推荐二，k3为一般推荐
+	 */
+	public function queryRandomRecommendCourse($keys){
+		$param['page'] 		= 1;
+		$param['pageSize'] 	= 10;
+		$param['sortOrder'] = 'sort asc';
+		
+		for($i=0; $i<count($keys); $i++){
+			$param['where']['keys'] = $keys[$i];
+			if($i<2){
+				$_data = D('Course')->selectPage($param);
+				$r = rand(0, count($_data['rows'])-1);
+				$data[$keys[$i]] = $_data['rows'][$r];
+			}else{
+				$_data = D('Course')->selectPage($param);
+				$r1 = rand(0, count($_data['rows'])-1);
+				$r2 = rand(0, count($_data['rows'])-1);
+				$r3 = rand(0, count($_data['rows'])-1);
+				$r4 = rand(0, count($_data['rows'])-1);
+				$data[$keys[$i]][0] = $_data['rows'][$r1];
+				$data[$keys[$i]][1] = $_data['rows'][$r2];
+				$data[$keys[$i]][2] = $_data['rows'][$r3];
+				$data[$keys[$i]][3] = $_data['rows'][$r4];
+			}
+			unset($param['where']['keys']);
+			unset($_data);
+		}
+		
+		return $data;
+	}
+	
+	/**
 	 * 通过顶级分类（二级栏目）查询课程列表
 	 * @param int $chId		分类（栏目）id
 	 * @param int $pageNo	页号

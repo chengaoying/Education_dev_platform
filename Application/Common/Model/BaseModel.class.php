@@ -31,7 +31,7 @@ class BaseModel extends \Think\Model {
 		$order = $where['sortOrder'];
 		unset($where['sortOrder']);
         $data = $this->where($where)->field($field,$fieldExcept)->order($order)->limit(1)->find();
-		//save_log('execute_sql',array('sql'=>$this->getLastSql()));
+		save_log('execute_sql',array('sql'=>$this->getLastSql()));
         return $data;
 	}
 	
@@ -47,7 +47,7 @@ class BaseModel extends \Think\Model {
         }else{
             $list['rows'] = $this->where($param['where'])->field($param['field'],$param['fieldExcept'])->order($param['sortOrder'])->page($param['page'],$param['pageSize'])->select();        
         }
-		//save_log('execute_sql',array('sql'=>$this->getLastSql()));
+		save_log('execute_sql',array('sql'=>$this->getLastSql()));
         if($isTotal) $list['total'] = $this->where($param['where'])->count();
 		return $this->returnListData($list);
 	}

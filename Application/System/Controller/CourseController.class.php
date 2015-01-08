@@ -127,6 +127,11 @@ class CourseController extends BaseAuthController{
 			foreach ($proConf['keys'] as $k => $v){
 				$data[] = array('id'=>$k,'name'=>$v);
 			}
+		}elseif($type == 'channel'){//顶级分类(二级栏目)
+			$class = $this->getClass();
+			foreach ($class as $k => $v){
+				$data[] = array('id'=>$v['id'],'name'=>$v['name']);
+			}
 		}
 		
 		$this->ajaxReturn($data);

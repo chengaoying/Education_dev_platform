@@ -363,8 +363,15 @@ class ImportController extends BaseAuthController {
      * @param arr $class
      */
     private function getKeyByName($name,$class){
-    	foreach ($class as $k => $v){
-    		if($v['name'] == $name) return $v['id'];
+    	$name = str_replace('，',',',$name);
+    	$name = explode(',', $name);
+    	foreach ($name as $key => $val){
+    		foreach ($class as $k => $v){
+    			if($v['name'] == $val){
+    				$_classIds .=  $v['id'].',';
+    			}
+    		}
     	}
+    	return $_classIds;
     }
 }

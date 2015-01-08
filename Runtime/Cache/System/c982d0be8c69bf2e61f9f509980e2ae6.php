@@ -7,7 +7,11 @@
 			<input type="text" id="name" name="name" value="<?php echo ($course['name']); ?>"/><em>*</em>
 		</td>
 	</tr>
-	<tr><th>所属顶级分类</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr>
+	<!-- <tr><th>所属顶级分类</th><td><?php echo ($channelHtml); ?> <em>*</em></td></tr> -->
+	<tr><th>所属顶级分类</th><td>
+		<input type="hidden" id="aachannel" name="chId" value="<?php echo ($course['chId']); ?>"/>
+		<input id="combobox_channel"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
+	</td></tr>
 	<tr><th>龄段</th><td>
 		<input type="hidden" id="aastage" name="stageIds" value="<?php echo ($course['stageIds']); ?>"/>
 		<input id="combobox_stage"  class="easyui-combobox" data-options="valueField:'id',textField:'name'" style="width:150px" /> (支持多选)
@@ -87,6 +91,23 @@
 
 <script>
 $(function(){	
+	
+	/* 顶级分类多选框  */
+	$("#combobox_channel").combobox({
+		multiple:true,
+		separator:',',
+		onSelect: function(){			
+			var vals = $("#combobox_channel").combobox('getValues');
+			$("#aachannel").val(vals);
+		},
+		onUnselect:function(){
+			var vals = $("#combobox_channel").combobox('getValues');
+			$("#aachannel").val(vals)
+		},	
+		onLoadSuccess: function(){
+			$("#combobox_channel").combobox("setValues","<?php echo ($course['chId']); ?>".split(','));
+		},		
+	}).combobox('reload',"<?php echo U('Course/load');?>" + "?type=channel");
 	
 	/* 龄段多选框  */
 	$("#combobox_stage").combobox({
