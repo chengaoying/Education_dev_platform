@@ -1424,3 +1424,83 @@ NOTIC: [2] Invalid argument supplied for foreach() D:\home\coding\zendstudio\edu
 NOTIC: [8] Undefined variable: arr D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\ChannelModel.class.php 第 67 行.
 NOTIC: [2] Invalid argument supplied for foreach() D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\ChannelModel.class.php 第 59 行.
 
+[ 2015-01-08T20:06:49+08:00 ] 192.168.0.153 /System/Ad/index
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000477s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000555s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001470s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.001598s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.000935s ]
+SQL: SHOW COLUMNS FROM `t_ad` [ RunTime:0.001552s ]
+NOTIC: [8] Undefined index: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\BaseController.class.php 第 36 行.
+NOTIC: [8] Undefined index: isLogic D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 175 行.
+NOTIC: [8] Undefined index: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 176 行.
+NOTIC: [8] Undefined variable: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\AdModel.class.php 第 54 行.
+NOTIC: [8] Undefined index: fieldExcept D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 179 行.
+NOTIC: [8] Undefined index: sortOrder D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 181 行.
+NOTIC: [8] Undefined index: initPage D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 191 行.
+NOTIC: [8] Undefined index: pageSize D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 192 行.
+NOTIC: [8] Undefined index: initPage D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 45 行.
+NOTIC: [8] Undefined index: field D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 48 行.
+SQL: SELECT * FROM `t_ad` ORDER BY id asc LIMIT 0,50   [ RunTime:0.001056s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_ad` LIMIT 1   [ RunTime:0.001097s ]
+NOTIC: [8] Undefined index: 0 D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\AdController.class.php 第 33 行.
+NOTIC: [8] Undefined index: 0 D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\AdController.class.php 第 33 行.
+NOTIC: [8] Undefined index: 0 D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\AdController.class.php 第 33 行.
+
+[ 2015-01-08T20:06:52+08:00 ] 192.168.0.153 /System/AdSpace/index
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000486s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001319s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.001616s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.001072s ]
+SQL: SHOW COLUMNS FROM `t_ad_space` [ RunTime:0.001011s ]
+NOTIC: [8] Undefined index: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\BaseController.class.php 第 36 行.
+NOTIC: [8] Undefined index: isLogic D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 175 行.
+NOTIC: [8] Undefined index: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 176 行.
+NOTIC: [8] Undefined variable: where D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\AdSpaceModel.class.php 第 39 行.
+NOTIC: [8] Undefined index: fieldExcept D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 179 行.
+NOTIC: [8] Undefined index: sortOrder D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 181 行.
+NOTIC: [8] Undefined index: initPage D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 191 行.
+NOTIC: [8] Undefined index: pageSize D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 192 行.
+NOTIC: [8] Undefined index: initPage D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 45 行.
+NOTIC: [8] Undefined index: field D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\BaseModel.class.php 第 48 行.
+SQL: SELECT * FROM `t_ad_space` ORDER BY id asc LIMIT 0,50   [ RunTime:0.001048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_ad_space` LIMIT 1   [ RunTime:0.001028s ]
+
+[ 2015-01-08T20:07:45+08:00 ] 192.168.0.153 /System/Ad/add?_=1420718895296
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000847s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002096s ]
+NOTIC: [2048] Declaration of Common\Model\SysUserModel::selectOne() should be compatible with that of Common\Model\BaseModel::selectOne() D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\Common\Model\SysUserModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `t_sys_user` [ RunTime:0.002047s ]
+SQL: SELECT ru.id,ru.name,ru.realName,ru.roleId,ru.status,ru.lastTime,ru.lastIp,r.name as roleName,r.isSuper,r.auth FROM t_sys_user ru INNER JOIN t_sys_role r ON r.id=ru.roleId  WHERE ( ru.id = '1' ) LIMIT 1   [ RunTime:0.001033s ]
+NOTIC: [8] Undefined index: asId D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\AdController.class.php 第 77 行.
+NOTIC: [8] Undefined index: apId D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Application\System\Controller\AdController.class.php 第 80 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000111s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000261s ]
+NOTIC: [8] Undefined index: id D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 30 行.
+NOTIC: [8] Undefined index: adId D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 33 行.
+NOTIC: [8] Undefined index: title D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 34 行.
+NOTIC: [8] Undefined index: content D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 36 行.
+NOTIC: [8] Undefined variable: thumb D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 36 行.
+NOTIC: [8] Undefined index: title D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 36 行.
+NOTIC: [8] Undefined index: content D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 37 行.
+NOTIC: [8] Undefined index: linkUrl D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 38 行.
+NOTIC: [8] Undefined index: sort D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 39 行.
+NOTIC: [8] Undefined index: time D:\home\coding\zendstudio\edu\Education_dev_platform\branches\v1.0\Runtime\Cache\System\d64135d08c7b19fbddb448c1bf59d1d9.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044297s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044401s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000318s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000403s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000448s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000532s ]
+
