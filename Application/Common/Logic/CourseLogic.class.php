@@ -92,14 +92,11 @@ class CourseLogic extends BaseLogic {
 				$data[$keys[$i]] = $_data['rows'][$r];
 			}else{
 				$_data = D('Course')->selectPage($param);
-				$r1 = rand(0, count($_data['rows'])-1);
-				$r2 = rand(0, count($_data['rows'])-1);
-				$r3 = rand(0, count($_data['rows'])-1);
-				$r4 = rand(0, count($_data['rows'])-1);
-				$data[$keys[$i]][0] = $_data['rows'][$r1];
-				$data[$keys[$i]][1] = $_data['rows'][$r2];
-				$data[$keys[$i]][2] = $_data['rows'][$r3];
-				$data[$keys[$i]][3] = $_data['rows'][$r4];
+				$r = getRandNumber(0, count($_data['rows'])-1, 4);
+				$data[$keys[$i]][0] = $_data['rows'][$r[0]];
+				$data[$keys[$i]][1] = $_data['rows'][$r[1]];
+				$data[$keys[$i]][2] = $_data['rows'][$r[2]];
+				$data[$keys[$i]][3] = $_data['rows'][$r[3]];
 			}
 			unset($param['where']['keys']);
 			unset($_data);

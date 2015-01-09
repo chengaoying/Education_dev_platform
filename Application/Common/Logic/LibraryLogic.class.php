@@ -214,6 +214,17 @@ class LibraryLogic extends BaseLogic {
 		return $data;
 	}
 	
+	/**
+	 * 查询该$sectionId的题库信息
+	 * @param int $sectionId
+	 */
+	public function queryLibraryInfo($sectionId){
+		$param['sectionId'] = $sectionId;
+		//查询题库信息，主要是要获取excel的文件
+		$data = D('Library')->selectOne($param);
+		return $data;
+	}
+	
 	
 	/**
 	 * 把表格中字段转换成英文（与数据库字段对应）

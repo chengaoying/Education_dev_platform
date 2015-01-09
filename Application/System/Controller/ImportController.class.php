@@ -267,20 +267,20 @@ class ImportController extends BaseAuthController {
     private function importResource($resource){
     	//配置项：
     	$proConf = get_pro_config_content('proConfig');
-    	$keys = $proConf['keys'];	//标签
+    	$tags = $proConf['tags'];	//标签
     	
     	$r = array(); //数据导入结果集
     	$failCount = 0; //失败记录数
     	$successCount = 0; //成功记录数
     	$sResource = array();//课时的视频资源数组
     	foreach ($resource as $k => $v){
-    		/* $v['keyList'] = str_replace('，',',',$v['keyList']);
+    		$v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
     		unset($v['keyList']);
     		foreach ($_keys as $k1 => $v1){
-    			$v['keyList'] .= array_search($v1, $keys).',';
+    			$v['keyList'] .= array_search($v1, $tags).',';
     		}
-    		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1); */
+    		$v['keyList'] = substr($v['keyList'], 0, strlen($v['keyList'])-1);
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;

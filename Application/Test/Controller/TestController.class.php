@@ -96,7 +96,9 @@ class TestController extends \Think\Controller {
 		
 		//$this->cenvertData();
 		//$str = "/static/v1/hd/images/common/channel/recommend_course.png,/static/v1/hd/images/common/channel/recommend_course_over.png";
-		dump(get_cache('Channel'));
+		//dump(get_cache('Channel'));
+		$r = getRandNumber(0, 20, 5);
+		dump($r);
 		$this->display();
 	}
 	

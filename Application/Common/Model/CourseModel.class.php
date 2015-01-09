@@ -96,18 +96,18 @@ class CourseModel extends BaseModel {
 				$where['_string'] .= ' (`keys` like "%'.$where['keys'][$i].'%") OR';
 			}
 			$where['_string'] = substr($where['_string'],0,strlen($where['_string'])-2);
-			$where['_string'] .= ')';
+			$where['_string'] .= ') ';
 		}else{
 			$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
 		}
 		
 		//顶级分类匹配
 		if($where['chId'])
-			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`chId` like "%'.$where['chId'].'%")';
+			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' find_in_set("'.$where['chId'].'",chId)';
 		
 		//龄段匹配
 		if($where['stageIds'])
-			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' (`stageIds` like "%'.$where['stageIds'].'%")';
+			$where['_string'] .= ($where['_string'] ? 'and' : '') . ' find_in_set("'.$where['stageIds'].'",stageIds)';
 		
 		//课程名称匹配
 		if($where['name'])

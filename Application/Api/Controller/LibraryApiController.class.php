@@ -50,4 +50,13 @@ class LibraryApiController extends BaseApiController{
         return $data;
     }
     
+    /**
+     * 查询该$sectionId的题库信息
+     * @param int $sectionId
+     */
+    public function queryLibraryInfo($sectionId){
+        $data = D('Library','Logic')->queryLibraryInfo($sectionId);
+        return $data;
+    }
+    
 }

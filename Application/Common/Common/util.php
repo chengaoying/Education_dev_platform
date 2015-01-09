@@ -289,4 +289,16 @@ function getDelimiterInStr($str){
 	return $s;
 }
 
+/**
+ * 在某一范围内取N个不重复的随机数
+ * @param int $min   取值范围最小值
+ * @param int $max	   取值范围最大值
+ * @param int $n	   取不重复随机数个数
+ */
+function getRandNumber($min,$max,$n){
+	$rand_array = range($min,$max);
+	shuffle($rand_array);//调用现成的数组随机排列函数
+	return array_slice($rand_array,0,$n);//截取前$n个
+}
+
 
