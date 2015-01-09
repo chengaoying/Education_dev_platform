@@ -1,3 +1,0 @@
-<?php
-//000000000000a:3:{i:5;a:6:{s:2:"id";s:1:"5";s:5:"asKey";s:16:"recommend_bottom";s:5:"title";s:25:"推荐课程-底部广告";s:6:"asType";s:1:"0";s:7:"showNum";s:1:"1";s:7:"addTime";s:19:"2014-12-12 16:01:57";}i:4;a:6:{s:2:"id";s:1:"4";s:5:"asKey";s:15:"recommend_right";s:5:"title";s:28:"推荐课程-右侧广告位";s:6:"asType";s:1:"0";s:7:"showNum";s:1:"1";s:7:"addTime";s:19:"2014-12-12 14:04:38";}i:3;a:6:{s:2:"id";s:1:"3";s:5:"asKey";s:14:"recommend_left";s:5:"title";s:28:"推荐课程-左侧广告位";s:6:"asType";s:1:"0";s:7:"showNum";s:1:"1";s:7:"addTime";s:19:"2014-11-26 10:55:53";}}
-?>
