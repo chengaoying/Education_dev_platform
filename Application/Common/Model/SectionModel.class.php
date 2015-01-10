@@ -21,4 +21,26 @@ class SectionModel extends BaseModel {
 	);
 
 	//---------------扩展CRUD-----------------------
+	
+	protected  function initSelectParam(&$param){
+		if($param['isLogic']!=1 ){
+			$param['where'] = $this->initWhere($param['where']);
+		}
+		//字段
+		if($param['fieldExcept']!==true) $param['fieldExcept'] = false;
+		//排序
+		if(!$param['sortOrder']){
+			$sort = I('sort');
+			if($sort) {
+				$param['sortOrder'] = $sort . ' '. I('order');
+			}else{
+				$param['sortOrder'] = $this->sortOrder;
+			}
+		}
+	
+		//页码
+		if($param['initPage'] !== true){
+			list($param['page'],$param['pageSize']) = $this->getPageNum($param['page'],$param['pageSize']);
+		}
+	}
 }

@@ -39,4 +39,17 @@ class SectionApiController extends BaseApiController{
 		return $data;
 	}
 	
+	
+	/**
+	 * 根据知识点id查找相邻的两个视频
+	 * @param arr $topicIds	知识点id数组
+	 * @param arr $sorts	排序id数组
+	 * @param int $pageNo	页号
+	 * @param int $pageSize	每页记录数
+	 */
+	public function querySectionListBySort($topicIds,$sorts,$pageNo, $pageSize){
+		$data = D('Section','Logic')->querySectionListBySort($topicIds,$sorts,$pageNo, $pageSize);
+		return $data;
+	}
+	
 }

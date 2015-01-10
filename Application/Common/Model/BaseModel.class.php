@@ -31,7 +31,7 @@ class BaseModel extends \Think\Model {
 		$order = $where['sortOrder'];
 		unset($where['sortOrder']);
         $data = $this->where($where)->field($field,$fieldExcept)->order($order)->limit(1)->find();
-		//save_log('execute_sql',array('sql'=>$this->getLastSql()));
+// 		save_log('execute_sql',array('sql'=>$this->getLastSql()));
         return $data;
 	}
 	
@@ -123,7 +123,6 @@ class BaseModel extends \Think\Model {
 	 * 处理筛选条件
 	 */
 	protected function initWhere($where){
-		//处理空值
 		foreach ($where as $k=>$v){
 			if($v == '') unset($where[$k]);
 		}
@@ -174,6 +173,7 @@ class BaseModel extends \Think\Model {
 	protected  function initSelectParam(&$param){				
 		if($param['isLogic']!=1 ){
 			$param['where'] = $this->initWhere($param['where']);
+			if(!empty($param['where']['sort'])) unset($param['where']['sort']);
 		}
 		//字段
 		if($param['fieldExcept']!==true) $param['fieldExcept'] = false;

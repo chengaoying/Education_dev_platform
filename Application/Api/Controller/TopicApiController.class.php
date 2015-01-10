@@ -20,4 +20,13 @@ class TopicApiController extends BaseApiController{
 		return $data;
 	}
 	
+	/**
+	 * 通过知识点id查找单个知识点
+	 * @param int $topicId
+	 */
+	public function queryTopicById($topicId){
+		$data = D('Topic','Logic')->queryTopicById($topicId);
+		return $data;
+	}
+	
 }

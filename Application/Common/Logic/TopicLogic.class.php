@@ -24,4 +24,13 @@ class TopicLogic extends BaseLogic {
 		return $data;
 	}
 	
+	/**
+	 * 通过知识点id查找单个知识点
+	 * @param int $topicId
+	 */
+	public function queryTopicById($topicId){
+		$data = D('Topic')->find($topicId);
+		return $data;
+	}
+	
 }

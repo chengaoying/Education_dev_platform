@@ -42,7 +42,7 @@ class ResourceModel extends BaseModel {
 			}
 		}else if(is_array($condition['keyList'])){
 			for($i=0;$i<count($condition['keyList']);$i++){
-				$where['_string'] .= ' (`keyList` like "%'.$condition['keyList'][$i].'%")  OR ( `title` like "%'.$condition['keyList'][$i].'%") OR';
+				$where['_string'] .= ' (`keyList` like "%'.$condition['keyList'][$i].'%")  OR';
 			}
 			$where['_string'] = substr($where['_string'],0,strlen($where['_string'])-2);
 		}elseif(!empty($condition['keyList'])){

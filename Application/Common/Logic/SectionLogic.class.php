@@ -33,12 +33,29 @@ class SectionLogic extends BaseLogic {
 	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
-	public function querySectionListByPrivilege($privilege, $pageNo, $pageSize){
-		if(is_array($privilege)){
+	public function querySectionListByPrivilege($topicIds, $pageNo, $pageSize){
+		if(is_array($topicIds)){
 			$param['where']['privilege'] = array('in',implode($topicIds,','));
 		}else{
-			$param['where']['privilege']  = $privilege;
+			$param['where']['privilege']  = $topicIds;
 		}
+		$param['page'] 		= $pageNo;
+		$param['pageSize'] 	= $pageSize;
+		$param['sortOrder'] = 'sort asc';
+		
+		$data = D('Section')->selectPage($param);
+		return $data;
+	}
+	
+	/**
+	 * 根据知识点id查找该知识点下的课时列表
+	 * @param arr $topicId	知识点id数组
+	 * @param int $pageNo	页号
+	 * @param int $pageSize	每页记录数
+	 */
+	public function querySectionListBySort($topicIds,$sorts,$pageNo=1, $pageSize=3){
+		$param['where']['sort'] = array('in',implode($sorts,','));
+		$param['where']['topicId'] = array('in',implode($topicIds,','));
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';

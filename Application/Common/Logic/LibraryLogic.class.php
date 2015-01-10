@@ -191,24 +191,11 @@ class LibraryLogic extends BaseLogic {
 		$_temp['data'] = $this->cenvertData($_temp['data']);
 		//对图片类型和文字类型的答案组合成数组
 		foreach ($_temp['data']['library'] as $key=>$value){
-			if($value['kind']=='word'){
-				$_temp['data']['library'][$key]['itemList'][] = $_temp['data']['library'][$key]['answer0'];
-				$_temp['data']['library'][$key]['itemList'][] = $_temp['data']['library'][$key]['answer1'];
-				$_temp['data']['library'][$key]['itemList'][] = $_temp['data']['library'][$key]['answer2'];
-				$_temp['data']['library'][$key]['itemList'][] = $_temp['data']['library'][$key]['answer3'];
-				unset($_temp['data']['library'][$key]['answer0']);
-				unset($_temp['data']['library'][$key]['answer1']);
-				unset($_temp['data']['library'][$key]['answer2']);
-				unset($_temp['data']['library'][$key]['answer3']);
-			}else{
-				$_temp['data']['library'][$key]['itemList'][] = get_upfile_url($_temp['data']['library'][$key]['answer0']);
-				$_temp['data']['library'][$key]['itemList'][] = get_upfile_url($_temp['data']['library'][$key]['answer1']);
-				$_temp['data']['library'][$key]['itemList'][] = get_upfile_url($_temp['data']['library'][$key]['answer2']);
-				unset($_temp['data']['library'][$key]['answer0']);
-				unset($_temp['data']['library'][$key]['answer1']);
-				unset($_temp['data']['library'][$key]['answer2']);
-				unset($_temp['data']['library'][$key]['answer3']);
-			}
+			unset($_temp['data']['library'][$key]['answer0']);
+			unset($_temp['data']['library'][$key]['answer1']);
+			unset($_temp['data']['library'][$key]['answer2']);
+			unset($_temp['data']['library'][$key]['answer3']);
+			$_temp['data']['library'][$key]['itemList'] = array_filter($_temp['data']['library'][$key]['itemList']);
 		}
 		$data['content'] = $_temp['data']['library'];
 		return $data;
@@ -220,7 +207,6 @@ class LibraryLogic extends BaseLogic {
 	 */
 	public function queryLibraryInfo($sectionId){
 		$param['sectionId'] = $sectionId;
-		//查询题库信息，主要是要获取excel的文件
 		$data = D('Library')->selectOne($param);
 		return $data;
 	}
@@ -248,7 +234,6 @@ class LibraryLogic extends BaseLogic {
 			$data[$tables[$k]] = $v;
 			unset($data[$k]);
 		}
-	
 		foreach ($data as $k1 => $v1){
 			foreach ($v1 as $k2 => $v2){
 				foreach ($v2 as $k3 => $v3){
@@ -264,13 +249,32 @@ class LibraryLogic extends BaseLogic {
 					}
 					if($data[$k1][$k2]['kind']=='文字'){
 						$data[$k1][$k2][$fields[$k1][$k3]]='word';
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项A']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项B']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项C']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项D']);
 					}else if($data[$k1][$k2]['kind']=='图片'){
 						$data[$k1][$k2][$fields[$k1][$k3]]='pic';
+						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项A']));
+						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项B']));
+						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项C']));
+						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项D']));
+					}else if($data[$k1][$k2]['kind']=='图片文字'){
+						//暂时过滤掉图片文字类型。
+						$data[$k1][$k2][$fields[$k1][$k3]]='picText';
+						$data[$k1][$k2]['title'] = get_upfile_url($data[$k1][$k2]['题目']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项A']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项B']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项C']);
+						$data[$k1][$k2]['itemList'][] = trim($data[$k1][$k2]['选项D']);
+						unset($data[$k1][$k2]);
+						break;
 					}
 					unset($data[$k1][$k2][$k3]);
 				}
 			}
 		}
+		sort($data['library']);
 		return $data;
 	}
 	

@@ -1,7 +1,8 @@
 <form id="edit_form" method="post" style="padding:10px">
 <table class="editTable">
 	<tr><th>题库标题</th><td><input type="text" id="title" name="title" value="{$res['title']}" style="width:200px;"/><em>*</em><input type="hidden" name="id" value="{$res['id']}"/></td></tr>	
-	<tr><th>课时ID</th><td>{$allSection}<em>*</em></td></tr>	
+	<!-- <tr><th>课时ID</th><td>{$allSection}<em>*</em></td></tr> -->	
+	<tr><th>课时ID</th><td><input type="text" id="sectionId" name="sectionId" value="{$res['sectionId']}"/><em>*</em></td></tr>
 	<tr><th>所属资源商</th><td>{$rpHtml}<em>*</em></td></tr>	
 	<tr><th>价格</th><td><input type="text" id="price" name="price" value="{$res['price']}"/> (权限为1时且产品为单资源购买类型有效)</td></tr>
 	<tr><th>权限</th><td><input type="text" id="auth" name="auth" value="{$res['auth']}"/><em>*</em> (0－免费,1-收费(也可按产品会员等级编号填写))</td></tr>

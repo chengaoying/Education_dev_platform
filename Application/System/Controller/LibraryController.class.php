@@ -29,7 +29,7 @@ class LibraryController extends BaseAuthController {
 			foreach($list['rows'] as $key=>$row){
 				$list['rows'][$key]['rpId'] = $rp[$row['rpId']];
 				$list['rows'][$key]['status'] = $this->statusNames[$list['rows'][$key]['status']];
-				$list['rows'][$key]['sectionId'] = $allSection[$list['rows'][$key]['sectionId']];
+				//$list['rows'][$key]['sectionId'] = $allSection[$list['rows'][$key]['sectionId']];
 			}
 			$this->ajaxReturn($list);
 		}		
@@ -69,12 +69,12 @@ class LibraryController extends BaseAuthController {
 				$resource['isShow'] = 1; //显示状态默认为显示
 			}
 			$proConf = get_pro_config_content('proConfig');
-			$allSection = D('Section')->selectPage();
-			$allSection = array_replace_keyval($allSection['rows'],'id','name');
+			//$allSection = D('Section')->selectPage();
+			//$allSection = array_replace_keyval($allSection['rows'],'id','name');
 			$this->assign(array(
 				'res'	=> $resource,
 				'thumb'		=> '',
-				'allSection' =>$this->getComboBox($allSection,'sectionId',array('selVal'=>$resource['sectionId'],'width'=>250)),
+				//'allSection' =>$this->getComboBox($allSection,'sectionId',array('selVal'=>$resource['sectionId'],'width'=>250)),
 				'rpHtml' => $this->getComboBox($proConf['rp'],'rpId',array('selVal'=>$resource['rpId'],'width'=>200)),
 				'statusHtml'=> $this->getComboBox($this->statusNames, 'status',array('selVal'=>$resource['status'],'nullText'=>'')),
 			));	

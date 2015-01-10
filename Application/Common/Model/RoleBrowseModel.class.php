@@ -21,5 +21,32 @@ class RoleBrowseModel extends BaseModel {
 		array('addTime',DATE_TIME,self::MODEL_INSERT),			
 	);
 
-	//---------------扩展CRUD-----------------------
+
+	/**
+	 * 处理筛选条件
+	 * 1.处理空值
+	 * 2.关键字匹配
+	 */
+	protected function initWhere($where){
+		//处理空值
+		foreach ($where as $k=>$v){
+			if($v == '') unset($where[$k]);
+		}
+	
+		//关键字匹配
+		if(is_array($where['keys'])){
+			$where['_string'] = '(';
+			for($i=0;$i<count($where['keys']);$i++){
+				$where['_string'] .= ' (`keys` like "%'.$where['keys'][$i].'%") OR';
+			}
+			$where['_string'] = substr($where['_string'],0,strlen($where['_string'])-2);
+			$where['_string'] .= ') ';
+		}else{
+			$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
+		}
+	
+		unset($where['keys']);
+	
+		return $where;
+	}
 }
