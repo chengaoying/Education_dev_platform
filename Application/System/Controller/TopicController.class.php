@@ -21,7 +21,6 @@ class TopicController extends BaseAuthController {
 			$this->display();
 		} else {
 			$param['where'] = I('post.');
-			$param['sortOrder'] = 'sort asc';
 			$list = D('Topic')->selectPage($param);
 			$this->ajaxReturn($list);
 		}		

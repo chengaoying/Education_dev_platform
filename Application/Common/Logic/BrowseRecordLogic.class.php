@@ -31,10 +31,11 @@ class BrowseRecordLogic extends BaseLogic {
 	 * @param int $pageNo 页号
 	 * @param int $pageSize 每页记录数
 	 */
-	public function queryBrowseRecordListByKeys($type, $keys, $pageNo, $pageSize)
+	public function queryBrowseRecordListByKeys($type, $keys, $date, $pageNo, $pageSize)
 	{
 		$param['where']['type'] = $type;
 		$param['where']['keys'] = $keys;
+		$param['where']['addTime'] = $date;
 		
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;

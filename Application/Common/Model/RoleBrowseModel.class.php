@@ -44,9 +44,15 @@ class RoleBrowseModel extends BaseModel {
 		}else{
 			$where['_string'] .= '(`keys` like "%'.$where['keys'].'%") ';
 		}
+		
+		if(!empty($where['addTime']))
+		{
+			$where['_string'] .= ($where['_string'] ? 'AND' : '') . ' (`addTime` between "'. $where['addTime'][0] .'" and "'. $where['addTime'][1] .'")';
+		}
 	
 		unset($where['keys']);
-	
+		unset($where['addTime']);
+			
 		return $where;
 	}
 }

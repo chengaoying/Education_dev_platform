@@ -12,7 +12,7 @@ class NoticeModel extends BaseModel {
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
 		array('content','require','公告名称不能为空',self::MUST_VALIDATE,''),
 		array('noticeKey','require','通知Key不能为空',self::MUST_VALIDATE,''),
-/* 		array('name','require','名称不能为空！',self::MUST_VALIDATE,''),
+	  /*array('name','require','名称不能为空！',self::MUST_VALIDATE,''),
 		array('courseId','require','课程不能为空！',self::MUST_VALIDATE,''),
 		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'), */
 	);
