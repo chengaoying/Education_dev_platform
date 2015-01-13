@@ -9,28 +9,6 @@ namespace Api\Controller;
 
 class CourseApiController extends BaseApiController{
 	
-	/**
-	 * 查询用户订购的单个课程
-	 * @param int $userId	用户id
-	 * @param int $courseId 课程id
-	 * @param int $pageNo 	页号
-	 * @param int $pageSize 每页记录数
-	 */
-	public function queryUserCourseByCourseId($userId, $courseId, $pageNo, $pageSize){
-		$data = D('Course','Logic')->queryUserCourseByCourseId($userId, $courseId, $pageNo, $pageSize);
-		return $data;
-	}
-	
-	/**
-	 * 查询用户购买的课程列表
-	 * @param int $userId	用户id
-	 * @param int $pageNo	页号
-	 * @param int $pageSize	每页记录数
-	 */
-	public function queryUserCourseList($userId, $pageNo, $pageSize){
-		$data = D('Course','Logic')->queryUserCourseList($userId, $pageNo, $pageSize);
-		return $data;
-	}
 	
 	/**
 	 * 通过关键字查询课程列表

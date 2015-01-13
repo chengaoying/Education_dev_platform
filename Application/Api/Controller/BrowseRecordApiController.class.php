@@ -10,13 +10,22 @@ namespace Api\Controller;
 class BrowseRecordApiController extends BaseApiController{
 	
 	/**
-	 * 根据contentId查找浏览记录
-	 * @param int $contentId知识点id
-	 *  @param int $pageNo	页号
+	 * 保存浏览记录
+	 * @param arr $param
+	 */
+	public function saveBrowseRecord($param){
+		$data = D('BrowseRecord','Logic')->saveBrowseRecord($param);
+		return $data;
+	}
+	
+	/**
+	 * 根据知识点id查找浏览记录
+	 * @param int $topictId 知识点id
+	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
-	public function queryBrowseRecordList($contentId, $pageNo, $pageSize){
-		$data = D('BrowseRecord','Logic')->queryBrowseRecordList($contentId, $pageNo, $pageSize);
+	public function queryBrowseRecordList($topictId, $pageNo, $pageSize){
+		$data = D('BrowseRecord','Logic')->queryBrowseRecordList($topictId, $pageNo, $pageSize);
 		return $data;
 	}
 	

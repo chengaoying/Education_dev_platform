@@ -12,8 +12,6 @@ class RoleBrowseModel extends BaseModel {
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
 		array('roleId','require','角色id不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
 		array('title','require','title不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		array('url','require','url不能为空！',self::MUST_VALIDATE,'',self::MODEL_INSERT),
-		//array('sectionIds','require','课时ID列表不能为空！',self::MUST_VALIDATE,''),
 	);
 	
 	//自动填充	

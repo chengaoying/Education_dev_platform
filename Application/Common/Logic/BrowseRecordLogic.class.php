@@ -9,13 +9,22 @@ class BrowseRecordLogic extends BaseLogic {
 	
 	
 	/**
-	 * 根据contentIdId查找浏览记录
-	 * @param int $contentIdId	知识点id
+	 * 保存浏览记录
+	 * @param arr $param
+	 */
+	public function saveBrowseRecord($param){
+		$data = D('RoleBrowse')->saveData($param);
+		return $data;
+	}
+	
+	/**
+	 * 根据知识点id查找浏览记录
+	 * @param int $topicId	知识点id
 	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
-	public function queryBrowseRecordList($contentId, $pageNo, $pageSize){
-		$param['where']['contentId']  = $contentId;
+	public function queryBrowseRecordList($topicId, $pageNo, $pageSize){
+		$param['where']['topicId']  = $topicId;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 //		$param['sortOrder'] = 'sort asc';
