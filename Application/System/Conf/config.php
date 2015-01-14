@@ -17,6 +17,7 @@ return array (
 		'ProConfig'		=> '配置',
 		'Channel'		=> '栏目',
 		'Stage'			=> '龄段',
+		'ChargeMode'	=> '计费模式',
 		'AdSpace'		=> '广告位',
 		'Ad'			=> '广告',
 	),		

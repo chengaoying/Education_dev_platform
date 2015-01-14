@@ -25,6 +25,10 @@ return array(
     				'name' => '产品广告',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
+    			'ChargeMode' => array(
+    				'name'	=> '计费管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),		
+    			),	
     		),
     	), 
     	'channel' => array(
@@ -100,6 +104,19 @@ return array(
     			),
     		),
     	),
+        'credit' => array(
+            'name'	=> '积分体系',
+            'item'	=> array(
+    			'Credit' => array(
+    				'name' => '积分设置',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
+    			'CreditRule' => array(
+    				'name' => '积分规则',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
+    		),
+        ),
     	'update' => array(
     		'name' => '更新缓存',
     		'item' => array(

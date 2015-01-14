@@ -27,7 +27,7 @@
 					</select>
 				</case>
 				<case value="array|textarea">
-					<php> if($item['readonly']) $readOnly = 'readonly="readonly"'; </php>
+					<php> $readOnly = ''; if($item['readonly']) $readOnly = 'readonly="readonly"'; </php>
                     <textarea name="{$key}" cols="{$item['cols']?$item['cols']:50}" 
                     		rows="{$item['rows']?$item['rows']:8}" {$readOnly}>{$item[value]}
                     </textarea>

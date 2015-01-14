@@ -7,6 +7,24 @@
 namespace Common\Logic;
 class OrderLogic extends BaseLogic {
 	
+	public function __construct() {
+		
+	}
+	
+	/**
+	 * 产品鉴权接口
+	 * @param int $userId
+	 */
+	public function auth($userId){
+		//TODO 调接口
+		
+		
+		//把接口返回状态更新到用户表中
+		$user['userId']   = $userId;
+		$user['userType'] = $type;
+		D('User')->saveData($user);
+	}
+	
 	/**
 	 * 订购课程
 	 * @param int $userId	用户id

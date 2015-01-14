@@ -1,0 +1,27 @@
+<extend name="./base_list" />
+<block name="search">
+	<b>所属产品：{$currProduct['name']}　</b>
+</block>
+<block name="datagrid">
+		idField : 'id',
+	    columns:[[
+            {field:'id',title:'ID',sortable:true,width:60},
+            {field:'creditId',title:'积分类型',sortable:false,width:150},
+            {field:'keyName',title:'规则KEY',sortable:false,width:100},
+            {field:'name',title:'名称',sortable:true,width:150},            
+            {field:'ruleType',title:'规则类型',sortable:true,width:80},
+            {field:'timeType',title:'时间类型',sortable:true,width:100},
+            {field:'timeNum',title:'时间长度',sortable:true,width:100},
+            {field:'ruleTypeNum',title:'次数上限',sortable:true,width:100},
+            {field:'creditNum',title:'积分数量',sortable:true,width:100},
+            {field:'status',title:'状态',sortable:true,width:60,formatter:function(value,row,index){return value==1 ? "启用" : "<font color=red>禁用</font>";}},
+            {field:'addTime',title:'添加时间',sortable:true,width:150},
+            {field:'modTime',title:'修改时间',sortable:true,width:150},
+        ]],     
+</block>
+
+<block name="js">
+    edit_W = 450;
+    edit_H = 400;
+</block>
+                

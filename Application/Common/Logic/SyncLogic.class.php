@@ -16,6 +16,7 @@ class SyncLogic extends BaseLogic {
 			'ProConfig',
 			'Channel',
 			'Stage',
+			'ChargeMode',
 			'AdSpace',
 			'Ad',
 		);

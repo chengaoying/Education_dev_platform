@@ -1,0 +1,22 @@
+<extend name="./base_list" />
+<block name="search">
+	<b>所属产品：{$currProduct['name']}　</b>
+</block>
+<block name="datagrid">
+		idField : 'id',
+	    columns:[[ 
+            {field:'id',title:'ID',sortable:true,width:60},
+            {field:'keyName',title:'积分KEY',sortable:true,width:150},
+            {field:'name',title:'名称',sortable:true,width:150},
+            {field:'initValue',title:'初始值',sortable:true,width:100},
+            {field:'status',title:'状态',sortable:true,width:60,formatter:function(value,row,index){return value==1 ? "启用" : "<font color=red>禁用</font>";}},
+            {field:'addTime',title:'添加时间',sortable:true,width:150},
+            {field:'modTime',title:'修改时间',sortable:true,width:150},
+        ]],     
+</block>
+
+<block name="js">
+    edit_W = 400;
+    edit_H = 300;
+</block>
+

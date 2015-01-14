@@ -11,10 +11,10 @@ return array (
 	
 	/* 主数据库  */
 	'DB_TYPE'		=> 'mysql', 		// 数据库类型
-	'DB_HOST'		=> '192.168.0.5',	// 服务器地址
+	'DB_HOST'		=> 'localhost',	// 服务器地址
 	'DB_NAME'		=> 'edu_hipi',	 	// 数据库名
-	'DB_USER'		=> 'edu', 			// 用户名
-	'DB_PWD'		=> 'edu',		 	// 密码
+	'DB_USER'		=> 'root', 			// 用户名
+	'DB_PWD'		=> '',		 	// 密码
 	'DB_PORT'		=> '3306', 			// 端口
 	'DB_PREFIX'		=> 't_', 			// 数据库表前缀
 	'DB_CHARSET'	=> 'utf8',
@@ -36,12 +36,12 @@ return array (
 		'__SD__'			=> '/static/v1/sd',	 					//标清公共资源路径
 		'__HD__'			=> '/static/v1/hd',						//高清公共资源路径
 		'__THEME__' 		=> '/static/v1', 						//分组模块资源路径
-		'__UPFILE__'		=> 'http://192.168.0.60:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
+		'__UPFILE__'		=> 'http://192.168.0.152:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
         '__CSSJS_VERSION__'	=> '20140208173232',  					//CSS和JS版本
 	),
 	
 	/* 与前端通讯配置  */
-	'WEB_URL'	 =>	'http://192.168.0.60:8501/Api/Sync',	    //数据同步地址
+	'WEB_URL'	 =>	'http://192.168.0.152:8501/Api/Sync',	    //数据同步地址
 	'CHECK_CODE' =>	'2014edu!@#',								//通讯校验码
 	
     /* 与支撑部对接接口参数  */

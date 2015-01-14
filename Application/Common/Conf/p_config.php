@@ -6,6 +6,23 @@
  */
 return array(
 		
+		/* 计费类型配置 */
+		'charge'	=>	array(
+			'type'	=> 'array',
+			'title'	=> '计费类型',
+			'value' => array(1 => '包月', 2 => '龄段订购', 3 => '课程订购'),
+			'info'	=> '产品的计费类型',	
+			'readonly' => true,	
+		),
+		
+        /* 角色积分类型配置 */
+		'ROLECREDIT'	=>	array(
+			'type'	=> 'array',
+			'title'	=> '积分类型',
+			'value' => array('point' => 'point', 'amount' => 'amount'),
+			'info'	=> '',
+		),
+        
 		/* 课程类型配置 */
 		'courseType'	=>	array(
 			'type'	=> 'array',

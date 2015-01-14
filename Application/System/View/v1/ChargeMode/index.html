@@ -1,0 +1,31 @@
+<extend name="./base_list" />
+
+<block name="search">
+	ID：<input type="text" name="id" placeholder="ID" style="width: 50px"></input>
+	状态：{$statusHtml}
+</block>
+
+<block name="datagrid_img">
+    <div id="datagrid_img" class="datagrid_img" style="display: none;">
+        
+    </div>
+</block>
+<block name="datagrid">
+		//pagination:false, //分页栏
+		sortName:'id',//默认排序字段
+		sortOrder:'asc',//默认排序方式 'desc' 'asc' 
+		idField : 'id',
+	    columns:[[ 
+            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'name',title:'名称',sortable:false,width:200},
+            {field:'type',title:'计费类型',sortable:false,width:100},
+            {field:'chargeId',title:'计费id',sortable:false,width:100},
+            {field:'status',title:'状态',sortable:true,width:60,
+            	formatter:function(value,row,index){
+            		return value==1 ? "启用" : "<font color=red>禁用</font>";
+            	}
+            },            
+            {field:'addTime',title:'添加时间',sortable:true,width:180},
+        ]],
+</block>
+
