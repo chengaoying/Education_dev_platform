@@ -1,0 +1,29 @@
+<extend name="./base_list" />
+<block name="search">
+	<b>所属产品：{$currProduct['name']}　</b>
+	ID：<input type="text" name="where[id]" placeholder="请输入ID" style="width: 160px"></input>
+	所属活动：{$activityHtml}
+</block>
+<block name="datagrid_img">
+    <div id="datagrid_img" class="datagrid_img" style="width:120px; display: none;">
+        <img id="imgsrc" src="" />
+    </div>
+</block>
+<block name="datagrid">
+	    sortName:'id',//默认排序字段
+		sortOrder:'asc',//默认排序方式 'desc' 'asc'
+		idField : 'id',
+	    columns:[[  
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},            
+            {field:'name',title:'名称',sortable:false,width:120},
+            {field:'items',title:'奖品列表',sortable:false,width:260},
+            {field:'imgUrl',title:'图片',sortable:false,width:150},      
+            {field:'addTime',title:'添加时间',sortable:true,width:180},
+            {field:'modTime',title:'修改时间',sortable:true,width:180},
+        ]],
+</block>
+
+<block name="js">
+edit_W = 600;
+edit_H = 350;
+</block>

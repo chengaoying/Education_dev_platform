@@ -15,11 +15,19 @@ return array(
 			'readonly' => true,	
 		),
 		
-        /* 角色积分类型配置 */
-		'ROLECREDIT'	=>	array(
+        /* 用户积分类型配置 */
+		'userCredit'	=>	array(
 			'type'	=> 'array',
 			'title'	=> '积分类型',
 			'value' => array('point' => 'point', 'amount' => 'amount'),
+			'info'	=> '',
+		),
+        
+        /* 角色积分类型配置 */
+		'roleCredit'	=>	array(
+			'type'	=> 'array',
+			'title'	=> '积分类型',
+			'value' => array('point' => 'point'),
 			'info'	=> '',
 		),
         

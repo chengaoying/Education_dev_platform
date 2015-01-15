@@ -1,0 +1,31 @@
+<extend name="./base_list" />
+<block name="search">
+	ID：<input type="text" name="where[id]" placeholder="请输入ID" style="width: 160px"></input>
+	类型：{$aTypeHtml}
+</block>
+<block name="datagrid_img">
+    <div id="datagrid_img" class="datagrid_img" style="width:120px; display: none;">
+        <img id="imgsrc" src="" />
+    </div>
+</block>
+<block name="datagrid">
+	    sortName:'id',//默认排序字段
+		sortOrder:'asc',//默认排序方式 'desc' 'asc'
+		idField : 'id',
+	    columns:[[ 
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},            
+            {field:'name',title:'名称',sortable:false,width:120},
+            {field:'aType',title:'类型',sortable:true,width:120},
+            {field:'creditId',title:'积分类型',sortable:true,width:120},
+            {field:'propId',title:'道具ID',sortable:true,width:120},
+            {field:'imgUrl',title:'图片',sortable:true,width:150},
+            {field:'addTime',title:'添加时间',sortable:true,width:180},
+            {field:'modTime',title:'修改时间',sortable:true,width:180},
+        ]],
+</block>
+
+<block name="js">
+    edit_W = 400;
+    edit_H = 300;
+</block>
+

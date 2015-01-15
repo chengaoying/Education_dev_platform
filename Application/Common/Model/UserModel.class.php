@@ -43,5 +43,15 @@ class UserModel extends BaseModel {
 	public function delData($id){
 		//用户表不允许删除		
 	}
+    
+    /**
+	 * 增加或减少某项值
+	 * @param int $userId
+	 * @param array $data
+	 */
+	public function setIncOrDec($userId,$data){		
+		$rows = $this->where(array('userId'=>$userId))->setField($this->getIncOrDecData($data));
+		return result_data(1,'数据更新成功！',array('rows'=>$rows));
+	}
 	
 }

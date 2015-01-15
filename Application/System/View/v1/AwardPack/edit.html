@@ -1,0 +1,71 @@
+<form id="edit_form" method="post" style="padding:10px">
+<table class="editTable">
+	<tr><th>名称</th><td><input type="hidden" name="id" value="{$awardPack['id']}"/><input type="text" id="name" name="name" value="{$awardPack['name']}"/><em>*</em></td></tr>	
+	<tr><th>奖品列表</th><td id="td_items">
+		<div id="div_items"></div>
+        <br />
+		奖品：{$awardItemHtml} 数量：<input type="text" size="3" id="awardItem_num" value="1"/> <input type="button" value="添加" onclick="addItem()"/>
+		<em>*</em>
+	</td></tr>
+	<tr><th>图片</th><td><input type="text" id="imgUrl" name="imgUrl" value="{$awardPack['imgUrl']}" style="width:250px" /><a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upfileDialog(1,'{$thumb}','奖品图片：{$awardPack[name]}',0,0,'#imgUrl')"></a></td></tr>
+    <tr><th>状态</th><td>{$statusHtml}<em>*</em></td></tr>
+</table>
+</form>
+
+<script>
+var itemsString = "{$awardPack['items']}";
+var items = new Array();
+if(itemsString!="") items = itemsString.split("|");
+
+$(function(){
+	show();
+});
+
+
+function addItem(){
+	var id = $("#awardItem").combobox("getValue");
+	var title = $("#awardItem").combobox("getText");
+	var num = $("#awardItem_num").val();
+	if(id==""){alert("请选择奖品！");return;}
+	if(num<=0){alert("请输入大于0的数量!");return;}
+	var exists = false;
+	for(i=0;i<items.length;i++){
+		var tmp = items[i].split(",");
+		if(tmp[0] == id){
+			tmp[1] = parseInt(tmp[1])+parseInt(num);
+			items[i] = tmp.join(",");
+			exists = true;
+			break;
+		}
+	}
+	if(!exists)	items.push(id+','+num+','+title);
+	show();
+}
+
+
+function delItem(id){	
+	var newItems = new Array();
+	for(i=0;i<items.length;i++){
+		var tmp = items[i].split(",");
+		if(tmp[0] != id) newItems.push(items[i]);
+	}
+	items = newItems;
+	show();
+}
+
+
+function show(){
+	var itemHtml = '<table class="editTable"><tr><th>奖品</th><th>数量</th><th>操作</th></tr>';
+	for(i=0;i<items.length;i++){	
+		var tmp = items[i].split(",");
+		itemHtml += '<tr><td>'+
+					'<input type="hidden" name="items[' + tmp[0] + ']" value="' + tmp[1]+'"/>' +
+					tmp[2]+'</td><td>' + tmp[1] + '</td><td><a href="javascript:delItem(' + tmp[0]+');">删除</a></td></tr>';
+	}
+	itemHtml += '</table>';	
+	$("#div_items").html(itemHtml);
+}
+
+
+</script>
+

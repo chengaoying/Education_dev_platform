@@ -7,8 +7,10 @@
 namespace System\Controller;
 class CreditController extends BaseAuthController {
 	
-	
-	/**
+    private $userOrRole = array(1=>'用户',2=>'角色');
+
+
+    /**
 	 * 查看操作
 	 */
 	public function indexAct() {		
@@ -17,8 +19,12 @@ class CreditController extends BaseAuthController {
 					'buttonStyle' => $this->buttonAuthStyle(array('add','edit','del')),
 			));
 			$this->display();
-		} else {			
-			$this->ajaxReturn(D('Credit')->selectPage($this->getSelectParam()));
+		} else {
+            $data = D('Credit')->selectPage($this->getSelectParam());
+            foreach ($data['rows'] as $key => &$value) {
+                $value['userOrRole'] = $this->userOrRole[$value['userOrRole']];
+            }
+			$this->ajaxReturn($data);
 		}
 	}
 		
@@ -59,7 +65,8 @@ class CreditController extends BaseAuthController {
 			//积分关键字
 			$this->assign(array(
 					'credit' => $credit,
-					'cKeyHtml' => $this->getComboBox($proConfig['ROLECREDIT'], 'keyName',array('selVal'=>$credit['keyName'])),
+                    'userRoleHtml'=> $this->getComboBox($this->userOrRole, 'userOrRole',array('selVal'=>$credit['userOrRole'],'nullText'=>'')),
+					'cKeyHtml' => $this->getComboBox($proConfig['roleCredit'], 'keyName',array('selVal'=>$credit['keyName'])),
 					'statusHtml'=> $this->getComboBox($this->statusNames, 'status',array('selVal'=>$credit['status'],'nullText'=>'')),
 					
 			));
@@ -68,5 +75,26 @@ class CreditController extends BaseAuthController {
 			$this->showResult(D( 'Credit')->saveData(I('post.')));
 		}
 	}
+    
+    /*
+     * 获取积分KEY列表
+     */
+    public function getKeyListAct(){
+        $proConfig = get_pro_config_content('proConfig');
+        $userOrRole = $_GET['type'];
+        $data = $keyData = array();
+        if($userOrRole == 1){
+            $data = $proConfig['userCredit'];
+        }else if($userOrRole == 2){
+            $data = $proConfig['roleCredit'];
+        }else{
+            return;
+        }
+        foreach ($data as $key => $value) {
+            $keyData[] = array('id'=>$key,'title'=>$value);
+        }
+
+        $this->ajaxReturn($keyData);
+    }
 
 }

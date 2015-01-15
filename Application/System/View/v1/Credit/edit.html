@@ -1,8 +1,37 @@
 <form id="edit_form" method="post" style="padding:10px">
 <table class="editTable">
-	<tr><th>积分KEY</th><td><input type="hidden" name="id" value="{$credit['id']}"/>{$cKeyHtml}<em>*</em></td></tr>
+    <tr><th>用户对象</th><td><input type="hidden" name="id" value="{$credit['id']}"/>{$userRoleHtml} <em>*</em></td></tr>
+	<tr><th>积分KEY</th><td>
+            <input type="hidden" id="keyName" name="keyName" value="{$credit['keyName']}"/>
+		<input id="combobox_keyName" class="easyui-combobox" data-options="valueField:'id',textField:'title'" /><em>*</em></td></tr>
 	<tr><th>名称</th><td><input type="text" name="name" value="{$credit['name']}" /><em>*</em></td></tr>
 	<tr><th>初始值</th><td><input type="text" name="initValue" value="{$credit['initValue']}" /></td></tr>
 	<tr><th>状态</th><td>{$statusHtml} <em>*</em></td></tr>
 </table>
 </form>
+<script type="text/javascript">
+$(function(){
+    var vals = "{$credit['keyName']}";
+    var userOrRole = "{$credit['userOrRole']}";
+    $("#combobox_keyName").combobox({
+		onSelect: function(){
+            vals = $("#combobox_keyName").combobox('getValue');
+			$("#keyName").val(vals);
+		},
+        onLoadSuccess: function(){
+            $("#combobox_keyName").combobox("setValue",vals);
+		}
+	});
+    
+    $("#userOrRole").combobox({
+        onSelect: function(param){
+            vals = '';
+            $("#keyName").val("");
+            $("#combobox_keyName").combobox("setValue","");
+			//动态载入积分KEY列表
+            var url = "/System/Credit/getKeyList.html" + "?type="+param.value;
+            $('#combobox_keyName').combobox('reload', url);
+        }
+    }).combobox('setValue',userOrRole);
+});
+</script>

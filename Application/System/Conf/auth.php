@@ -87,6 +87,23 @@ return array(
     			),
     		),
     	),
+        'award' => array(
+    		'name'	=> '奖品管理',
+    		'item'	=> array(
+    			'AwardItem' => array(
+    				'name' => '奖品管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
+                'AwardPack' => array(
+    				'name' => '奖项管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+    			),
+                'UserRoleAward' => array(
+                    'name' => '中奖者管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+                ),
+    		),
+    	),
     	'user_role' => array(
     		'name'	=> '用户中心',
     		'item'	=> array(

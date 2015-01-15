@@ -11,6 +11,7 @@ class ChargeModeModel extends BaseModel {
 	protected $_validate = array(
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
 		array('name','require','计费模式名称不能为空！',self::MUST_VALIDATE,''),
+		array('cKey','require','计费模式关键字不能为空！',self::MUST_VALIDATE,''),
 		array('type','require','计费模式类型不能为空！',self::MUST_VALIDATE,''),
 		array('chargeId','require','计费id不能为空！',self::MUST_VALIDATE,''),
 		array('status',array(0,1),'请选择正确的状态！',self::MUST_VALIDATE,'in'),

@@ -14,7 +14,7 @@ class CreditModel extends BaseModel {
 		array('id','require','id不能为空',self::MUST_VALIDATE,'',self::MODEL_UPDATE),
         //全部
         array('keyName','require','积分KEY不能为空',self::MUST_VALIDATE,''),
-        array('keyName','','积分KEY已存在！',self::MUST_VALIDATE,'unique'),
+        array('userOrRole,keyName','','积分KEY已存在！',self::MUST_VALIDATE,'unique'),
 		array('name','require','名称不能为空',self::MUST_VALIDATE,''),
 	);
 	

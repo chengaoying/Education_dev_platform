@@ -50,8 +50,12 @@ class CreditRuleModel extends BaseModel {
 	
 	public function updateCache(){
 		$list = $this->where('status=1')->select();
-        S('CreditRule',$list);
-        return $list;
+        $data = array();
+        foreach($list as $key=>$row){
+			$data[$row['keyName']] = $row;
+		}
+        S('CreditRule',$data);
+        return $data;
 	}
 	
 	

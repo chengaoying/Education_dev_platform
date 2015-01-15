@@ -20,7 +20,7 @@
 						<option value="1" <?php echo ($item[value] ? 'selected' : ''); ?>>是</option>
 						<option value="0" <?php echo ($item[value] ? '' : 'selected'); ?>>否</option>
 					</select><?php break;?>
-				<?php case "array": case "textarea": if($item['readonly']) $readOnly = 'readonly="readonly"'; ?>
+				<?php case "array": case "textarea": $readOnly = ''; if($item['readonly']) $readOnly = 'readonly="readonly"'; ?>
                     <textarea name="<?php echo ($key); ?>" cols="<?php echo ($item['cols']?$item['cols']:50); ?>" 
                     		rows="<?php echo ($item['rows']?$item['rows']:8); ?>" <?php echo ($readOnly); ?>><?php echo ($item[value]); ?>
                     </textarea><?php break; endswitch;?>

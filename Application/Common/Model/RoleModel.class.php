@@ -46,5 +46,15 @@ class RoleModel extends BaseModel {
 		$all = $this->queryRole();
 		S('Role',$all['rows']);
 	}
+    
+    /**
+	 * 增加或减少某项值
+	 * @param int $userId
+	 * @param array $data
+	 */
+	public function setIncOrDec($userId,$data){		
+		$rows = $this->where(array('roleId'=>$userId))->setField($this->getIncOrDecData($data));
+		return result_data(1,'数据更新成功！',array('rows'=>$rows));
+	}
 
 }
