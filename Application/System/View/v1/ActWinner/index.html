@@ -1,0 +1,60 @@
+<extend name="./base_list" />
+<block name="search">
+	<b>所属产品：{$currProduct['name']}　</b>
+	所属活动：{$activityHtml}	
+	用户ID：<input type="text" name="where[userId]" placeholder="请输入用户ID" style="width: 80px"/>
+    角色ID：<input type="text" name="where[roleId]" placeholder="请输入角色ID" style="width: 80px"/>
+	奖项Id：<input type="text" name="where[packId]" placeholder="" style="width: 80px"/>
+	发奖状态：{$isSendHtml}
+	
+</block>
+<block name="menu">
+	<div onclick="send()" data-options="iconCls:'icon-tip'" {$buttonStyle['send']}>手动发奖</div>
+</block>
+		
+<block name="button">
+	<a href="#" class="easyui-linkbutton" iconCls="icon-tip" plain="true" onclick="send()" {$buttonStyle['send']}>手动发奖</a>
+</block> 
+			
+			
+<block name="datagrid">
+	    sortName:'addTime',//默认排序字段
+		sortOrder:'desc',//默认排序方式 'desc' 'asc'
+		idField : 'id',
+	    columns:[[ 
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},            
+            {field:'userId',title:'用户ID',sortable:true,width:120},
+            {field:'roleId',title:'角色ID',sortable:true,width:120},
+            {field:'packId',title:'奖项',sortable:true,width:80},
+            {field:'isSend',title:'发奖状态',sortable:true,width:80},
+            {field:'autoMemo',title:'自动发奖备注',sortable:false,width:300},
+            {field:'memo',title:'备注',sortable:false,width:300},
+            {field:'addTime',title:'添加时间',sortable:true,width:180},
+            {field:'modTime',title:'修改时间',sortable:true,width:180},
+        ]],
+</block>
+
+<block name="js">
+edit_W = 600;
+edit_H = 400;
+function add(){
+	var aId = $("#aId").combobox("getValue");
+	addData("添加","#edit_form",datagrid,"__URL__/add/aId/"+aId,edit_W,edit_H);
+}
+
+function edit(rowIndex,rowData){
+	var aId = $("#aId").combobox("getValue");
+	editData(rowIndex,rowData,"编辑",'#edit_form',datagrid,"__URL__/edit/aId/"+aId,edit_W,edit_H);
+}
+
+function send(){
+	var aId = $("#aId").combobox("getValue");
+	postData("__URL__/send/aId/" + aId,true,'',datagrid,"one");
+}
+
+function del(){
+	var aId = $("#aId").combobox("getValue");
+	delData(datagrid,"__URL__/del/aId/"+aId);
+}
+
+</block>

@@ -17,7 +17,7 @@ class CreditRuleLogModel extends BaseModel {
 	//自动填充
 	protected $_auto = array(
 		array('addTime',DATE_TIME,self::MODEL_INSERT),
-        array('modTime',DATE_TIME,self::MODEL_UPDATE),
+        array('modTime',DATE_TIME,self::MODEL_BOTH),
 	);
 		
 }

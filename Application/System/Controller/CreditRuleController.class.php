@@ -63,7 +63,7 @@ class CreditRuleController extends BaseAuthController {
 			}else{
 				$creditRule['timeType'] = 0;
                 $creditRule['timeNum'] = 1;
-                $creditRule['ruleTypeNum'] = 0;
+                $creditRule['ruleTypeNum'] = 1;
 				$creditRule['status'] = 1;
 			}
 			//积分关键字

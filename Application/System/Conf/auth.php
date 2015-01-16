@@ -85,6 +85,10 @@ return array(
     				'name' => '活动管理',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
+                'ActWinner' => array(
+                    'name' => '中奖者管理',
+    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+                ),
     		),
     	),
         'award' => array(
@@ -98,9 +102,9 @@ return array(
     				'name' => '奖项管理',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
-                'UserRoleAward' => array(
-                    'name' => '中奖者管理',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
+                'RealAward' => array(
+                    'name' => '获得实物管理',
+    				'item' => array('index' => '查看', 'del' => '删除'),
                 ),
     		),
     	),

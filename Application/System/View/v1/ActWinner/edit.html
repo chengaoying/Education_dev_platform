@@ -1,0 +1,19 @@
+
+<form id="edit_form" method="post" style="padding:10px">
+<table class="editTable">
+	<tr><th>所属活动</th><td>{$winner['actName']}<input type="hidden" name="id" value="{$winner['id']}"/><input type="hidden" name="aId" value="{$aId}"/></td></tr>
+	<tr><th>用户ID</th><td>{$winner['userId']}</td></tr>
+    <tr><th>角色ID</th><td>{$winner['roleId']}</td></tr>
+	<tr><th>奖项</th><td>{$winner['packName']}</td></tr>
+	<tr><th>奖品</th><td>
+		<table class="editTable"><tr><th>奖品</th><th>数量</th></tr>
+		<foreach name="winner['items']" item="item">
+		<tr><td>{$item['title']}</td><td>{$item['num']}</td></tr>
+		</foreach>
+		</table>
+	</td></tr>
+	<tr><th>发奖状态</th><td>{$isSendHtml}</td></tr>
+	<tr><th>自动发奖说明</th><td>{$winner['autoInfo']}</td></tr>
+	<tr><th>备注</th><td><textarea id="info" name="info" cols="50" rows="5">{$winner['info']}</textarea></td></tr>
+</table>
+</form>	

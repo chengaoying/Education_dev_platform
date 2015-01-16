@@ -66,7 +66,7 @@ class AwardPackController extends BaseAuthController {
             }
 			$this->assign(array(
 				'awardPack' => $awardPack,
-				'awardItemHtml' => $this->getcomboBox($awardItems,'awardItem',array('selVal'=>-1,'valKey'=>'id','textKey'=>'title','editable'=>true)),
+				'awardItemHtml' => $this->getcomboBox($awardItems,'awardItem',array('selVal'=>-1,'valKey'=>'id','textKey'=>'name','editable'=>true)),
                 'statusHtml' => $this->getComboBox($this->statusNames,'status',array('selVal'=>$awardPack['status'],'nullText'=>'','editable'=>true)),
 			));	
 			$this->display( 'edit');
