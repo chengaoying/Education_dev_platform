@@ -52,8 +52,8 @@ class RoleModel extends BaseModel {
 	 * @param int $userId
 	 * @param array $data
 	 */
-	public function setIncOrDec($userId,$data){		
-		$rows = $this->where(array('roleId'=>$userId))->setField($this->getIncOrDecData($data));
+	public function setIncOrDec($roleId,$data){		
+		$rows = $this->where(array('id'=>$roleId))->setField($this->getIncOrDecData($data));
 		return result_data(1,'数据更新成功！',array('rows'=>$rows));
 	}
 

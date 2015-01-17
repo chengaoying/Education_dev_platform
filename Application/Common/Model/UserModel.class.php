@@ -50,7 +50,7 @@ class UserModel extends BaseModel {
 	 * @param array $data
 	 */
 	public function setIncOrDec($userId,$data){		
-		$rows = $this->where(array('userId'=>$userId))->setField($this->getIncOrDecData($data));
+		$rows = $this->where(array('id'=>$userId))->setField($this->getIncOrDecData($data));
 		return result_data(1,'数据更新成功！',array('rows'=>$rows));
 	}
 	
