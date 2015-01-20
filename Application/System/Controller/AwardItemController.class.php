@@ -78,12 +78,6 @@ class AwardItemController extends BaseAuthController {
                     $this->showResult(result_data(0, '请选择积分类型'));
                 }
             }
-            if($data['aType'] == 2){
-                $data['creditId'] = 0;
-                if(!$data['propId']){
-                    $this->showResult(result_data(0, '请填写道具ID'));
-                }
-            }
 			$this->showResult( D( 'AwardItem')->saveData($data));
 		}
 	}

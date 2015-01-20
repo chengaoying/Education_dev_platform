@@ -10,7 +10,7 @@ namespace Common\Logic;
 class CreditLogic extends BaseLogic {
     
     /*
-     * 不按规则更新积分不写日志
+     * 不按规则更新积分不写规则记录日志
      * 当角色ID不为空的时候，那主要是根据角色判断
      * @param int $userId 用户ID
      * @param int $roleId 角色ID
@@ -27,7 +27,7 @@ class CreditLogic extends BaseLogic {
         }
         if($log){
             foreach ($creditData as $key => $value) {
-                if($value >= 0){ //赚取
+                if($value >= 0){ //赚取   
                     $type = 1;
                 }else{ //消耗
                     $type = 2;
@@ -55,6 +55,7 @@ class CreditLogic extends BaseLogic {
         }
         
         $rule = get_array_val(get_cache('CreditRule'),$ruleKey); //单条规则
+//      save_log('callapi',array('date' => date('H:i:s',NOW_TIME), 'api'=>$rule));
         if(!$rule) return result_data(0,'该积分规则不存在！');
         if($rule['timeType']){
             if(!intval($rule['timeNum'])) return result_data(0,'时间长度大于0！');
@@ -88,19 +89,16 @@ class CreditLogic extends BaseLogic {
         }else{
             $creditNum = '-'.$rule['creditNum'];
         }
-        $result = $this->incOrDec($userId,$roleId,array($credit['keyName']=>$creditNum),$info,false);
+        if($rule['creditId'] == 2)
+        {
+	        $result = $this->incOrDec($userId,$roleId,array($credit['keyName']=>$creditNum),$info,false);
+        }
+        elseif($rule['creditId'] == 1)
+        {
+        	$result = $this->incOrDec($userId,null,array($credit['keyName']=>$creditNum),$info,false);
+        }
         
         //添加积分日志
-        $creditLog = array(
-            'userId' => $userId,
-            'roleId' => $roleId,
-            'ruleId' => $rule['id'],
-            'ruleName' => $rule['name'],
-            'creditNum' => $rule['creditNum'],
-            'type' => $rule['ruleType'],
-            'info' => $info,
-        );
-        
         $result = $this->saveCreditLog($userId, $roleId, $rule['id'], $rule['name'], $rule['creditNum'],$rule['ruleType'],$info);
         return $result;
     }
@@ -122,5 +120,78 @@ class CreditLogic extends BaseLogic {
         return $result;
     }
     
+    /*每日登陆积分奖励
+     * @param int $userId 用户ID
+     * @param int $roleId 角色ID
+     * @param string $ruleKey 规则KEY
+     * @param string $info 备注信息
+     */
+    public function everydayLogin($userId = 0,$roleId = 0,$ruleKey = '',$info = '')
+    {
+    	$rule = get_array_val(get_cache('CreditRule'),$ruleKey); //单条规则
+    	$ruleLog = D('CreditRuleLog')->where(array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id']))->find();
+    	$award = 0;//奖励
+//    	save_log('callapi',array('date' => date('H:i:s',NOW_TIME), 'api'=>$ruleLog));
+    	if(empty($ruleLog))
+    	{
+    		$result = D('CreditRuleLog')->saveData(array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id'],'num'=>1));
+    		$award = $rule['creditNum'];
+    	}
+    	else
+    	{
+    		$continueCnt = $ruleLog['num'];
+    		 
+    		$timeStampLastLogin = strtotime(date("Y-m-d", strtotime($ruleLog['modTime'])));
+    		$timeStampNow = strtotime(date("Y-m-d"));
+    		$difference = $timeStampNow - $timeStampLastLogin;//计算两次登陆差值
+    		 
+    		if($difference < 0)//这种情况一般不可能出现
+    		{
+    			return result_data(0, '当前登陆时间怎么能早于上次登陆时间！');
+    		}
+    		else if($difference == 24*3600)//本次登陆时间和上次登陆相差一天，连续登陆中。。。
+    		{
+    			if($continueCnt<10&&$continueCnt>0)//连续登陆小于10天
+    			{
+    				$award = $rule['creditNum'];
+    			}else if($continueCnt>=10)
+    			{
+    				$award = $continueCnt+1;
+    			}
+    			$result = D('CreditRuleLog')->saveData(array('id'=>$ruleLog['id'],'num'=>$ruleLog['num']+1));
+    		}
+    		else if($difference > 24*3600) //本次登陆时间和上次登陆相差大于一天，非连续登陆
+    		{
+    			$award = $rule['creditNum'];
+    			//重置连续登陆天数为1
+    			$result = D('CreditRuleLog')->saveData(array('id'=>$ruleLog['id'],'num'=>1));
+    		}
+    		else if($difference == 0)//今天已经登陆过，此次登陆不做处理
+    		{
+    			return result_data(0, '今天登陆奖励已经使用！');
+    		}
+    	}
+    	
+    	//添加积分
+    	$credit = get_array_val(get_cache('Credit'),$rule['creditId']);
+    	if($rule['ruleType'] == 1){ //赚取
+    		$creditNum = $award;
+    	}else{
+    		$creditNum = '-'.$award;
+    	}
+    	if($rule['creditId'] == 2)//针对角色加积分
+    	{
+    		$result = $this->incOrDec($userId,$roleId,array($credit['keyName']=>$creditNum),$info,false);
+    	}
+    	elseif($rule['creditId'] == 1)//针对用户加积分
+    	{
+    		$result = $this->incOrDec($userId,null,array($credit['keyName']=>$creditNum),$info,false);
+    	}
+    	
+    	//添加积分日志
+    	$result = $this->saveCreditLog($userId, $roleId, $rule['id'], $rule['name'], $creditNum,$rule['ruleType'],$info);
+    	return $result;
+    	
+    }
     
 }

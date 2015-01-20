@@ -102,8 +102,8 @@ return array(
     				'name' => '奖项管理',
     				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
     			),
-                'RealAward' => array(
-                    'name' => '获得实物管理',
+                'UserAward' => array(
+                    'name' => '用户奖品管理',
     				'item' => array('index' => '查看', 'del' => '删除'),
                 ),
     		),

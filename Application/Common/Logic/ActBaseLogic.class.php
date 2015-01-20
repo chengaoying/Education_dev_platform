@@ -133,11 +133,12 @@ class ActBaseLogic  extends BaseLogic{
 					$result = D('Credit','Logic')->incOrDec($winner['userId'],$winner['roleId'],array($creditData['keyName']=>$val),'参与活动['.$this->act['title'].']中了['.$pack['name'].']');
 					$info .= DATE_TIME.' 积分体系奖品：'.$item['name'].'（数量：'.$val.'）'.($result['status']?'发放成功！':'发放失败（'.$result['info'].'）')."\r\n";
 				}elseif($item['aType']==2){//虚拟道具
-					$result = result_data(1,'');
-					$info .= DATE_TIME.' 道具奖品：'.$item['name'].'（数量：'.$val.'）'.($result['status']?'发放成功！':'发放失败（'.$result['info'].'）')."\r\n";
+					$realInfo = DATE_TIME.'获得道具奖品：'.$item['name'].'（数量：'.$val.'）'.'参与活动['.$this->act['title'].']中了['.$pack['name'].']';
+                    $info .= $realInfo;
+                    $result = D('UserAward')->saveData(array('userId'=>$winner['userId'],'roleId'=>$winner['roleId'],'itemId'=>$item['id'],'num'=>$val,'type'=>1,'info'=>$realInfo));
 				}else{ //记录实物奖品
                     $realInfo = DATE_TIME.'获得实物奖品：'.$item['name'].'（数量：'.$val.'）'.'参与活动['.$this->act['title'].']中了['.$pack['name'].']';
-                    $result = D('RealAward')->saveData(array('userId'=>$winner['userId'],'roleId'=>$winner['roleId'],'itemId'=>$item['id'],'num'=>$val,'info'=>$realInfo));
+                    $result = D('UserAward')->saveData(array('userId'=>$winner['userId'],'roleId'=>$winner['roleId'],'itemId'=>$item['id'],'num'=>$val,'type'=>2,'info'=>$realInfo));
                 }
 			}		
 			//更新中奖名单记录

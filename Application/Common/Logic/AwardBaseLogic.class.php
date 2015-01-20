@@ -32,5 +32,63 @@ class AwardBaseLogic extends BaseLogic {
         }
         return $awardRealStr;
     }
+    
+    /*
+     * 发奖品
+     * @param int $userId 用户ID
+     * @param int $roleId 角色ID
+     * @param int $itemId 奖品ID
+     * @param int $num 数量
+     * @param string $info 描述
+     */
+    public function sendItem($userId,$roleId,$itemId,$num,$info='') {
+        if(!$userId) return result_data(0,'用户ID不能为空！');
+        if(!$itemId) return result_data(0,'奖品ID不能为空！');
+        $awardItems = get_cache('AwardItem');
+        $item = $awardItems[$itemId];
+        if($item['aType']==1){//积分体系统
+            $creditData = get_array_val(get_cache('Credit'), $item['creditId']);
+            $result = D('Credit','Logic')->incOrDec($userId,$roleId,array($creditData['keyName']=>$num),$info);
+        }else{//实物和虚拟道具
+            if($item['aType'] == 2){ //道具
+                $type = 1;
+            }else{  //实物
+                $type = 2;
+            }
+            $result = D('UserAward')->saveData(array('userId'=>$userId,'roleId'=>$roleId,'itemId'=>$itemId,'num'=>$num,'type'=>$type,'info'=>$info));
+        }
+        return $result;
+    }
+    
+    /*
+     * 发奖项
+     * @param int $userId 用户ID
+     * @param int $roleId 角色ID
+     * @param int $packId 奖项ID
+     * @param string $info 描述
+     */
+    public function sendPack($userId,$roleId,$packId,$info='') {
+        if(!$userId) return result_data(0,'用户ID不能为空！');
+        if(!$packId) return result_data(0,'奖项ID不能为空！');
+        $awardPack = get_cache('AwardPack');
+        $items = get_cache('AwardItem');	
+        $realPack = $awardPack[$packId];
+        $realPack['items'] = unserialize($realPack['items']);
+        foreach($realPack['items'] as $key=>$val){
+            $item = $items[$key];
+            if($item['aType']==1){//积分体系统
+                $creditData = get_array_val(get_cache('Credit'), $item['creditId']);
+                $result = D('Credit','Logic')->incOrDec($userId,$roleId,array($creditData['keyName']=>$val),$info);
+            }else{ //记录实物奖品和道具
+                if($item['aType'] == 2){ //道具
+                    $type = 1;
+                }else{  //实物
+                    $type = 2;
+                }
+                $result = D('UserAward')->saveData(array('userId'=>$userId,'roleId'=>$roleId,'itemId'=>$item['id'],'num'=>$val,'type'=>$type,'info'=>$info.$item['name']));
+            }
+        }
+        return $result;
+    }
 
 }

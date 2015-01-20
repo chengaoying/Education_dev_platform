@@ -3,7 +3,6 @@
 	<tr><th>标题</th><td><input type="hidden" name="id" value="{$awardItem['id']}"/><input type="text" id="name" name="name" value="{$awardItem['name']}"/><em>*</em></td></tr>
 	<tr><th>类型</th><td>{$aTypeHtml}<em>*</em></td></tr>
 	<tr id='tr_creditId' style='display:none;'><th>积分体系</th><td>{$creditHtml}<em>*</em></td></tr>
-    <tr id='tr_propId' style='display:none;'><th>道具ID</th><td><input type="text" name="propId" value="{$awardItem['propId']}" /><em>*</em></td></tr>	
 	<tr><th>图片</th><td><input type="text" id="imgUrl" name="imgUrl" value="{$awardItem['imgUrl']}" style="width:250px" /><a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upfileDialog(1,'{$thumb}','奖品图片：{$awardItem[name]}',0,0,'#imgUrl')"></a></td></tr>
     <tr><th>状态</th><td>{$statusHtml}<em>*</em></td></tr>
 </table>
@@ -16,13 +15,10 @@ $(function(){
 		onSelect:function(param){
 			if(param.value == 1){
 				$("#tr_creditId").show();
-                $("#tr_propId").hide();
 			}else if(param.value == 2){
                 $("#tr_creditId").hide();
-                $("#tr_propId").show();
             }else{
 				$("#tr_creditId").hide();
-				$("#tr_propId").hide();
 			}
 		}
 	}).combobox("select","{$awardItem['aType']}");

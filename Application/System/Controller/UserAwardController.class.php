@@ -5,7 +5,7 @@
  *
  */
 namespace System\Controller;
-class RealAwardController extends BaseAuthController {
+class UserAwardController extends BaseAuthController {
 		
 	/**
 	 * 查看操作
@@ -20,7 +20,7 @@ class RealAwardController extends BaseAuthController {
 			));
 			$this->display();
 		} else {
-			$data = D('RealAward')->selectPage($this->getSelectParam());
+			$data = D('UserAward')->selectPage($this->getSelectParam());
             $awardItem = get_cache('AwardItem');
             foreach ($data['rows'] as &$value) {
                 $value['itemName'] = $awardItem[$value['itemId']]['name'];
@@ -34,7 +34,7 @@ class RealAwardController extends BaseAuthController {
 	 * 删除操作
 	 */
 	public function delAct() {
-        $this->showResult( D('RealAward')->delData(I('id','')));
+        $this->showResult( D('UserAward')->delData(I('id','')));
 	}
 
 
