@@ -67,6 +67,7 @@ class CourseLogic extends BaseLogic {
 			$param['where']['name'] = $v;
 			$param['page'] 		= 1;
 			$param['pageSize'] 	= 1;
+			$param['sortOrder'] = 'sort asc';
 			$_data = D('Course')->selectPage($param);
 			$data[$k] = $_data['rows'][0];
 			unset($param['where']['keys']);

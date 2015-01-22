@@ -334,7 +334,7 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
-    			$sLibrary[$v['libId']] = $v['id'].',';
+    			$sLibrary[$v['sectionId']] = $v['id'].',';
     		} 
     	}
     	

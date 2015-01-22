@@ -15,7 +15,7 @@ class RoleCourseLogic extends BaseLogic {
 	public function addCourse($roleId,$courseId,$courseName,$courseImg){
 		$roleCourse['roleId']	= $roleId;
 		$roleCourse['courseId']	= $courseId;
-		$roleCourse['courseName'] = $courseName;
+		$roleCourse['courseName'] = urldecode($courseName);
 		$roleCourse['courseImg']  = $courseImg;	
 		$data = D('RoleCourse')->saveData($roleCourse);
 		return $data;

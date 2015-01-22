@@ -8,8 +8,9 @@
 
 namespace Api\Controller; 
 use Think\Controller\HproseController;
+use Think\Controller\JsonRpcController;
 
-class BaseApiController extends HproseController{
+class BaseApiController extends HproseController {
 	
 	/* 接口调用描述信息 */
 	public $_SUCCESS 		= 1;		//接口调用成功

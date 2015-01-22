@@ -13,6 +13,7 @@
 $(function(){
 	$("#aType").combobox({
 		onSelect:function(param){
+            //$("input[name='creditId']").val('');
 			if(param.value == 1){
 				$("#tr_creditId").show();
 			}else if(param.value == 2){
@@ -22,7 +23,6 @@ $(function(){
 			}
 		}
 	}).combobox("select","{$awardItem['aType']}");
-	
 });
 
 </script>

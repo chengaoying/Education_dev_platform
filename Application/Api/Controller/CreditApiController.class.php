@@ -44,9 +44,20 @@ class CreditApiController extends BaseApiController{
      * @param string $ruleKey 规则KEY
      * @param string $info 备注信息
      */
-	public function everydayLogin($userId = 0,$roleId = 0,$ruleKey = '',$info = '')
+	public function everydayLogin($userId = 0,$roleId = 0,$info = '')
 	{
-		$result = D('Credit', 'Logic')->everydayLogin($userId, $roleId, $ruleKey, $info);
+		$result = D('Credit', 'Logic')->everydayLogin($userId, $roleId, $info);
+		return $result;
+	}
+	
+    /*
+     * 根据userid 或 roleId 获得几日领取积分数
+     * @param int $userId 用户ID
+     * @param int $roleId 角色ID
+     */
+	public function queryTodayCredit($userId = 0,$roleId = 0)
+	{
+		$result = D('Credit', 'Logic')->queryTodayCredit($userId, $roleId);
 		return $result;
 	}
 	

@@ -65,7 +65,7 @@ class AwardItemController extends BaseAuthController {
 			}
 			$this->assign(array(
 				'awardItem' => $awardItem,
-                'creditHtml' => $this->getComboBox(get_cache('Credit'),'creditId',array('selVal'=>$awardItem['creditId'],'valKey'=>'id','textKey'=>'name','nullText'=>'')),
+                'creditHtml' => $this->getComboBox(get_cache('Credit'),'creditId',array('selVal'=>$awardItem['creditId'],'valKey'=>'id','textKey'=>'name','nullText'=>'请选择')),
 				'aTypeHtml' => $this->getComboBox($this->aTypes, 'aType',array('selVal'=>$awardItem['aType'],'nullText'=>'','editable'=>true)),
                 'statusHtml' => $this->getComboBox($this->statusNames,'status',array('selVal'=>$awardItem['status'],'nullText'=>'','editable'=>true)),
 			));	

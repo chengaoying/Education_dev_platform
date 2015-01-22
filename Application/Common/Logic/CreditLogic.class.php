@@ -74,7 +74,7 @@ class CreditLogic extends BaseLogic {
             }
             $sumNum = D('CreditRuleLog')->where($where)->sum('num');
             if($sumNum >= $rule['ruleTypeNum']) return result_data(0,'超出次数规则上限');
-            $curWhere = array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id'],'modTime'=>$curTime2);
+            $curWhere = array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id'],array('modTime'=>array(array('egt',$curTime2.' 00:00:00'),array('elt',$curTime2.' 23:59:59'),'and')));
             $ruleLog = D('CreditRuleLog')->where($curWhere)->find();
             if(!$ruleLog){ //不存在则添加今天的积分规则日志
                 $result = D('CreditRuleLog')->saveData(array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id'],'num'=>1));
@@ -126,8 +126,14 @@ class CreditLogic extends BaseLogic {
      * @param string $ruleKey 规则KEY
      * @param string $info 备注信息
      */
-    public function everydayLogin($userId = 0,$roleId = 0,$ruleKey = '',$info = '')
+    public function everydayLogin($userId = 0,$roleId = 0,$info = '')
     {
+    	if(!$userId && !$roleId){
+    		return result_data(0,'缺少用户ID或是角色ID！');
+    	}
+    	
+    	$ruleKey = 'everydayLogin';
+    	
     	$rule = get_array_val(get_cache('CreditRule'),$ruleKey); //单条规则
     	$ruleLog = D('CreditRuleLog')->where(array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>$rule['id']))->find();
     	$award = 0;//奖励
@@ -192,6 +198,20 @@ class CreditLogic extends BaseLogic {
     	$result = $this->saveCreditLog($userId, $roleId, $rule['id'], $rule['name'], $creditNum,$rule['ruleType'],$info);
     	return $result;
     	
+    }
+    
+    /*根据userid 或 roleId 获得几日领取积分数
+     *@param int $userId 用户ID
+     *@param int $roleId 角色ID
+     */
+    public function queryTodayCredit($userId = 0,$roleId = 0)
+    {
+    	$sumNum = 0;//今日获得积分总数
+    	$curTime = date("Y-m-d",NOW_TIME);
+    	$curWhere = array('userId'=>$userId,'roleId'=>$roleId,array('addTime'=>array(array('egt',$curTime.' 00:00:00'),array('elt',$curTime.' 23:59:59'),'and')));
+    	$sumNum = D('CreditLog')->where($curWhere)->sum('creditNum');
+    	$sunNum = (empty($sumNum)) ? 0 : $sumNum;
+    	return $sumNum;
     }
     
 }

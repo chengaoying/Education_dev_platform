@@ -8,12 +8,12 @@
 namespace Common\Logic;
 
 class AwardBaseLogic extends BaseLogic {
-    /*
+	
+    /**
      * 将数据库保存的奖品序列化转换为具体奖品名称
      * @param string $awardStr 奖品序列化字符串
      * @return string $awardRealStr 返回奖品名称和数量字符串
      */
-
     public function showAwardName($awardStr) {
         if (empty($awardStr))
             return result_data(0, '奖项不存在');
@@ -33,7 +33,7 @@ class AwardBaseLogic extends BaseLogic {
         return $awardRealStr;
     }
     
-    /*
+    /**
      * 发奖品
      * @param int $userId 用户ID
      * @param int $roleId 角色ID
@@ -41,7 +41,7 @@ class AwardBaseLogic extends BaseLogic {
      * @param int $num 数量
      * @param string $info 描述
      */
-    public function sendItem($userId,$roleId,$itemId,$num,$info='') {
+    public function sendItem($userId,$roleId,$itemId,$num,$info) {
         if(!$userId) return result_data(0,'用户ID不能为空！');
         if(!$itemId) return result_data(0,'奖品ID不能为空！');
         $awardItems = get_cache('AwardItem');
@@ -60,7 +60,7 @@ class AwardBaseLogic extends BaseLogic {
         return $result;
     }
     
-    /*
+    /**
      * 发奖项
      * @param int $userId 用户ID
      * @param int $roleId 角色ID
@@ -89,6 +89,20 @@ class AwardBaseLogic extends BaseLogic {
             }
         }
         return $result;
+    }
+    
+    /**
+     * 获取奖品信息
+     * @param int $awardId 奖品id
+     * @return $data
+     */
+    public function getAwardInfo($awardId){
+    	if(!$awardId){
+    		return result_data(0,'奖品ID不能为空！');
+    	}else{
+    		$items = get_cache('AwardItem');
+    		return result_data(1,'',$items[$awardId]);
+    	}
     }
 
 }

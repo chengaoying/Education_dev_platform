@@ -3,7 +3,7 @@
  * 数据模型：广告
  */
 namespace Common\Model;
-class RealAwardModel extends BaseModel {	
+class UserAwardModel extends BaseModel {	
 	
     //默认排序字段
 	protected  $sortOrder = 'id desc'; 
