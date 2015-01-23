@@ -259,6 +259,8 @@ class LibraryLogic extends BaseLogic {
 						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项B']));
 						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项C']));
 						$data[$k1][$k2]['itemList'][] = get_upfile_url(trim($data[$k1][$k2]['选项D']));
+						unset($data[$k1][$k2]);
+						break;
 					}else if($data[$k1][$k2]['kind']=='图片文字'){
 						//暂时过滤掉图片文字类型。
 						$data[$k1][$k2][$fields[$k1][$k3]]='picText';
