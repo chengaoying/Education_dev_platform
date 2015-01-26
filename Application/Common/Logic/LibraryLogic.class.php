@@ -13,16 +13,12 @@ class LibraryLogic extends BaseLogic {
 	 * @param array $data 要保存的数据
 	 * @return int  返回插入的最后一条数据的id
 	 */
-	public function saveRoleLib($roleId,$data){
-		$param['where']['roleId'] = $roleId;
+public function saveRoleLib($roleId,$data){
 		$sectionId = $data['sectionId'];
-		$topicId = $data['topicId'];
-		//查询题库
-		$wrongList = $this->queryRoleWrongLib($roleId,$topicId,$sectionId);
+		$courseId = $data['courseId'];
+		//查询错误的题目
+		$wrongList = $this->queryRoleWrongLib($roleId,$sectionId);
 		
-		if($wrongList==null){
-			return $wrongList;
-		}
 		$delList = "";
 		$saveList = "";
 		$roleLibrary['roleId'] = $roleId;
@@ -34,20 +30,25 @@ class LibraryLogic extends BaseLogic {
 		$userParam['point'] = $userData['point']+$data['redFlower'];
 		D('Role')->save($userParam);
 		
+		$roleLibrary['courseId'] = $courseId;
+		$roleLibrary['sectionId'] = $sectionId;
+		//将关于本次题库获得的小红花，分数等保存到角色题库中。
+		D('RoleLibrary')->saveData($roleLibrary);
+		
 		$i = 0;
 		//利用for循环查找错误题集和已经修正的错误题目。
 		foreach ($data['lib'] as $key=>$value){
-			$roleLibrary['topicId'] = $value['topicId'];
-			$roleLibrary['sectionId'] = $value['sectionId'];
 			$isSave = true;
-			foreach ($wrongList['rows'] as $key1=>$value1){
-				if($value['itemId']==$value1['itemId']){
-					$isSave = false;
-					$delList.= $value1['id'].",";
-					if($value['status']=='false'){//0代表答错了
-						unset($value['status']);
-						$saveList[] = $value;
-						$i++;
+			if($wrongList!=null){
+				foreach ($wrongList['rows'] as $key1=>$value1){
+					if($value['itemId']==$value1['itemId']){
+						$isSave = false;
+						$delList.= $value1['id'].",";
+						if($value['status']=='false'){//0代表答错了
+							unset($value['status']);
+							$saveList[] = $value;
+							$i++;
+						}
 					}
 				}
 			}
@@ -58,10 +59,9 @@ class LibraryLogic extends BaseLogic {
 			}
 		}
 		
-		//将关于本次题库获得的小红花，分数等保存到角色题库中。
-		D('RoleLibrary')->saveData($roleLibrary);
 		if($delList!=""){
 			$delList = substr($delList,0,strlen($delList)-1);
+			$param['where']['roleId'] = $roleId;
 			$param['id'] = array(in,$delList);
 			//删除已经修改的的错误题集
 			D('RoleWrongLibrary')->where($param)->delete();
@@ -88,29 +88,52 @@ class LibraryLogic extends BaseLogic {
 	 * @param int $pageSize 每页记录数
 	 * @return array $data 查询的数组
 	 */
-	public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo=1,$index=1,$s_pageSize=7,$l_pageNo=1,$l_pageSize=6,$isQuerySection = false,$initPage = false) {
-		
+public function queryRoleWrongLib($roleId,$sectionId,$initPage = true) {
+		$param['where']['roleId'] = $roleId;
+		$param['where']['sectionId'] = $sectionId;
+		$param['where']['initPage'] = $initPage;
+		//查询该课时所有题目的错题
+		$data = D('RoleWrongLibrary')->selectPage($param);
+		//查询题库的题目
+		$dataExcl = $this->queryLib($sectionId);
+		foreach ($data['rows'] as $key=>$value){
+			foreach ($dataExcl['content'] as $key1=>$value1){
+				if($value['itemId']==$value1['id']){
+					$data['rows'][$key]['title'] = $value1['title'];
+				}
+			}
+		}
+		return $data;
+	}
+	
+	/**
+	 * 查询角色答的错误题目
+	 * @param int $roleId 角色ID
+	 * @param int $topicId 知识点ID
+	 * @param int $sectionId 课时ID
+	 * @param int $pageNo 页号
+	 * @param int $pageSize 每页记录数
+	 * @return array $data 查询的数组
+	 */
+	public function queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_pageNo=1,$index=1,$s_pageSize=7,$l_pageNo=1,$l_pageSize=6,$isQuerySection = false,$initPage = false) {
 		//判断是否需要查询错误的课程列表
 		if($isQuerySection){
 			//查询错误的课时列表
-			$data1 = $this->querySection($roleId,$topicId,$s_pageNo,$s_pageSize);
+			$data1 = $this->querySection($roleId,$courseId,$s_pageNo,$s_pageSize);
 			$sectionId = $data1['rows'][$index-1]['sectionId'];
 			//查询当前选中课时列表的分数
-			$score = $this->queryScore($topicId, $roleId, $sectionId);
+			$score = $this->queryScore($roleId, $sectionId);
 		}
 		$param['where']['sectionId'] = $sectionId;
-		$param['where']['topicId'] = $topicId;
+		$param['where']['courseId'] = $courseId;
 		$param['where']['roleId'] = $roleId;
 		$param['page'] = $l_pageNo;
 		$param['pageSize'] = $l_pageSize;
-        $param['where']['initPage'] = $initPage;
-        //查询该课时所有题目的错题
+		$param['where']['initPage'] = $initPage;
+		//查询该课时所有题目的错题
 		$data = D('RoleWrongLibrary')->selectPage($param);
-        //查询题库的题目
+		//查询题库的题目
 		$dataExcl = $this->queryLib($sectionId);
-		if($dataExcl==null){
-			return null;
-		}
 		foreach ($data['rows'] as $key=>$value){
 			foreach ($dataExcl['content'] as $key1=>$value1){
 				if($value['itemId']==$value1['id']){
@@ -130,8 +153,7 @@ class LibraryLogic extends BaseLogic {
 	 * @param int $sectionId
 	 * @return unknown
 	 */
-	protected  function queryScore($topicId,$roleId,$sectionId) {
-		$param['topicId'] = $topicId;
+protected  function queryScore($roleId,$sectionId) {
 		$param['roleId'] = $roleId;
 		$param['sectionId'] = $sectionId;
 		$param['sortOrder'] = 'id desc';
@@ -146,8 +168,8 @@ class LibraryLogic extends BaseLogic {
 	 * @param int $s_pageNo
 	 * @param int $s_pageSize
 	 */
-	public function querySection($roleId,$topicId,$s_pageNo,$s_pageSize){
-		$param['where']['topicId'] = $topicId;
+public function querySection($roleId,$courseId,$s_pageNo,$s_pageSize){
+		$param['where']['courseId'] = $courseId;
 		$param['where']['roleId'] = $roleId;
 		$param['page'] = $s_pageNo;
 		$param['pageSize'] = $s_pageSize;
@@ -177,16 +199,16 @@ class LibraryLogic extends BaseLogic {
 	 * @param int $sectionId 课程id
 	 * @return array 返回题库内容
 	 */
-	public function queryLib($sectionId){
+public function queryLib($sectionId){
 		$param['sectionId'] = $sectionId;
 		//查询题库信息，主要是要获取excel的文件
 		$data = D('Library')->selectOne($param);
-		if($data==null){
-			return null;
-		}
 		$fileUrl = C('UPFILE_LOCAL_PATH').'/'.$data['libUrl'];
 		//读取excel文件中的数据
 		$_temp = readExcelData($fileUrl);
+		if($_temp['status']==0){
+			return $_temp;
+		}
 		//把表格中字段转换成英文（与数据库字段对应）
 		$_temp['data'] = $this->cenvertData($_temp['data']);
 		//对图片类型和文字类型的答案组合成数组
@@ -229,7 +251,7 @@ class LibraryLogic extends BaseLogic {
 				'分值'=>'score',
 				'正确答案'=>'correct'
 		);
-	
+		
 		foreach ($data as $k => $v){
 			$data[$tables[$k]] = $v;
 			unset($data[$k]);

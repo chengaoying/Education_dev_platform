@@ -34,7 +34,7 @@ class ResourceLogic extends BaseLogic {
      * @return array $data 包含资源id和资源code
      */
     public function queryResourceList($ids = array(),$field = '') {
-        $param = array('where'=>array('id'=>array('in',  implode(',', $ids))),'field'=>'id,content','isLogic'=>1,'initPage'=>true);
+        $param = array('where'=>array('id'=>array('in',  implode(',', $ids))),'field'=>$field,'isLogic'=>1,'initPage'=>true);
         $resoureList = D('Resource')->selectPage($param);
         return $resoureList['rows'];
     }
