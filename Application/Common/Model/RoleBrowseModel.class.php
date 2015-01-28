@@ -58,4 +58,29 @@ class RoleBrowseModel extends BaseModel {
 			
 		return $where;
 	}
+	
+	/*
+	 * 根据topicId 查询
+	* @param array $topicIds;
+	*/
+	public function queryBrowseRecordList($roleId=0,$topicId=0)
+	{
+		$where['roleId'] = $roleId;
+		$where['topicId'] = $topicId;
+		$count = $this->where($where)->count();
+//		save_log('callapi',array('api'=>$this->getLastSql()));
+		return $count;
+	}
+	/*
+	 * 根据topicId 查询
+	* @param array $topicIds;
+	*/
+	public function queryBrowseRecordList1($roleId=0,$topicIds)
+	{
+		$where['roleId'] = $roleId;
+		$where['topicId'] = array('in',$topicIds);
+		$result = $this->where($where)->field(array('courseId','topicId',"count(*)"=>"count"))->group('topicId')->select();
+		//save_log('callapi',array('api'=>$this->getLastSql()));
+		return $result;
+	}
 }

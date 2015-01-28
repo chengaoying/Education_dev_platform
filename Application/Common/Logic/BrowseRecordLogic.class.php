@@ -49,7 +49,7 @@ class BrowseRecordLogic extends BaseLogic {
 		
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
-		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走basemode中分页查找分支
+		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走baseModel中分页查找分支
 		{
 			$param['initPage'] = true;
 		}
@@ -76,7 +76,7 @@ class BrowseRecordLogic extends BaseLogic {
 		
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
-		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走basemode中分页查找分支
+		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走baseModeL中分页查找分支
 		{
 			$param['initPage'] = true;
 		}

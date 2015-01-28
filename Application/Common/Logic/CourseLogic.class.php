@@ -48,6 +48,11 @@ class CourseLogic extends BaseLogic {
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
 		
+		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走baseModel中分页查找分支
+		{
+			$param['initPage'] = true;
+		}
+		
 		$data = D('Course')->selectPage($param);
 		return $data;
 	}
@@ -145,6 +150,11 @@ class CourseLogic extends BaseLogic {
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
 	
+		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走baseModel中分页查找分支
+		{
+			$param['initPage'] = true;
+		}
+		
 		$data = D('Course')->selectPage($param);
 		return $data;
 	}

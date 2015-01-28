@@ -61,6 +61,7 @@ class BaseModel extends \Think\Model {
 		if($this->create($data)){
 			if(!$data['id']){
 				$id = $this->add();
+				//save_log('execute_sql',array('sql'=>$this->getLastSql(),'aaa'=>'lala'));
 				$result = result_data(1,'数据添加成功！',array('id'=>$id));
 			}else{
 				$id = $this->save();
@@ -70,6 +71,7 @@ class BaseModel extends \Think\Model {
 				if(method_exists($this, 'updateCache')) $this->updateCache();
 				if(!empty($this->sync)) $this->syncSend($this->sync);			
 			}
+			
 			return $result;
 		}else{
 			return result_data(0,$this->getError());
@@ -124,7 +126,7 @@ class BaseModel extends \Think\Model {
 	 */
 	protected function initWhere($where){
 		foreach ($where as $k=>$v){
-			if($v == '') unset($where[$k]);
+			if(empty($v)) unset($where[$k]);
 		}
 		return $where;
 	}
@@ -203,7 +205,7 @@ class BaseModel extends \Think\Model {
 		$page = $page ? $page : I(C('VAR_PAGE'),0);
 		$page = $page ? $page : 1;
 		$pageSize = $pageSize ? $pageSize : I(C('VAR_PAGESIZE'));
-		$pageSize = $pageSize ? $pageSize : C('PAGE_SIZE');		
+		$pageSize = $pageSize ? $pageSize : C('PAGE_SIZE');
 		return array($page,$pageSize);
 	}
 	

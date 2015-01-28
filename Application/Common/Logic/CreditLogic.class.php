@@ -214,4 +214,16 @@ class CreditLogic extends BaseLogic {
     	return $sumNum;
     }
     
+    /*根据userid 或 roleId 查询连续登陆天数
+     *@param int $userId 用户ID
+     *@param int $roleId 角色ID
+     */
+    public function queryContinueLogin($userId = 0,$roleId = 0)
+    {
+    	$sumNum = 0;//今日获得积分总数
+    	$curWhere = array('userId'=>$userId,'roleId'=>$roleId,'ruleId'=>1);
+    	$creditRule = D('CreditRuleLog')->where($curWhere)->find();
+    	return $creditRule;
+    }
+    
 }

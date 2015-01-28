@@ -38,7 +38,7 @@ class CreditApiController extends BaseApiController{
 	}
 	
     /*
-     * 根据规则更新积分写日志
+     * 每天登陆
      * @param int $userId 用户ID
      * @param int $roleId 角色ID
      * @param string $ruleKey 规则KEY
@@ -47,6 +47,17 @@ class CreditApiController extends BaseApiController{
 	public function everydayLogin($userId = 0,$roleId = 0,$info = '')
 	{
 		$result = D('Credit', 'Logic')->everydayLogin($userId, $roleId, $info);
+		return $result;
+	}
+	
+    /*
+     * 查询连续登陆天数
+     * @param int $userId 用户ID
+     * @param int $roleId 角色ID
+     */
+	public function queryContinueLogin($userId, $roleId)
+	{
+		$result = D('Credit', 'Logic')->queryContinueLogin($userId, $roleId);
 		return $result;
 	}
 	

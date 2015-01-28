@@ -43,8 +43,10 @@ class RoleModel extends BaseModel {
 	 * @param string $exKey 父栏目id
 	 */
 	public function updateCache($exKey=''){
-		$all = $this->queryRole();
-		S('Role',$all['rows']);
+		$param['sortOrder'] = 'sort asc';
+		$param['where'] = array('status'=>1);
+		$list = D('Role')->selectPage($param);
+		S('Role',$list['rows']);
 	}
     
     /**

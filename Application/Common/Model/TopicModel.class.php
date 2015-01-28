@@ -21,5 +21,17 @@ class TopicModel extends BaseModel {
 		array('addTime',DATE_TIME,self::MODEL_INSERT),			
 	);
 
-	//---------------扩展CRUD-----------------------
+	public function queryTopicByCourseIds($courseIds=array())
+	{
+		$where['_string'] = '(';
+		for($i=0;$i<count($courseIds);$i++){
+			$where['_string'] .= ' (`courseId` = '.$courseIds[$i].') OR';
+		}
+		$where['_string'] = substr($where['_string'],0,strlen($where['_string'])-2);
+		$where['_string'] .= ') ';
+		
+		$result = $this->where($where)->select();
+		//save_log('callapi',array('api'=>$this->getLastSql()));
+		return $result;
+	}
 }

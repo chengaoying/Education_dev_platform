@@ -20,6 +20,11 @@ class ResourceLogic extends BaseLogic {
 		$param['where']['keyList'] = $keyList;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
+		
+		if(empty($pageNo) && empty($pageSize))//当pageNo,pageSize都为空，则查出所有的数据，即不走baseModel中分页查找分支
+		{
+			$param['initPage'] = true;
+		}
 		$param['sort'] = 'sort asc';
 		$param['field'] = $field;
 		$data = D('Resource')->selectPage($param);

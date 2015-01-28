@@ -124,6 +124,9 @@ public function queryRoleWrongLib($roleId,$sectionId,$initPage = true) {
 			//查询当前选中课时列表的分数
 			$score = $this->queryScore($roleId, $sectionId);
 		}
+		if(empty($sectionId)){
+			return null;
+		}
 		$param['where']['sectionId'] = $sectionId;
 		$param['where']['courseId'] = $courseId;
 		$param['where']['roleId'] = $roleId;
