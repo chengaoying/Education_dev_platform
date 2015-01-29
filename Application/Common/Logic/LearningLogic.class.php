@@ -18,7 +18,7 @@ class LearningLogic extends BaseLogic {
 	*/
 	public function statisticsDataPreschool($courseIds=array(), $roleId=0,$len=0)
 	{
-		if(empty($courseIds) || empty($roleId) )
+		if(!isset($courseIds) || empty($roleId) )
 		{
 			return result_data(0,'缺少参数！');
 		}
@@ -111,7 +111,7 @@ class LearningLogic extends BaseLogic {
 	*/
 	public function statisticsScore($stageId,$roleId=0,$type=0)
 	{
-		if(empty($stageId) || empty($roleId) )
+		if(empty($stageId) || empty($roleId) || empty($type))
 		{
 			return result_data(0,'缺少参数！');
 		}
@@ -140,12 +140,17 @@ class LearningLogic extends BaseLogic {
 		$temp .= ")";
 		
 		$m=M();
-		$result=$m->query("SELECT count(*) as tb_count from (SELECT sum(score) AS `sumScore` FROM `t_role_library` WHERE `courseId` in ".$temp." GROUP BY roleId) AS tb_sum WHERE tb_sum.sumScore<".$data['roleScore']);
-		$countRole = $result ? $result[0]['tb_count'] : 0;//比自己总分少的其它角色个数
-		$result = $m->query("SELECT count(*) AS `tb_count` from (SELECT count(*) FROM `t_role_library` WHERE `courseId` IN ".$temp." GROUP BY roleId) AS tb_temp "); 
+
+		//$result = $m->query("SELECT count(*) AS `tb_count` from (SELECT count(*) FROM `t_role_library` WHERE `courseId` IN ".$temp." GROUP BY roleId) AS tb_temp "); 
+		$result = $m->query("SELECT count(*) AS 'tb_count' FROM `t_role` WHERE `stageId` = ".$stageId); 
 		$totalRole = $result ? $result[0]['tb_count'] : 0;//角色总数
-		$data['rank'] = ($totalRole-$countRole === 1) ? 1 : round($countRole/$totalRole,2);
-		$data['rank'] *= 100;
+		
+		$result=$m->query("SELECT count(*) as tb_count from (SELECT sum(score) AS `sumScore` FROM `t_role_library` WHERE `courseId` in ".$temp." GROUP BY roleId) AS tb_sum WHERE tb_sum.sumScore>=".$data['roleScore']);
+		$countRole = $result ? $result[0]['tb_count'] : 0;//大于等于自己总分的角色个数
+		if($countRole > $totalRole) $countRole =$totalRole;
+		$countRole = $totalRole - $countRole;//比自己总分少的其它角色个数
+		$data['rank'] = ($totalRole-$countRole === 1) ? 1 : round($countRole/$totalRole,2);//得到领先率，countRole/totalRole 结果为小于等于1的数
+		$data['rank'] *= 100;//转换成百分比
 		
 		return result_data(1,'success',$data);
 	}

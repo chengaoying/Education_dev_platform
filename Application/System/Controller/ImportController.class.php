@@ -274,6 +274,16 @@ class ImportController extends BaseAuthController {
     	$successCount = 0; //成功记录数
     	$sResource = array();//课时的视频资源数组
     	foreach ($resource as $k => $v){
+    		
+    		//如果视频存在，则更新视频的课时id列表
+    		$_resource = D('Resource')->find($v['id']);
+    		$char = getDelimiterInStr($v['sectionId']);
+    		$arr = explode($char, $v['sectionId']);
+    		if($_resource['sectionId']){
+    			if(!in_array($_resource['sectionId'], $arr))
+    				$v['sectionId'] .= ','.$_resource['sectionId'];
+    		}
+    		
     		$v['keyList'] = str_replace('，',',',$v['keyList']);
     		$_keys = explode(',', $v['keyList']);
     		unset($v['keyList']);
@@ -284,6 +294,7 @@ class ImportController extends BaseAuthController {
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;
+    		if(empty($v['outId'])) $v['outId'] = $v['id'];
     		
     		$_r = D('Resource')->_saveData($v);
     		if(!$_r['status']){
@@ -291,7 +302,8 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
-    			$sResource[$v['sectionId']] .= $v['id'].',';
+    			foreach ($arr as $k3 => $v3)
+    				$sResource[$v3] = $v['id'];
     		} 
     	}
     	
@@ -324,6 +336,16 @@ class ImportController extends BaseAuthController {
     	$successCount = 0; //成功记录数
     	$sLibrary = array();//课时的题库数组
     	foreach ($library as $k => $v){
+    		
+    		//如果视频存在，则更新视频的课时id列表
+    		$_library = D('Library')->find($v['id']);
+    		$char = getDelimiterInStr($v['sectionId']);
+    		$arr = explode($char, $v['sectionId']);
+    		if($_library['sectionId']){
+    			if(!in_array($_library['sectionId'], $arr))
+    				$v['sectionId'] .= ','.$_library['sectionId'];
+    		}
+    		
     		$v['addTime'] = date('Y-m-d H:i:s',NOW_TIME);
     		if(empty($v['sort'])) $v['sort'] = 0;
     		if(empty($v['status'])) $v['status'] = 1;
@@ -334,7 +356,9 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
-    			$sLibrary[$v['sectionId']] = $v['id'].',';
+    			foreach ($arr as $k3 => $v3)
+    				$sLibrary[$v3] = $v['id'];
+    			//$sLibrary[$v['sectionId']] = $v['id'].',';
     		} 
     	}
     	
