@@ -25,6 +25,22 @@ class TopicLogic extends BaseLogic {
 	}
 	
 	/**
+	 * 通过知识点数组查询知识点列表
+	 * @param arr $topicIds
+	 * @param int $pageNo
+	 * @param int $pageSize
+	 */
+	public function queryTopicListByTopicIds($topicIds, $pageNo, $pageSize){
+		$param['where']['id']  = array('in',implode($topicIds, ','));
+		$param['page'] 		= $pageNo;
+		$param['pageSize'] 	= $pageSize;
+		$param['sortOrder'] = 'sort asc';
+		
+		$data = D('Topic')->selectPage($param);
+		return $data;
+	}
+	
+	/**
 	 * 通过知识点id查找单个知识点
 	 * @param int $topicId
 	 */

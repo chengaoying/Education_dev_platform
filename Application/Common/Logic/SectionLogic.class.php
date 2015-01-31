@@ -27,6 +27,23 @@ class SectionLogic extends BaseLogic {
 		$data = D('Section')->selectPage($param);
 		return $data;
 	}
+	
+	/**
+	 * 根据课时id数组查找该知识点下的课时列表
+	 * @param arr $sectionIds 课时id数组
+	 * @param int $pageNo 页号
+	 * @param int $pageSize 每页记录数
+	 */
+	public function querySectionListBySectionIds($sectionIds, $pageNo, $pageSize){
+		$param['where']['id'] = array('in',implode($sectionIds,','));
+		$param['page'] 		= $pageNo;
+		$param['pageSize'] 	= $pageSize;
+		$param['sortOrder'] = 'sort asc';
+		
+		$data = D('Section')->selectPage($param);
+		return $data;
+	}
+	
 	/**
 	 * 根据知识点id查找该知识点下的课时列表
 	 * @param arr $topicId	知识点id数组

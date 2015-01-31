@@ -21,6 +21,17 @@ class TopicApiController extends BaseApiController{
 	}
 	
 	/**
+	 * 通过知识点数组查询知识点列表
+	 * @param arr $topicIds
+	 * @param int $pageNo
+	 * @param int $pageSize
+	 */
+	public function queryTopicListByTopicIds($topicIds, $pageNo, $pageSize){
+		$data = D('Topic','Logic')->queryTopicListByTopicIds($topicIds, $pageNo, $pageSize);
+		return $data;
+	}
+	
+	/**
 	 * 通过知识点id查找单个知识点
 	 * @param int $topicId
 	 */

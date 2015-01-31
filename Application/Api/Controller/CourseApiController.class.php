@@ -67,12 +67,12 @@ class CourseApiController extends BaseApiController{
 	/**
 	 * 通过课程类型查询课程列表
 	 * @param unknown_type $stageId 龄段id
-	 * @param unknown_type $type 课程类型
+	 * @param unknown_type $types 课程类型
 	 * @param unknown_type $pageNo 页号
 	 * @param unknown_type $pageSize 每页记录数
 	 */
-	public function queryCourseListByType($stageId, $type, $pageNo, $pageSize){
-		$data = D('Course','Logic')->queryCourseListByType($stageId, $type, $pageNo, $pageSize);
+	public function queryCourseListByType($stageId, $types, $pageNo, $pageSize){
+		$data = D('Course','Logic')->queryCourseListByType($stageId, $types, $pageNo, $pageSize);
 		return $data;
 	}
 }

@@ -206,6 +206,9 @@ public function queryLib($sectionId){
 		$param['sectionId'] = $sectionId;
 		//查询题库信息，主要是要获取excel的文件
 		$data = D('Library')->selectOne($param);
+		if(!$data['libUrl']){
+			return result_data(0,'题库或者视频不存在！');
+		}
 		$fileUrl = C('UPFILE_LOCAL_PATH').'/'.$data['libUrl'];
 		//读取excel文件中的数据
 		$_temp = readExcelData($fileUrl);

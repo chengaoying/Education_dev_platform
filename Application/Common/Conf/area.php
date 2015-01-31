@@ -44,6 +44,9 @@ return array (
 	'WEB_URL'	 =>	'http://192.168.0.152:8501/Api/Sync',	    //数据同步地址
 	'CHECK_CODE' =>	'2014edu!@#',								//通讯校验码
 	
+	/* 接口相关参数 */
+	
+	
     /* 与支撑部对接接口参数  */
     /* 'ZCAPI_OPT_FLAG' => 'EDUCATION',
     'ZCAPI_PRODUCT_ID' => '1000705887',

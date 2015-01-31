@@ -101,10 +101,12 @@ class TestController extends \Think\Controller {
 		/* $_resource = D('Resource')->find('101100009');
 		dump($_resource['sectionId']); */
 		
-		$str = 'sdfdasdf';
+		/* $str = 'sdfdasdf';
 		$char = getDelimiterInStr($str);
 		$arr = explode($char, $str);
-		dump($arr);
+		dump($arr); */
+		$data = D('Topic','Logic')->queryTopicListByTopicIds(array(1), 1, 10);
+		dump($data);exit;
 		
 		$this->display();
 	}
