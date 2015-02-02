@@ -14,7 +14,7 @@ class BaseArea{
 	protected $pv_url = '';					//pv记录地址
 	
 	protected $check_key  = '';				//通讯校验码
-	protected $area_id  = ''; 			//专区code（运营商分配）
+	protected $spid  = ''; 					//spid（运营商分配）
 	protected $charge_type = '';			//计费类型
 	protected $option_flag = '';			//可选参数
 	
@@ -31,7 +31,7 @@ class BaseArea{
 		$this->pv_url = $base_uri.C('PV_URL');
 		
 		$this->check_key = C('CHECK_KEY');
-		$this->area_id = C('AREA_ID');
+		$this->spid = C('SPID');
 		$this->charge_type = C('CHARGE_TYPE');
 		$this->option_flag = C('OPTION_FLAG');
 	}

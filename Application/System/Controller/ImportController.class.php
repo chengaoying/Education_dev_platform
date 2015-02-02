@@ -240,7 +240,7 @@ class ImportController extends BaseAuthController {
     			$char = getDelimiterInStr($v['topicId']);
     			$arr = explode($char, $v['topicId']);
     			foreach ($arr as $k3 => $v3)
-    				$tSection[$v3] .= $v['id'];
+    				$tSection[$v3] .= $v['id'].',';
     			
     		} 
     	}

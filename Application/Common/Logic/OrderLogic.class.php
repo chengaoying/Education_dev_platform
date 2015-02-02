@@ -18,13 +18,38 @@ class OrderLogic extends BaseLogic {
 	 * @param int $userId
 	 */
 	public function auth($userId){
-		$res = D($this->area,'Area')->auth($userId);
-		return $res;
+		$user = D('User')->find($userId);
+		if(empty($user['OpUserId'])) return result_data(0,'用户信息异常！');
+		return D($this->area,'Area')->auth($userId);
 	}
 	
-	public function order(){
+	/**
+	 * 产品订购
+	 * @param int $userId  用户id
+	 * @param str $backUrl 返回地址
+	 * @return 
+	 */
+	public function order($userId,$backUrl){
+		$user = D('User')->find($userId);
+		if(empty($user['OpUserId'])) return result_data(0,'用户信息异常！');
 		
-		D($this->area,'Area')->order($userId);
+		//计费信息
+		$chargeModes = get_cache('ChargeMode');
+		$chargeMode = get_array_by_key($chargeModes, 'type', '1');
+		D($this->area,'Area')->order($user,$chargeMode,$backUrl);
 	}
+	
+	/**
+	 * 退订产品
+	 * @param int $userId
+	 */
+	public function cancelOrder($userId){
+		$user = D('User')->find($userId);
+		if(empty($user['OpUserId'])) return result_data(0,'用户信息异常！');
+		
+		return D($this->area,'Area')->cancelOrder($user);
+	}
+	
+	
 	
 }

@@ -1,11 +1,11 @@
 <?php
 /**
- * 数据模型：产品鉴权记录模型
+ * 数据模型：用户取消订购记录模型
  * @author CGY
  *
  */
 namespace Common\Model;
-class UserAuthRecordModel extends BaseModel {	
+class UserCancelOrderRecordModel extends BaseModel {	
 	
 	//数据验证
 	protected $_validate = array(

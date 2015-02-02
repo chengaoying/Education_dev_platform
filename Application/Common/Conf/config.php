@@ -4,7 +4,7 @@
  * THINKPHP项目配置(部署后请不要随意修改)
  */
 return array (  
-	'SHOW_PAGE_TRACE'	=>true,	
+	'SHOW_PAGE_TRACE'	=> true,	
 	'LOAD_EXT_CONFIG' 	=> 'area', 			// 加载扩展配置文件		
 	'LOAD_EXT_FILE'		=> 'util,common', 	// 动态扩展函数库
 	'ACTION_SUFFIX' 	=> 'Act', 			// 操作方法后缀
@@ -20,5 +20,4 @@ return array (
 	
 	//自定义参数	
 	'LOG_SAVEPATH'		=>	'./logs',						// 日志存放路径 
-	'SECRET_KEY'		=> 	'isdj&@#)#*dsid&#(idslNDiie*#', // 产品与后台通信密钥    
 );

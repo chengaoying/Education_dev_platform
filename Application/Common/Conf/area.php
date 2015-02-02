@@ -11,10 +11,10 @@ return array (
 	
 	/* 主数据库  */
 	'DB_TYPE'		=> 'mysql', 		// 数据库类型
-	'DB_HOST'		=> '192.168.0.5',	// 服务器地址
+	'DB_HOST'		=> 'localhost',	// 服务器地址
 	'DB_NAME'		=> 'edu_hipi',	 	// 数据库名
-	'DB_USER'		=> 'edu', 			// 用户名
-	'DB_PWD'		=> 'edu',		 	// 密码
+	'DB_USER'		=> 'root', 			// 用户名
+	'DB_PWD'		=> '',		 	// 密码
 	'DB_PORT'		=> '3306', 			// 端口
 	'DB_PREFIX'		=> 't_', 			// 数据库表前缀
 	'DB_CHARSET'	=> 'utf8',
@@ -36,12 +36,12 @@ return array (
 		'__SD__'			=> '/static/v1/sd',	 					//标清公共资源路径
 		'__HD__'			=> '/static/v1/hd',						//高清公共资源路径
 		'__THEME__' 		=> '/static/v1', 						//分组模块资源路径
-		'__UPFILE__'		=> 'http://192.168.0.152:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
+		'__UPFILE__'		=> 'http://localhost:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
         '__CSSJS_VERSION__'	=> '20140208173232',  					//CSS和JS版本
 	),
 	
 	/* 与前端通讯参数  */
-	'WEB_URL'	 =>	'http://192.168.0.152:8501/Api/Sync',	    //数据同步地址
+	'WEB_URL'	 =>	'http://localhost:8501/Api/Sync',	    //数据同步地址
 	'CHECK_CODE' =>	'2014edu!@#',								//通讯校验码
 	
 	/* 接口相关参数 */
@@ -52,7 +52,7 @@ return array (
 	'CANCEL_ORDER_URL'		=>	'/api/services/cancel_month_order',		 //取消订购地址
 	'PV_URL'				=>	'/remote/PvRemote/save_pv',				 //pv记录地址
 	'CHECK_KEY'				=>	'rkONetpI5N1amFCGRbPHHq0zZQajmvep',		 //通讯校验码
-	'AREA_ID'				=>	'10030000',								 //运营商提供的专区ID(订购参数)
+	'SPID'					=>	'10030000',								 //运营商提供的spid(订购参数)
 	'CHARGE_TYPE'			=>	0,										 //计费类型：0-包月，1-按次，2-包时段，99-其他
 	'OPTION_FLAG'			=>	'EDUCATION',							 //教育产品标识
        
