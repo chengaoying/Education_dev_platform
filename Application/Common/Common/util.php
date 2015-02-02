@@ -117,6 +117,20 @@ function get_array_for_fieldval($arr,$field,$fieldVal){
 }
 
 /**
+ * 获取二维数组中的一个一纬数组，根据对应的键和值
+ * @param arr $arr
+ * @param unknown_type $key
+ * @param unknown_type $val
+ */
+function get_array_by_key($arr,$key,$val){
+	foreach ($arr as $k=>$v){
+		if($v[$key] == $val)
+			return $v;
+	}
+	return null;
+}
+
+/**
  * 从数组中取某列值替换数组的键名
  * @param unknown_type $arr
  * @param unknown_type $keyName 新KEY所有列的KEY

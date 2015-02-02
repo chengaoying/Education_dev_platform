@@ -237,7 +237,11 @@ class ImportController extends BaseAuthController {
     			$r[$k] = '记录'.$k.'导入失败，原因：'.$_r['info'];
     		}else{
     			$successCount ++;
-    			$tSection[$v['topicId']] .= $v['id'].',';
+    			$char = getDelimiterInStr($v['topicId']);
+    			$arr = explode($char, $v['topicId']);
+    			foreach ($arr as $k3 => $v3)
+    				$tSection[$v3] .= $v['id'];
+    			
     		} 
     	}
     	

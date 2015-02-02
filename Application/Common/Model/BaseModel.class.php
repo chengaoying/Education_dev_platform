@@ -126,7 +126,7 @@ class BaseModel extends \Think\Model {
 	 */
 	protected function initWhere($where){
 		foreach ($where as $k=>$v){
-			if(empty($v)) unset($where[$k]);
+			if($v === '') unset($where[$k]);
 		}
 		return $where;
 	}

@@ -29,7 +29,7 @@ class RoleBrowseModel extends BaseModel {
 	protected function initWhere($where){
 		//处理空值
 		foreach ($where as $k=>$v){
-			if($v == '') unset($where[$k]);
+			if($v === '') unset($where[$k]);
 		}
 	
 		//关键字匹配
