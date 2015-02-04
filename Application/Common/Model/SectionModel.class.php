@@ -21,16 +21,4 @@ class SectionModel extends BaseModel {
 	);
 
 	//---------------扩展CRUD-----------------------
-	
-	/*
-	 * 根据topicId 查询
-	 * @param array $topicIds;
-	 */
-	public function querySectionList($topicIds)
-	{
-		$where['topicId'] = array('in',$topicIds);
-		$result = $this->where($where)->select();
-//		save_log('callapi',array('api'=>$this->getLastSql()));
-		return $result;
-	}
 }

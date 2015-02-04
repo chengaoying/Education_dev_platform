@@ -42,9 +42,9 @@ class A80027Area extends BaseArea{
 		$param['spid'] = $this->spid;
 		$param['userid'] = $user['OpUserId'];
 		$param['money'] = $chargeMode['price'];
-		$parma['product'] = $this->proKey;
-		$parma['username'] = $user['OpUserName'];
-		$parma['backurl'] = $backUrl;
+		$param['product'] = $this->proKey;
+		$param['username'] = $user['OpUserName'];
+		$param['backurl'] = $backUrl;
 		
 		$checkCode = $param['userid'].'|'.$param['spid'].'|'.$param['product'].'|'.$this->check_key.'|'.$param['money'];
 		$param['checkCode'] = md5($checkCode);
@@ -52,7 +52,7 @@ class A80027Area extends BaseArea{
 		//发起订购请求
 		$url = $this->order_url.'?'.http_build_query($param);
 		$result = url_data($url,'','get');
-		$_backUrl = $backUrl.'&ret_msg='.$result;
+		$_backUrl = $backUrl.'&result='.$result;
 		
 		//保存订购记录
 		$data['userId'] = $user['id'];
@@ -89,5 +89,9 @@ class A80027Area extends BaseArea{
 		
 		return result_data(1,'',result);
 	}
+	
+	
+	public function queryOrderList(){}
+	
 	
 }

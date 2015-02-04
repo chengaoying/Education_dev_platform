@@ -39,7 +39,8 @@ class LearningLogic extends BaseLogic {
 			{
 				$topicIds[] = $value['id'];
 			}
-			$section = D('Section')->querySectionList($topicIds);
+			//$section = D('Section')->querySectionList($topicIds);
+			$section = D('Section','Logic')->querySectionList($topicIds,1,100);
 			foreach($section as $key => $value)
 			{
 				$total_temp[$value['topicId']] += $this -> getCountOfStr($value['lessonList']);
@@ -116,7 +117,7 @@ class LearningLogic extends BaseLogic {
 			return result_data(0,'缺少参数！');
 		}
 		//得到所有课程id
-		$course = D('Course','Logic')->queryCourseListByType($stageId, $type,null,null);
+		$course = D('Course','Logic')->queryCourseListByType($stageId, $type,1,1000);
 		foreach($course['rows'] as $key => $value)
 		{
 			$courseIds[] = $value['id'];

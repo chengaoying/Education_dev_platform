@@ -16,9 +16,12 @@ class SectionLogic extends BaseLogic {
 	 */
 	public function querySectionList($topicIds, $pageNo, $pageSize){
 		if(is_array($topicIds)){
-			$param['where']['topicId'] = array('in',implode($topicIds,','));
+			foreach ($topicIds as $k => $v){
+				$param['where']['_string'] .= ' (`topicId` like "%'.$v.'%") OR';
+			}
+			$param['where']['_string'] = substr($param['where']['_string'],0,strlen($param['where']['_string'])-2);
 		}else{
-			$param['where']['topicId']  = $topicIds;
+			$param['where']['_string'] .= ' (`topicId` like "%'.$topicIds.'%")';
 		}
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;

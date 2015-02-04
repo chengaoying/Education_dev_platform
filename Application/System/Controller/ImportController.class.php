@@ -241,7 +241,6 @@ class ImportController extends BaseAuthController {
     			$arr = explode($char, $v['topicId']);
     			foreach ($arr as $k3 => $v3)
     				$tSection[$v3] .= $v['id'].',';
-    			
     		} 
     	}
     	

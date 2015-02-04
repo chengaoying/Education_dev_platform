@@ -145,7 +145,11 @@ class CourseLogic extends BaseLogic {
 	 */
 	public function queryCourseListByType($stageId, $types, $pageNo, $pageSize){
 		$param['where']['stageIds']  = $stageId;
-		$param['where']['typeId']    = array('in',implode($types, ','));
+		if(is_array($types)){
+			$param['where']['typeId']    = array('in',implode($types, ','));
+		}else{
+			$param['where']['typeId']    = $types;
+		}
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
