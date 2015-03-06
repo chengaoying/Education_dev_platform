@@ -53,11 +53,11 @@ class SectionLogic extends BaseLogic {
 	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
-	public function querySectionListByPrivilege($topicIds, $pageNo, $pageSize){
-		if(is_array($topicIds)){
-			$param['where']['privilege'] = array('in',implode($topicIds,','));
+	public function querySectionListByPrivilege($privilege, $pageNo, $pageSize){
+		if(is_array($privilege)){
+			$param['where']['privilege'] = array('in',implode($privilege,','));
 		}else{
-			$param['where']['privilege']  = $topicIds;
+			$param['where']['privilege']  = $privilege;
 		}
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;

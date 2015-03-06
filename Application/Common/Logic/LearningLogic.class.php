@@ -26,14 +26,14 @@ class LearningLogic extends BaseLogic {
 		$topic = D('Topic') -> queryTopicByCourseIds($courseIds);
 		
 		$proConf = get_pro_config_content('proConfig');
-		if($proConf['sectionVideo'] == 1)//此时一个课时对应一个视频，可根据t_topic中lessonList字段中课时id个数判断视频总个数
+		if($proConf['sectionVideo'] == 1)//此时一个课时对应一个视频，根据t_topic中lessonList字段中课时id个数判断视频总个数
 		{
 			foreach($topic as $key=>$value)
 			{
 				$total[$value['courseId']][$value['id']] = $this -> getCountOfStr($value['sectionIds']);
 			}
 		}
-		else //此时一个课时对应多个视频，只能通过在t_section(课时表)根据topicId查数据库方式判断视频总个数。速度较慢
+		else //此时一个课时对应多个视频，只能通过在t_section(课时表)根据topicId查数据库方式判断视频总个数。速度较慢。后来表有修改，需要修改
 		{
 			foreach ($topic as $key => $value)
 			{
@@ -77,9 +77,12 @@ class LearningLogic extends BaseLogic {
 			}
 		}
 		$browse = D('RoleBrowse') -> queryBrowseRecordList1($roleId, $topicIds);
-		foreach($browse as $key=>$value)
+		if(!empty($browse)) 
 		{
-			$finish[$value['courseId']][$value['topicId']] = $value['count'];
+			foreach($browse as $key=>$value)
+			{
+				$finish[$value['courseId']][$value['topicId']] = $value['count'];
+			}
 		}
 
  		foreach($total as $k => $v)
@@ -124,11 +127,14 @@ class LearningLogic extends BaseLogic {
 		}
 		
 		$data['courseScore'] = D('RoleLibrary') -> queryRoleLibraryByCourseIds($roleId, $courseIds);
-		foreach($data['courseScore'] as $key => $value)
+		if(!empty($data['courseScore'])) 
 		{
-			$data['courseScore'][$value['courseId']]['sum'] = $value['sumScore'];
-			$data['roleScore'] += $data['courseScore'][$value['courseId']]['sum'];
-			unset($data['courseScore'][$key]);
+			foreach($data['courseScore'] as $key => $value)
+			{
+				$data['courseScore'][$value['courseId']]['sum'] = $value['sumScore'];
+				$data['roleScore'] += $data['courseScore'][$value['courseId']]['sum'];
+				unset($data['courseScore'][$key]);
+			}
 		}
 		
 		/* 领先排名 */
@@ -146,8 +152,10 @@ class LearningLogic extends BaseLogic {
 		$result = $m->query("SELECT count(*) AS 'tb_count' FROM `t_role` WHERE `stageId` = ".$stageId); 
 		$totalRole = $result ? $result[0]['tb_count'] : 0;//角色总数
 		
+		//大于等于自己总分的角色个数
+		$data['roleScore'] = empty($data['roleScore']) ? 0 : $data['roleScore'];
 		$result=$m->query("SELECT count(*) as tb_count from (SELECT sum(score) AS `sumScore` FROM `t_role_library` WHERE `courseId` in ".$temp." GROUP BY roleId) AS tb_sum WHERE tb_sum.sumScore>=".$data['roleScore']);
-		$countRole = $result ? $result[0]['tb_count'] : 0;//大于等于自己总分的角色个数
+		$countRole = $result ? $result[0]['tb_count'] : 0;
 		if($countRole > $totalRole) $countRole =$totalRole;
 		$countRole = $totalRole - $countRole;//比自己总分少的其它角色个数
 		$data['rank'] = ($totalRole-$countRole === 1) ? 1 : round($countRole/$totalRole,2);//得到领先率，countRole/totalRole 结果为小于等于1的数
