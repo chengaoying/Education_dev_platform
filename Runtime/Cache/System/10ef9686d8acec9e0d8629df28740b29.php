@@ -88,9 +88,9 @@ $(function(){
 		sortOrder:'asc',//默认排序方式 'desc' 'asc' 
 		idField : 'id',
 	    columns:[[ 
-            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},
             {field:'name',title:'课时名称',sortable:false,width:200},
-            {field:'topicId',title:'所属知识点',sortable:false,width:100},
+            {field:'topicId',title:'所属知识点',sortable:true,width:100},
             {field:'libId',title:'练习题库ID',sortable:false,width:80},
             {field:'previewList',title:'预习ID列表',sortable:false,width:100},
             {field:'lessonList',title:'正文ID列表',sortable:false,width:100},

@@ -61,7 +61,6 @@ class BaseModel extends \Think\Model {
 		if($this->create($data)){
 			if(!$data['id']){
 				$id = $this->add();
-				//save_log('execute_sql',array('sql'=>$this->getLastSql(),'aaa'=>'lala'));
 				$result = result_data(1,'数据添加成功！',array('id'=>$id));
 			}else{
 				$id = $this->save();

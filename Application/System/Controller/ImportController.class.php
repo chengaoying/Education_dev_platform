@@ -12,34 +12,40 @@ class ImportController extends BaseAuthController {
             $this->display();
         }else{
         	$fileUrl = I('fileUrl','');
-        	$fileUrl = C('UPFILE_LOCAL_PATH') . '/' . $fileUrl;
-        	$result = readExcelData($fileUrl);
-			if(!$result['status']) $this->ajaxReturn($result);
-
-			//总数据
-			$data = $result['data'];
-			
-			$data = $this->cenvertData($data);
-			
-			//导入课程
-			$course = $data['course'];
-			$this->importCourse($course);
-			
-			//导入知识点
-			$topic = $data['topic'];
-			$this->importTopic($topic);
-			
-			//导入课时
-			$section = $data['section'];
-			$this->importSection($section);
-			
-			//导入视频资源
-			$resource = $data['resource'];
-			$this->importResource($resource);
-			
-			//导入题库资源
-			$library = $data['library'];
-			$this->importLibrary($library);
+        	$char = getDelimiterInStr($fileUrl);
+        	$arr = explode($char, $fileUrl);
+        	$arr = array_filter($arr);
+        	foreach ($arr as $key => $val){
+        		$_fileUrl = C('UPFILE_LOCAL_PATH') . '/' . $val;
+        		$result = readExcelData($_fileUrl);
+        		if(!$result['status']) 
+        			continue;
+        		
+        		//总数据
+        		$data = $result['data'];
+        			
+        		$data = $this->cenvertData($data);
+        			
+        		//导入课程
+        		$course = $data['course'];
+        		$this->importCourse($course);
+        			
+        		//导入知识点
+        		$topic = $data['topic'];
+        		$this->importTopic($topic);
+        		
+        		//导入课时
+        		$section = $data['section'];
+        		$this->importSection($section);
+        		
+        		//导入视频资源
+        		$resource = $data['resource'];
+        		$this->importResource($resource);
+        		
+        		//导入题库资源
+        		$library = $data['library'];
+        		$this->importLibrary($library);
+        	}
 			
 			$this->ajaxReturn(result_data(1,'数据导入完成！'));
         }
@@ -239,11 +245,11 @@ class ImportController extends BaseAuthController {
     			$successCount ++;
     			$char = getDelimiterInStr($v['topicId']);
     			$arr = explode($char, $v['topicId']);
+    			$arr = array_filter($arr);
     			foreach ($arr as $k3 => $v3)
     				$tSection[$v3] .= $v['id'].',';
     		} 
     	}
-    	
     	//更新知识点的课时点属性()
     	foreach ($tSection as $k2 => $v2){
     		$param['id'] = $k2;
@@ -282,6 +288,7 @@ class ImportController extends BaseAuthController {
     		$_resource = D('Resource')->find($v['id']);
     		$char = getDelimiterInStr($v['sectionId']);
     		$arr = explode($char, $v['sectionId']);
+    		$arr = array_filter($arr);
     		if($_resource['sectionId']){
     			if(!in_array($_resource['sectionId'], $arr))
     				$v['sectionId'] .= ','.$_resource['sectionId'];
@@ -344,6 +351,7 @@ class ImportController extends BaseAuthController {
     		$_library = D('Library')->find($v['id']);
     		$char = getDelimiterInStr($v['sectionId']);
     		$arr = explode($char, $v['sectionId']);
+    		$arr = array_filter($arr);
     		if($_library['sectionId']){
     			if(!in_array($_library['sectionId'], $arr))
     				$v['sectionId'] .= ','.$_library['sectionId'];

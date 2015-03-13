@@ -105,8 +105,14 @@ class TestController extends \Think\Controller {
 		$char = getDelimiterInStr($str);
 		$arr = explode($char, $str);
 		dump($arr); */
-		$data = D('Topic','Logic')->queryTopicListByTopicIds(array(1), 1, 10);
-		dump($data);exit;
+		/* $data = D('Topic','Logic')->queryTopicListByTopicIds(array(1), 1, 10);
+		dump($data);exit; */
+		
+		$str = '307101,307102,307104,307105,';
+		$char = getDelimiterInStr($str);
+		$arr = explode($char, $str);
+		$arr = array_filter($arr);
+		dump($arr);exit;
 		
 		$this->display();
 	}

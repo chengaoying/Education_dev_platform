@@ -38,7 +38,6 @@
 	   <div style="float: left;">
 	        <form method="post" id="search_form" style="padding: 0px;" onsubmit="search(datagrid,'#search_form');return false;">
 	        	
-	<b>所属产品：<?php echo ($currProduct['name']); ?>　</b>
 	ID：<input type="text" name="where[id]" placeholder="ID或广告位KEY" style="width: 80px"></input>
 	所属广告位：<?php echo ($adSpaceHtml); ?>
 	分类：<?php echo ($adClassHtml); ?>

@@ -87,9 +87,9 @@ $(function(){
 		sortOrder:'asc',//默认排序方式 'desc' 'asc' 
 		idField : 'id',
 	    columns:[[ 
-            {field:'id',title:'ID',sortable:false,align:'right',width:60},
+            {field:'id',title:'ID',sortable:true,align:'right',width:60},
             {field:'name',title:'知识点名称',sortable:false,width:200},
-            {field:'courseId',title:'所属课程',sortable:false,width:100},
+            {field:'courseId',title:'所属课程',sortable:true,width:100},
             {field:'sectionIds',title:'课时ID列表',sortable:false,width:100},
             {field:'imgUrl',title:'图片路径',sortable:false,width:120},           
             {field:'description',title:'知识点描述',sortable:false,width:200},           

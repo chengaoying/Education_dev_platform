@@ -86,11 +86,12 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:false,align:'right',width:60},
-            {field:'name',title:'名称',sortable:false,width:200},
-            {field:'cKey',title:'关键字',sortable:false,width:200},
+            {field:'name',title:'名称',sortable:false,width:120},
+            {field:'cKey',title:'关键字',sortable:false,width:100},
             {field:'type',title:'计费类型',sortable:false,width:100},
             {field:'chargeId',title:'计费id',sortable:false,width:100},
             {field:'price',title:'计费价格',sortable:false,width:100},
+            {field:'desc',title:'描述',sortable:false,width:200},
             {field:'status',title:'状态',sortable:true,width:60,
             	formatter:function(value,row,index){
             		return value==1 ? "启用" : "<font color=red>禁用</font>";

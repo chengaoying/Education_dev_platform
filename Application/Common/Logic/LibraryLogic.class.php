@@ -124,6 +124,7 @@ public function queryRoleWrongLib($roleId,$sectionId,$initPage = true) {
 			//查询当前选中课时列表的分数
 			$score = $this->queryScore($roleId, $sectionId);
 		}
+		//save_log('callapi',array('time'=>date('H:i:s'),'data'=>$isQuerySection));
 		if(empty($sectionId)){
 			return null;
 		}

@@ -4,9 +4,9 @@
         <tr>
 		<th>excel文件</th>
 		<td>
-			<input type="text" name="fileUrl" id="fileUrl"  style="width:150px;"></input>
+			<textarea type="text" name="fileUrl" id="fileUrl"  cols="50" rows="8"></textarea>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
-				onclick="upfileDialog(4,'','数据导入',0,1,'#fileUrl','\r\n')"></a>
+				onclick="upfileDialog(4,'','数据导入',1,1,'#fileUrl','\r\n')"></a>
 		</td>
 	</tr>
     </table>

@@ -78,6 +78,7 @@ $(function(){
 		idField : 'id',
 	    columns:[[ 
             {field:'id',title:'ID',sortable:true,width:60},
+            {field:'userOrRole',title:'对象',sortable:true,width:150},
             {field:'keyName',title:'积分KEY',sortable:true,width:150},
             {field:'name',title:'名称',sortable:true,width:150},
             {field:'initValue',title:'初始值',sortable:true,width:100},

@@ -1,3 +1,3 @@
 <?php
-//000000000000a:0:{}
+//000000000000a:2:{i:1;a:8:{s:2:"id";s:1:"1";s:10:"userOrRole";s:1:"1";s:7:"keyName";s:5:"point";s:4:"name";s:12:"用户积分";s:9:"initValue";s:1:"0";s:6:"status";s:1:"1";s:7:"addTime";s:19:"2015-01-14 11:50:34";s:7:"modTime";s:19:"2015-01-14 14:58:11";}i:2;a:8:{s:2:"id";s:1:"2";s:10:"userOrRole";s:1:"2";s:7:"keyName";s:5:"point";s:4:"name";s:12:"角色积分";s:9:"initValue";s:1:"0";s:6:"status";s:1:"1";s:7:"addTime";s:19:"2015-01-14 14:51:50";s:7:"modTime";s:19:"2015-01-17 15:19:56";}}
 ?>

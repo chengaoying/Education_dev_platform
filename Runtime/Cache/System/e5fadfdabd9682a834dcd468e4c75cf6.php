@@ -29,6 +29,12 @@
 			<input type="text" id="price" name="price" value="<?php echo ($chrageMode['price']); ?>"/><em>*</em>
 		</td>
 	</tr>
+	<tr>
+		<th>描述</th>
+		<td>
+			<input type="text" id="desc" name="desc" value="<?php echo ($chrageMode['desc']); ?>"/><em>*</em>
+		</td>
+	</tr>
 	<tr><th>状态</th><td><?php echo ($statusHtml); ?> <em>*</em></td></tr>
 </table>
 </form>
