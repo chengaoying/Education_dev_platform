@@ -79,7 +79,7 @@ class A80027Area extends BaseArea{
 		$url = $this->cancel_order_url.'?userId='.$user['OpUserId'].'&product='.$this->proKey;
 		$result = url_data($url,'','get');
 		
-		//保存订购记录
+		//保存退订记录
 		$data['userId'] = $user['id'];
 		$data['opUserId'] = $user['OpUserId'];
 		$data['proKey'] = $this->proKey;
