@@ -22,9 +22,6 @@ return array (
 		'Ad'			=> '广告',
         'Credit'        => '积分设置',
         'CreditRule'    => '积分规则',
-        'AwardItem'     => '奖品',
-        'AwardPack'     => '奖项',
-        'Activity'      => '活动',
 	),		
 	
 	//上传附件支持的类型

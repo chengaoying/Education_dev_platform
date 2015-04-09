@@ -161,6 +161,8 @@ class LearningLogic extends BaseLogic {
 		$data['rank'] = ($totalRole-$countRole === 1) ? 1 : round($countRole/$totalRole,2);//得到领先率，countRole/totalRole 结果为小于等于1的数
 		$data['rank'] *= 100;//转换成百分比
 		
+		if(!$data['roleScore']) $data['rank'] = 0;
+		
 		return result_data(1,'success',$data);
 	}
 	

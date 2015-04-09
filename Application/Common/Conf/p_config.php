@@ -18,7 +18,7 @@ return array(
         /* 用户积分类型配置 */
 		'userCredit'	=>	array(
 			'type'	=> 'array',
-			'title'	=> '积分类型',
+			'title'	=> '用户积分类型',
 			'value' => array('point' => 'point', 'amount' => 'amount'),
 			'info'	=> '',
 		),
@@ -26,7 +26,7 @@ return array(
         /* 角色积分类型配置 */
 		'roleCredit'	=>	array(
 			'type'	=> 'array',
-			'title'	=> '积分类型',
+			'title'	=> '角色积分类型',
 			'value' => array('point' => 'point'),
 			'info'	=> '',
 		),

@@ -78,36 +78,6 @@ return array(
     			),
     		),
     	),
-        'activity' => array(
-    		'name'	=> '活动管理',
-    		'item'	=> array(
-    			'Activity' => array(
-    				'name' => '活动管理',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			),
-                'ActWinner' => array(
-                    'name' => '中奖者管理',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-                ),
-    		),
-    	),
-        'award' => array(
-    		'name'	=> '奖品管理',
-    		'item'	=> array(
-    			'AwardItem' => array(
-    				'name' => '奖品管理',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			),
-                'AwardPack' => array(
-    				'name' => '奖项管理',
-    				'item' => array('index' => '查看', 'add' => '添加', 'edit' => '编辑', 'del' => '删除'),
-    			),
-                'UserAward' => array(
-                    'name' => '用户奖品管理',
-    				'item' => array('index' => '查看', 'del' => '删除'),
-                ),
-    		),
-    	),
     	'user_role' => array(
     		'name'	=> '用户中心',
     		'item'	=> array(
