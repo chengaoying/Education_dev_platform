@@ -26,6 +26,7 @@ class SectionLogic extends BaseLogic {
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
+		$param['where']['status'] = 1;
 		
 		$data = D('Section')->selectPage($param);
 		return $data;
@@ -39,6 +40,7 @@ class SectionLogic extends BaseLogic {
 	 */
 	public function querySectionListBySectionIds($sectionIds, $pageNo, $pageSize){
 		$param['where']['id'] = array('in',implode($sectionIds,','));
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
@@ -62,6 +64,7 @@ class SectionLogic extends BaseLogic {
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
+		$param['where']['status'] = 1;
 		
 		$data = D('Section')->selectPage($param);
 		return $data;
@@ -76,6 +79,7 @@ class SectionLogic extends BaseLogic {
 	public function querySectionListBySort($topicIds,$sorts,$pageNo=1, $pageSize=3){
 		$param['where']['sort'] = array('in',implode($sorts,','));
 		$param['where']['topicId'] = array('in',implode($topicIds,','));
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';

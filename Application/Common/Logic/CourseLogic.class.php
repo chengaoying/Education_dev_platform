@@ -27,6 +27,7 @@ class CourseLogic extends BaseLogic {
 	 */
 	public function queryUserCourseList($userId, $pageNo, $pageSize){
 		$param['where']['userId'] = $userId;
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		
@@ -44,6 +45,7 @@ class CourseLogic extends BaseLogic {
 	public function queryCourseListByKeys($stageId, $keys, $pageNo, $pageSize){
 		$param['where']['stageIds'] = $stageId;
 		$param['where']['keys']    	= $keys;
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
@@ -67,6 +69,7 @@ class CourseLogic extends BaseLogic {
 	 */
 	public function queryRecommendCourse($stageId, $keys){
 		$param['where']['stageIds'] = $stageId;
+		$param['where']['status'] = 1;
 		foreach ($keys as $k => $v){
 			$param['where']['keys'] = $k;
 			$param['where']['name'] = $v;
@@ -89,6 +92,7 @@ class CourseLogic extends BaseLogic {
 		$param['page'] 		= 1;
 		$param['pageSize'] 	= 10;
 		$param['sortOrder'] = 'sort asc';
+		$param['where']['status'] = 1;
 		
 		for($i=0; $i<count($keys); $i++){
 			$param['where']['keys'] = $keys[$i];
@@ -119,6 +123,7 @@ class CourseLogic extends BaseLogic {
 	 */
 	public function queryCourseListByChId($chId, $pageNo, $pageSize){
 		$param['where']['chId']  = $chId;
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
@@ -145,6 +150,7 @@ class CourseLogic extends BaseLogic {
 	 */
 	public function queryCourseListByType($stageId, $types, $pageNo, $pageSize){
 		$param['where']['stageIds']  = $stageId;
+		$param['where']['status'] = 1;
 		if(is_array($types)){
 			$param['where']['typeId']    = array('in',implode($types, ','));
 		}else{

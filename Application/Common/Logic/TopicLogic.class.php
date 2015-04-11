@@ -16,6 +16,7 @@ class TopicLogic extends BaseLogic {
 	 */
 	public function queryTopicList($courseId, $pageNo, $pageSize){
 		$param['where']['courseId']  = $courseId;
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
@@ -32,6 +33,7 @@ class TopicLogic extends BaseLogic {
 	 */
 	public function queryTopicListByTopicIds($topicIds, $pageNo, $pageSize){
 		$param['where']['id']  = array('in',implode($topicIds, ','));
+		$param['where']['status'] = 1;
 		$param['page'] 		= $pageNo;
 		$param['pageSize'] 	= $pageSize;
 		$param['sortOrder'] = 'sort asc';
