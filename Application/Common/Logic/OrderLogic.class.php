@@ -20,7 +20,7 @@ class OrderLogic extends BaseLogic {
 	public function auth($userId){
 		$user = D('User')->find($userId);
 		if(empty($user['OpUserId'])) return result_data(0,'用户信息异常！');
-		return D($this->area,'Area')->auth($userId);
+		return D($this->area,'Area')->auth($user);
 	}
 	
 	/**
