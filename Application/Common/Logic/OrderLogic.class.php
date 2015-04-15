@@ -36,7 +36,7 @@ class OrderLogic extends BaseLogic {
 		//计费信息
 		$chargeModes = get_cache('ChargeMode');
 		$chargeMode = get_array_by_key($chargeModes, 'type', '1');
-		D($this->area,'Area')->order($user,$chargeMode,$backUrl);
+		return D($this->area,'Area')->order($user,$chargeMode,$backUrl);
 	}
 	
 	/**

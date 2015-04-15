@@ -17,8 +17,12 @@ class A90021Area extends BaseArea{
 	 * @param arr $user
 	 */
 	public function auth($user){
-		$url = $this->auth_url.'?userid='.$user['OpUserId'].'&usertoken='.$user['OpUserToken'];
-		$url .= '&product='.$this->proKey.'&spid='.$this->spid;
+		$param = '?userid='.$user['OpUserId'];
+		$param .= '&usertoken='.$user['OpUserToken'];
+		$param .= '&product='.$this->proKey;
+		$param .= '&spid='.$this->spid;
+		
+		$url = $this->auth_url.$param;
 		$result = url_data($url,'','get');
 		
 		//保存鉴权记录（调试模式下保存）
@@ -42,39 +46,42 @@ class A90021Area extends BaseArea{
 	 */
 	public function order($user,$chargeMode,$backUrl){
 		//计费参数
-		$param = 'spid='.$this->spid;
-		$param .= '&userid='.$user['OpUserId'];
+		$param = '?userid='.$user['OpUserId'];
+		$param .= '&username='.$user['OpUserName'];
+		$param .= '&product='.$this->proKey;
 		$param .= '&usertoken='.$user['OpUserToken'];
 		$param .= '&money='.intval($chargeMode['price']);
-		$param .= '&product='.$this->proKey;
-		$param .= '&username='.$user['OpUserName'];
-		$param .= '&action=1';
-		$param .= '&paytype='.$this->charge_type;
+		$param .= '&spid='.$this->spid;
+		//$param .= '&action=1';
+		//$param .= '&paytype='.$this->charge_type;
+		$param .= '&key=4:2';
 		
-		$checkCode = $param['userid'].'|'.$param['spid'].'|'.$param['product'].'|'.$this->check_key.'|'.$param['money'];
-		$param .= '&checkCode='.md5($checkCode);
+		$checkCode = $user['OpUserId'].'|'.$this->spid.'|'.$this->proKey.'|'.$this->check_key.'|'.intval($chargeMode['price']);
+		$checkCode = md5($checkCode);
+		$param .= '&checkcode='.$checkCode;
 		$param .= '&backurl='.urlencode($backUrl);
 		
 		//发起订购请求
-		$url = $this->order_url.'?'.$param;
-		$result = url_data($url,'','get');
-		$_backUrl = $backUrl.'&result='.$result;
+		$url = $this->order_url.$param;
+		//$result = url_data($url,'','get');
+		//$_backUrl = $backUrl.'&result='.$url;
 		
 		//保存订购记录
 		$data['userId'] = $user['id'];
 		$data['opUserId'] = $user['OpUserId'];
 		$data['proKey'] = $this->proKey;
 		$data['chargeMode'] = $chargeMode['type'];
-		$data['price']	= $chargeMode['price'];
+		$data['price']	= intval($chargeMode['price']);
 		$data['desc'] = $chargeMode['desc'];
-		$data['checkCode'] = $param['checkCode'];
+		$data['checkCode'] = $checkCode;
 		$data['url'] = $url;
-		$data['result'] = $result;
-		$data['backUrl'] = $_backUrl;
+		//$data['result'] = $result;
+		$data['backUrl'] = $backUrl;
 		D('UserOrderRecord')->saveData($data);
 		
-		header("location:".$_backUrl);
-		exit;
+		return result_data(1,'',$url);
+		//header("location:".$url);
+		//exit;
 	}
 	
 	/**
